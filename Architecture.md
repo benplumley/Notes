@@ -60,3 +60,10 @@ There are also two types of *memory architecture* in a multiprocessor. One, *sha
 Compromises between the two architectures exist: *virtual shared memory*, where the action of requesting another processor's data is transparent to the CPU, and *non-uniform memory access*, where a shared pool is structured in such a way that each processor has a preference for a certain section of the pool.
 
 The dominant form of architecture in commercially available CPUs is a MIMD processor with shared memory.
+
+###07/10/14
+**Amdahl's Law**  
+Amdahl's Law describes the limits to the benefit provided by parallelisation. It says that, if proportion *p* of a task can be done in parallel, the speedup provided by a computer with *N* processors is:  
+1 / ((1 - p) + (p / N))
+
+For instance, a task of which 90% can be parallelised, given to a 4 core processor, will be completed 3.08 times faster than when given to a single core processor. This formula has a limit as N tends to infinity. The task which is 90% parallel can be done at most ten times faster than on a single core. The limit is 1 / (1 - p).
