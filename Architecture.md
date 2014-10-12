@@ -30,10 +30,33 @@ This is what almost all commercial laptop and desktop computers use today. Named
 - The Control Unit, which sends instructions (operators) and data (operands) to the ALU  
 - The data store, which contains both data and instructions. In this context, it refers to the RAM  
 - The input devices (mouse, keyboard)  
-- The output devices (screen, printer)  
+- The output devices (screen, printer)
+
 Crucial to this architecture is that the same data store is used for the data as is used for the instructions. This follows from the principle that instructions can be represented as data, and is known as the *stored program concept*. The CPU is made up of the ALU and its Control Unit.
 
 There are drawbacks to the Von Neumann architecture. Because the CPU can process data faster than it can be written to the data store, a bottleneck can form between the CPU and memory. This is exacerbated by the processing of small files, where the ratio of data to be processed to 'overhead' (metadata, address locations etc) is low. This has become more of a problem as CPU speed has increased at a greater rate than the speed at which memory can be written to. It can be alleviated through the use of caches, which are small fast memory locations near the processor.
 
 **Harvard Architecture**  
 The main difference between the Von Neumann architecture and the Harvard architecture is the data store. The Harvard architecture uses two separate data stores; one for data and the other for programs. Embedded devices, including members of the Arduino line, use this architecture.
+
+###06/10/14
+**Parallel Architectures**  
+There are a number of solutions to the Von Neumann bottleneck. These include using an alternative architecture (eg Harvard), the use of distributed storage, caching and internal registers.
+
+A *cache* is a small memory location which is faster than main memory, and duplicates some of the information stored in main memory so that it can be accessed more quickly. It is split into levels. *L1* cache is the fastest and smallest cache, and is located on the CPU itself. *L2* cache is bigger but slower, located near but not on the CPU. More modern processors can have more levels of cache, which are progressively larger and slower, and further from the CPU.
+
+A *register* is a memory location used to store the results of ongoing calculations. It is smaller and faster than the L1 cache.
+
+*Parallelism* is a processor carrying out multiple operations simultaneously by having more than one ALU. This is known as a multiprocessor. The behaviour of multiprocessors and the programs they run is harder to understand, control and predict. Parallelism can be broken down into task level parallelism and data level parallelism. Task level parallelism can either use a single instruction stream or multiple instruction streams, and data level parallelism can either use one data stream or multiple data streams. Therefore, the four possibilities are:  
+- Single Instruction, Single Data (SISD): Performs one instruction at a time. This isn't parallel.
+- Single Instruction, Multiple Data (SIMD): Performs the same operation simultaneously on multiple pieces of data, for example to change the brightness of every pixel in a photo. This is the architecture used in modern GPUs.
+- Multiple Instruction, Single Data (MISD): Performs different operations simultaneously on the same piece of data. This has uses in fault tolerant computing, where lots of methods are used on the same data to ensure they have consensus.
+- Multiple Instruction, Multiple Data (MIMD): Performs different instructions simultaneously on different pieces of data. The actions of one ALU have no bearing on the actions of the others.
+
+There are also two types of *memory architecture* in a multiprocessor. One, *shared memory*, uses a single pool of memory addresses that can be accessed with equal speed by every CPU. This is efficient as little space is wasted, but bottlenecks can form and if two CPUs change the same piece of data, something known as a *cache coherence problem* is caused. Shared memory also doesn't scale well.
+
+*Distributed memory* is a system where each CPU has its own pool of memory which only it can access. This isn't as space-efficient, and in order to request data stored in another processor's memory, a relatively slow message-passing system is required. Also, the process of splitting and distributing a task to separate CPUs and then reassembling their computed outputs from separate memory pools is a non-trivial problem.
+
+Compromises between the two architectures exist: *virtual shared memory*, where the action of requesting another processor's data is transparent to the CPU, and *non-uniform memory access*, where a shared pool is structured in such a way that each processor has a preference for a certain section of the pool.
+
+The dominant form of architecture in commercially available CPUs is a MIMD processor with shared memory.
