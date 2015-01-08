@@ -121,3 +121,22 @@ Another big advantage of 2's Complement is that arithmetic can be carried out in
 
 **Text Characters**  
 To store a character, we assign it a unique bit pattern. All of the symbols in the Western alphabet (upper and lower case characters, numbers and punctuation) can be represented in one byte. A string of characters is stored in a series of bytes. The ASCII scheme is one of the most common character encoding schemes, and uses 7 bits to store a character. UNICODE uses 32 bits, therefore can be used to store characters from any language.
+
+**Real Numbers**  
+An ideal encoding of real numbers would be precise and unambiguous. However, the decimal system is unable to achieve this, needing to fall back onto letters representing numbers (e and pi) and fractions. The binary floating point system is no different. It uses the binary equivalent of scientific notation to approximate the values of real numbers. This notation uses a *mantissa*, *base* and *exponent*.
+
+Advantages of scientific notation are that they are easy to understand, generate and manipulate, they are compact in their representation, they can represent numbers of widely varying magnitude, and they are accurate up to the level of precision they specify.
+
+Disadvantages are that the number is inherently an approximation, rounding errors can occur, and using different formats to represent the same number can give different answers in a calculation. Because of the nature of real numbers, each floating point number represents an infinite number of real numbers.
+
+In normalised scientific notation, both the mantissa and exponent are signed. The mantissa must be between 1 and the base.
+
+As the size of the mantissa is fixed, we can only give approximate values of numbers which have a greater number of significant digits than the size of the mantissa. Some of the accuracy of the original number will be lost if the mantissa is smaller than the number it is representing. The number of bits given to the mantissa affects the accuracy of the representable numbers, and the number of bits given to the exponent affects the magnitude.
+
+The IEEE has a standard for how floating point numbers are stored in memory. The first bit holds the sign of the mantissa. The next 8 bits holds the exponent plus a bias of 127 which must be subtracted to calculate the value of the exponent. The next 23 bits are the 24-bit mantissa, where the first bit is always 1 so doesn't need to be stored. The binary point is therefore to the left of the first bit stored in the mantissa.
+
+Special cases are an exponent of zero (representing zero) and an exponent of 255 (representing infinity).
+
+To add two floating-point numbers, the smaller one is de-normalised so its exponent is equal to the other exponent, the mantissae are added, and the result is re-normalised. To multiply, the mantissae are multiplied, the exponents are added and the result is re-normalised.
+
+Double precision floating point numbers use 64 bits instead of 32. The exponent is 11 bits and the mantissa is 52 bits.
