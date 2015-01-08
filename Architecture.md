@@ -93,4 +93,31 @@ A few more conditions must be met by a numeration system. These are:
 - Place values increase from left to right; the value of each place is equal to the base to the power of the position  
 - There is an agreed starting point (units) denoted by a point
 
-These systems can be extended to the right of the point to represent non-integer numbers. Putting a number to the right of the point means it has a negative position, so the base is put to a negative power.
+These systems can be extended to the right of the point to represent non-integer numbers. Putting a number to the right of the point means it has a negative position, so the base is put to a negative power. A binary number can be written more succinctly in hexadecimal by converting every series of four bits into a single hexadecimal digit.
+
+**Data Storage**  
+The basic element of digital storage, is the binary digit, or bit. This is a two-state device, represented in a computer either by a presence or absence of charge of polarity of magnetisation. These bits are grouped into sequences called cells. A typical cell size is 8 bits; this is a byte. Other cell sizes are also sometimes used.
+
+The store (main memory, RAM) is a large collection of addressable cells. Individual cells can be referred to by their address, and they are the smallest addressable unit in the store - you can't directly address a single bit. The states of the bits in each cell make up its contents. Each cell has a unique address, typically starting at 0 and counting up.
+
+Two types of memory access are Random Access (in RAM) and Sequential Access (in a hard drive). With Random Access Memory, the time taken to access a cell does not depend on its address. With Sequential Access Memory, the time taken to access each cell depends on the distance between it and the cell previously accessed, typically because a mechanical read-write head has to physically move a distance to find the next cell.
+
+The contents of a cell, a bit pattern, is agnostic to data type - it is impossible to tell what type of data a cell holds without knowing the context in which it will be accessed. As addresses themselves are data, cells can hold addresses of other cells.
+
+The *address space* of a computer refers to the number of bits on its address bus, and hence the number of different locations it can access. For instance, the address bus on a 32-bit computer contains 32 wires, and can represent 2^32 addresses. These addresses must be split between RAM, I/O devices, networked computers etc. The processor's address space must be greater than or equal to the operating system's, which must be greater than or equal to the application's. For this reason, a 32 bit app can run on a 64 bit processor but not vice versa.
+
+By doing a direct translation from a decimal number to a binary one, we can store a number between 0 and 255 in one byte. However, this is not the only way of using bytes to represent unsigned integers. Other methods include Binary-coded Decimal (BCD) which assigns a 4-bit pattern to each decimal digit. Early decimal computers used this encoding. Binary-coded sexagesimal uses 6 bits per digit to store a number between 0 and 59, and can therefore be used to represent time. Gray codes are another system, in which two successive values differ only in one bit.
+
+**Signed Integers**  
+We can use *sign and magnitude* to store a number between -2^n and 2^n in a cell of n+1 bits. The first bit represents the number's sign (eg numbers starting with 0 are positive, numbers starting with 1 are negative) and the remaining bits represent the magnitude of the number.
+
+The advantages of this method is that it is easy for humans to read it, and symmetrical about zero. However, as there are positive and negative values of zero, only 255 values can be stored instead of 256 in a byte. It also makes arithmetic more complicated than it needs to be, because there must be a case in the processor for each combination of signs.
+
+An improvement over sign and magnitude representation is *1's Complement*. Positive integers are still represented by a number with a leading zero, but to get a negative number, all the bits are flipped from its positive counterpart. The advantage of this is that arithmetic is much simpler, but there are still two representations of zero.
+
+The method used by modern computers is *2's Complement*. In this representation, the MSB represents the negative of its position's value (in a byte, -128) and the remaining bits represent an unsigned integer. For instance, 0b10110100 is -128 + 32 + 16 + 4 = -76. This method's advantage is that there is now only one representation of zero (0b00000000). All negative numbers have a 1 in the MSB, and all positive numbers have a zero. However, the number line is no longer symmetrical about zero, and this form can be hard for humans to read.
+
+Another big advantage of 2's Complement is that arithmetic can be carried out in a single stage, without having to check the sign of the numbers we perform the calculation on. Addition works exactly as it did with unsigned integers, and now subtraction can also be performed by adding a positive and a negative number together.
+
+**Text Characters**  
+To store a character, we assign it a unique bit pattern. All of the symbols in the Western alphabet (upper and lower case characters, numbers and punctuation) can be represented in one byte. A string of characters is stored in a series of bytes. The ASCII scheme is one of the most common character encoding schemes, and uses 7 bits to store a character. UNICODE uses 32 bits, therefore can be used to store characters from any language.
