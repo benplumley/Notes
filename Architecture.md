@@ -292,15 +292,15 @@ In a *Circular shift*, whatever bits move out of one end move into the other in 
 **Bitwise Operations**  
 We can apply logical operations to entire bit patterns as well as just single bits. These take each pair of bits independently. These can be computed in parallel so are fast to calculate.
 
-This means we can create more efficient ways to perform addition, as in the following pseudocode:
-to add A to B
-do until B is zero
-	G = (A.B) << 1
-	J = A XOR B
-	A = J
-	B = G
-loop
-return A
+This means we can create more efficient ways to perform addition, as in the following pseudocode:  
+to add A to B  
+do until B is zero  
+	G = (A.B) << 1  
+	J = A XOR B  
+	A = J  
+	B = G  
+loop  
+return A  
 
 **Sequential logic**  
 In a combinatorial circuit, signals flow from left to right. In a sequential system, wires can double back to feed an output from a later gate into the input of an earlier gate. This means that the output of the entire circuit does not just depend on the current input, but on the previous inputs too - the system has states.
