@@ -264,3 +264,87 @@ Not every device has the same importance to the running of the computer. Each de
 Advantages of interrupts are that they do not waste CPU cycles testing device flags, they are typically more responsive than polling, and they can easily control multiple devices by assigning priorities. The disadvantages are that specialised hardware is needed to control the interrupts, and the context switch (pushing and popping stack frames) costs CPU time.
 
 Another optimisation made by architectures is *Direct Memory Access (DMA)*. Without DMA, all the data transferred from an I/O device to memory must pass through a data register of the CPU. This wastes CPU time. DMA allows the I/O device (or memory) to send a request through the CPU to start a transfer. Once the transfer has been started by the CPU, the rest of the data passes directly from the I/O device's buffer to memory, bypassing the CPU. The CPU is then notified when the transfer is completed. This allows the CPU to perform useful work while the transfer completes independently, and also means the CPU can't be a rate-limiting factor between memory and a fast I/O device.
+
+**Karnaugh Maps**  
+The *standard sum of products* of a boolean formula is a series of terms joined by ORs, in which each term contains a combination of every variable joined by ANDs. For example, the standard sum of products of A+B.C is A.B.C+A.B.C'+A.B'.C+A.B'.C'+A'.B.C which is equivalent in value. Every boolean expression has an equivalent sum of products.
+
+Because boolean formulae of circuits must eventually be implemented in logic gates, it is important that they are in simplest form. We could just simplify formulae until they don't seem to reduce further, but it can be hard to tell and it's important in practice that silicon isn't being wasted on redundant gates. We need a mathematically rigorous method for getting a formula into its simplest form. This method is called a *Karnaugh map*. To use it, we first convert the formula into standard sum of products form. Then we draw a Karnaugh map and plot the formula.
+
+The map is a grid with variables (or variable pairs) on the top and left, and Gray code co-ordinates. The sum of products terms are plotted as 1s, and groups of 1s are collected in as large and few rectangular groups as possible.
+
+Sometimes, we have terms that can be either zero or one - it doesn't matter to our circuit which they are. An example of this is in binary coded decimal, where the outputs from 10 to 15 don't make a difference. We represent these terms in a Karnaugh map using an x instead of a 1. These terms can be treated as either zero or one, whichever creates the best set of rectangles.
+
+**Adders**  
+A half-adder takes two inputs and outputs their sum (by XORing) and their carry (by ANDing). A full adder takes two numbers and a carry and ouputs a result and a carry. Using a line of these of length n, two n-bit numbers can be added together.
+
+If the numbers we add together sum to more than can fit in the number of bits we have, then the final adder will give a carry bit. This is an arithmetic overflow. We can detect this by adding a hidden *guard bit* to the left of the MSB of each number before we perform the addition. The guard bit takes the value of the MSB. We then add the numbers as if the guard bit were part of the number. Then we compare the guard bit to the MSB of the answer - if they are the same, no overflow occurred, but if they differ, then the operation overflowed and the overflow flag must be set.
+
+**Multiplication**  
+We can multiply positive integers by adding repeatedly, but it is often faster (particularly in binary) to use long multiplication. Multiplication by powers of 2 is just a bitshift to the left. To multiply two binary numbers, we shift the bits in the first number left once for a 1 in the first column of the second numbert, twice for a 1 in the second column and so on. We then add these results.
+
+**Bitshifts**  
+In a *logical shift*, the bits that move in are zeroes. A left shift is multiplication and a right shift is division by powers of 2, assuming the number is unsigned.
+
+In an *Arithmetic right shift*, the bits that move in are copies of the sign bit (MSB). This is a division of a 2's complement value by a power of 2. An arithmetic left shift doesn't exist because it is the same as a logical left shift.
+
+In a *Circular shift*, whatever bits move out of one end move into the other in the same order as if the two ends of the bit were connected.
+
+**Bitwise Operations**  
+We can apply logical operations to entire bit patterns as well as just single bits. These take each pair of bits independently. These can be computed in parallel so are fast to calculate.
+
+This means we can create more efficient ways to perform addition, as in the following pseudocode:
+to add A to B
+do until B is zero
+	G = (A.B) << 1
+	J = A XOR B
+	A = J
+	B = G
+loop
+return A
+
+**Sequential logic**  
+In a combinatorial circuit, signals flow from left to right. In a sequential system, wires can double back to feed an output from a later gate into the input of an earlier gate. This means that the output of the entire circuit does not just depend on the current input, but on the previous inputs too - the system has states.
+
+A *Set-Reset (SR) Latch* is a circuit made from 2 NOR gates. The output can be set by raising the S input, after which the output is a stable 1 even after the input drops. To set the output to zero, the R input must be raised. The truth table is  
+S R Qn+1  
+0 0 Qn  
+0 1 0  
+1 0 1  
+1 1 -  
+So leaving both inputs as zero will leave the output as whatever it was before, raising S raises the ouput, raising R unsets the output, and raising both S and R is not defined (the circuit is inconsistent).
+
+Now that we have gates feeding back into each other, it becomes clear that there must be a delay between a gate receiving an input and that gate giving a corresponding output. The circuit is asynchronous, or unclocked.
+
+An *Inverted SR Latch* is an SR latch that uses NAND gates instead of NOR gates. The difference this creates is that the default "resting" inputs are 1 and drop to zero to change the output.
+
+Both SR and Inverted SR latches can be used to store a single bit of data. The problems with using them are that they are asynchronous, meaning that output states might depend on the order in which the input changes occurred, or whether the circuit had chance to adjust before being tested, and that they have non-deterministic input states. The first problem is solved by using a clock to create a flip-flop, and the second can be solved by restricting the possible inputs using gates.
+
+**Flip-flops**  
+An *SR flip-flop* is an SR latch whose inputs are ANDed with a clock pulse, so that the latch responds to inputs only when the clock signal is present, rather than at any time.
+
+A *D-type flip-flop* is the same as an SR flip-flop, only the R input is replaced by ~S to prevent the situation where both S and R are 1.
+
+A *J-K flip-flop* is the same as an SR flip-flop with two extra wires from the outputs to the first AND gates. This allows the output to be toggled by supplying 1 to both inputs.
+
+**Registers**  
+A *parallel register* in the CPU consists of 1-bit memory locations that can be read or written simultaneously. These memory locations are made from D-type flip-flops. Each flip-flop has its own data line, and each one is collected to the clock. When the clock pulses, the flip-flop outputs whatever was on its data line. By ANDing the clock pulse with a *load* pulse, we are able to make the flip-flops temporarily read-only until we pulse load and clock together.
+
+A *shift register* takes one data input, and the output from each D flip-flop is the input to the next. Each time the clock pulses, the values shift one register to the right. These are used in logical shifts and rotations.
+
+**Counters**  
+A *counter* is a register whose value increases by one every time the input is raised. When the counter overflows, it goes back to zero.
+
+A *ripple counter* is asynchronous. The change in number starts in the left-most J-K flip-flop and cascades through to the right-most one at a rate of one flip-flop per clock pulse. The problem with this is that the delay between the input changing and the output changing is proportional to the length of the counter, so it could get too big to be useful in a large counter.
+
+A *synchronous counter* changes all the flip-flops at the same time; as soon as the input changes and the clock is raised, the output is incremented.
+
+**Assembly Language**  
+High-level languages are compiled into *assembly language* before being compiled to machine code. Writing directly in assembly language is good because:
+- Programs are much smaller, which helps on embedded systems  
+- Programs run faster  
+
+But the negative aspects:
+- The code is harder to debug and maintain because it is harder to understand  
+- CPU time is cheap compared to developer time; a performance improvement that takes a long time to implement might not be worth it  
+- The code is less portable because assembly language is processor-specific, unlike high-level languages  
+- It is a lot easier to cause unintentional malfunctions  
