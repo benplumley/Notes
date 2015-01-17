@@ -176,6 +176,7 @@ Operands can be addressed in ways other than storing the address of the value to
 - Immediate. The number specified after the operation is the number used as the operand  
 - Direct. The number after the operation is the address of the operand  
 - Indirect. The number after the operation is the address of a cell containing the address of the operand  
+- Indexed. The number after the operation is added to the contents of the Index Register, giving the address of the cell containing the operand  
 Other addressing modes can be used, but these three are the most common.
 
 **Instruction Sets**  
@@ -201,7 +202,7 @@ The *stack* is an area in memory that uses the Last In First Out principle (simi
 This structure extends easily to the task of storing subroutines as jump commands are given. Before the processor jumps, the current location is pushed to the stack along with the values of all the registers - this is known as the *stack frame*. When the subroutine returns, the top element from the stack is popped, loading the values of all registers to what they were before the jump. This includes the PC, so the program goes back to where it was before the jump. This means subroutine calls can be nested to any depth, provided we have enough space on the stack to store each stack frame.
 
 **Pipelining**  
-As the ALU, control unit and memory can all be working at the same time, performing the fetch-execute cycle in sequence wastes resources. While the processor is waiting for the memory to return a value, it is doing nothing. For this reason, we use *instruction level parallelism*, specifically *pipelining*. There are five element to the cycle:  
+As the ALU, control unit and memory can all be working at the same time, performing the fetch-execute cycle in sequence wastes resources. While the processor is waiting for the memory to return a value, it is doing nothing. For this reason, we use *instruction level parallelism*, specifically *pipelining*. There are five elements to the cycle:  
 1) Fetch instruction  
 2) Decode  
 3) Fetch operands  
@@ -247,7 +248,7 @@ The main advantages of memory-mapping are that it simplifies use of I/O devices,
 **Co-ordinating I/O devices and CPU**  
 In order to let the CPU know when an I/O device is ready, each is assigned a register containing (at least) a one-bit flag representing the state of the corresponding device. When a transfer is started, the flag is unset, and when the transfer completes the flag is set to let the CPU know that the device is ready to recieve another transfer. The CPU can test the flag at any time, which is a much faster operation than sending a status request to the I/O device.
 
-The problem with writing code that refers to I/O devices is that their moving parts make them many orders of magnitude slower to operate than the CPU. If the code had to wait for an electromechanical I/O device to be ready before it could continue, the entire program might be forced to operate at the speed of a mechanical arm or print head. This method of operation is known as the *busy-wait strategy*. The CPU tests the device flag, and the device is ready, the CPU will begin the transfer. If the device is not ready, the CPU will repeatedly test the flag until it becomes ready. Until the mechanical device is ready, the CPU does no useful work, making this a very inefficient strategy. However, the CPU will know the device is ready as soon as the flag is set, so no time is wasted after the flag is set.
+The problem with writing code that refers to I/O devices is that their moving parts make them many orders of magnitude slower to operate than the CPU. If the code had to wait for an electromechanical I/O device to be ready before it could continue, the entire program might be forced to operate at the speed of a mechanical arm or print head. This method of operation is known as the *busy-wait strategy*. The CPU tests the device flag, and if the device is ready, the CPU will begin the transfer. If the device is not ready, the CPU will repeatedly test the flag until it becomes ready. Until the mechanical device is ready, the CPU does no useful work, making this a very inefficient strategy. However, the CPU will know the device is ready as soon as the flag is set, so no time is wasted after the flag is set.
 
 An alternative strategy is *polling*. The CPU tests the device flag, and if it is unset, does another useful task for a set amount of time, and then tests again. It repeats this until the device becomes ready. This wastes fewer cycles than busy-wait, but cycles are still wasted testing the flag and if the flag is polled just before being set, the CPU must wait a relatively long time doing unrelated work before testing the flag again.
 
@@ -280,14 +281,14 @@ A half-adder takes two inputs and outputs their sum (by XORing) and their carry 
 If the numbers we add together sum to more than can fit in the number of bits we have, then the final adder will give a carry bit. This is an arithmetic overflow. We can detect this by adding a hidden *guard bit* to the left of the MSB of each number before we perform the addition. The guard bit takes the value of the MSB. We then add the numbers as if the guard bit were part of the number. Then we compare the guard bit to the MSB of the answer - if they are the same, no overflow occurred, but if they differ, then the operation overflowed and the overflow flag must be set.
 
 **Multiplication**  
-We can multiply positive integers by adding repeatedly, but it is often faster (particularly in binary) to use long multiplication. Multiplication by powers of 2 is just a bitshift to the left. To multiply two binary numbers, we shift the bits in the first number left once for a 1 in the first column of the second numbert, twice for a 1 in the second column and so on. We then add these results.
+We can multiply positive integers by adding repeatedly, but it is often faster (particularly in binary) to use long multiplication. Multiplication by powers of 2 is just a bitshift to the left. To multiply two binary numbers, we shift the bits in the first number left once for a 1 in the first column of the second number, twice for a 1 in the second column and so on. We then add these results.
 
 **Bitshifts**  
 In a *logical shift*, the bits that move in are zeroes. A left shift is multiplication and a right shift is division by powers of 2, assuming the number is unsigned.
 
 In an *Arithmetic right shift*, the bits that move in are copies of the sign bit (MSB). This is a division of a 2's complement value by a power of 2. An arithmetic left shift doesn't exist because it is the same as a logical left shift.
 
-In a *Circular shift*, whatever bits move out of one end move into the other in the same order as if the two ends of the bit were connected.
+In a *Circular shift*, whatever bits move out of one end move into the other in the same order as if the two ends of the cell were connected.
 
 **Bitwise Operations**  
 We can apply logical operations to entire bit patterns as well as just single bits. These take each pair of bits independently. These can be computed in parallel so are fast to calculate.
@@ -339,11 +340,11 @@ A *ripple counter* is asynchronous. The change in number starts in the left-most
 A *synchronous counter* changes all the flip-flops at the same time; as soon as the input changes and the clock is raised, the output is incremented.
 
 **Assembly Language**  
-High-level languages are compiled into *assembly language* before being compiled to machine code. Writing directly in assembly language is good because:
+High-level languages are compiled into *assembly language* before being compiled to machine code. Writing directly in assembly language is good because:  
 - Programs are much smaller, which helps on embedded systems  
 - Programs run faster  
 
-But the negative aspects:
+But the negative aspects:  
 - The code is harder to debug and maintain because it is harder to understand  
 - CPU time is cheap compared to developer time; a performance improvement that takes a long time to implement might not be worth it  
 - The code is less portable because assembly language is processor-specific, unlike high-level languages  
