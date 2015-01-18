@@ -68,3 +68,38 @@
 **Class** is a template for an abstract data type. Classes are provided by Java and we can also write our own.
 
 **Object** is an instance of a class.
+
+**Constructors** are methods used to create an instance of a class, and have the same name as the class.
+
+**Mutators** are methods which change the values of class variables.
+
+**Accessors** are methods which return data to other parts of the program.
+
+**Formal parameters** are the parameters which appear in a method definition.
+
+**Actual parameters** are the arguments which are passed to methods to satisfy the formal parameter specification.
+
+**Abstraction** is the ability to remove details of the problem and solve it at a higher, more abstract level.
+
+**Modularisation** is the process of splitting a program into parts, each of which can be built and maintained separately.
+
+**Class diagrams** show the classes of a program and the relationships between them.
+
+**Object diagrams** show the objects and their relationships at one moment in time during execution.
+
+**Primitive** types such as int, char and boolean are not instances of objects.
+
+**Alias** is when two objects point to the same area in memory, meaning changing one of them changes the other. This could occur after a shallow copy.
+
+**Copy** is when the data in an object is duplicated and saved at another location in memory, meaning changing its value has no effect on the the value of the object it was copied from. This is a deep copy.
+
+**Wrapper classes** are classes corresponding to the primitives. Because an object is sometimes needed, one can be created containing the value of any of the primitive types.
+
+**Method overloading** is where two or more methods in a class have the same name but different parameters.
+
+**Tuples** are a data type consisting of a key-value pair, although other numbers of values per key can be used.
+
+**Dictionaries** are a data type consisting of a list of tuples, where each key must be unique.
+
+**Downcasting** is used to tell the compiler that an object belongs to a more specific class. It does not perform a conversion of that object.
+end of lecture 7
