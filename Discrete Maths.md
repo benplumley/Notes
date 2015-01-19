@@ -147,46 +147,61 @@ A map f from A to B is a subset of A x B. For any input in A there is a unique o
 **6.4: Relations**  
 A *relation* is the subset of the cartesian product of the domain and range. It is the same as a map, with the condition removed that each image is unique. For x in A and y in B, the elements x and y can be said to be in the relation by writing x*y.
 
-It is *reflexive* if x*x is in the relation.
+It is *reflexive* if x\*x is in the relation.
 
-It is *symmetric* if x*y implies y*x.
+It is *symmetric* if x\*y implies y\*x.
 
-It is *transitive* if x*y and y*z implies x*z.
+It is *transitive* if x\*y and y\*z implies x\*z.
+
+A relation can have any combination of zero or more of these properties.
 
 **6.5: Equivalence Relations**  
-
+A relation is an *equivalence relation* if it is reflexive, symmetric and transitive.
 
 **6.6: Partitions into Equivalence Classes**  
+A partition on a finite set A is a collection of non-empty subsets such that the whole of A is covered, and no two subsets overlap.
 
+By applying an equivalence relation to A, the elements of A are split into equivalence classes. These classes form a partition. For instance, apply the parity relation to the set Z. The equivalence classes formed are odd numbers and even numbers. Together, these cover the whole class and there is no overlap, so form a partition.
 
 **7.1: Rational Numbers**  
-
+The *rational numbers*, **Q**, are the set of all fractions a/b where a and b are integers and b is nonzero. The fractions are split into equivalence classes of equivalent fractions (ie 1/2 is in an equivalence class with 2/4 and an infinite number of multiples), and each equivalence class is given a *distinguished representative*, namely the one irreducible member of the class.
 
 **7.2: Arithmetic Operations on Rational Numbers**  
+Arithmetic over **Q** is performed by taking any fraction in the class of the first number, and likewise for the second number, performing the operation on them, and finding the distinguished representative of the class the result falls into.
 
+As arithmetic operations are well defined, any fraction in the right class of each number can be used.
 
 **7.3: Cauchy Sequences**  
-
+A *Cauchy sequence* is a sequence that converges. Formally, a sequence {a_n} is Cauchy if for any rational epsilon > 0, there exists a natural N such that if natural n, m >= N then |a_n - a_m| < epsilon. Cauchy sequences are used to represent the real numbers. For instance, pi is represented by the Cauchy sequence {3, 3.1, 3.14, ...} amongst infinite other Cauchy sequences which also tend to pi.
 
 **7.4: Arithmetic of Cauchy Sequences**  
-
+If any two Cauchy sequences are added or multiplied together, the resulting sequence is also Cauchy.
 
 **7.5: Null Sequences**  
-
+A *null sequence* is a Cauchy sequence that converges to zero.
 
 **7.6: Equivalence Relations for Cauchy Sequences**  
-
+Two Cauchy sequences are equivalent if their difference is a null sequence. The difference of two sequences {a_n} and {b_n} is {a_n - b_n}.
 
 **8.1: Arithmetic Operations on Real Numbers**  
-
+To add or multiply real numbers, a representative member of each number's set of Cauchy sequences is chosen, the operation is performed on two sequences, and the result is taken as the number containing the Cauchy sequence calculated.
 
 **8.2: Partial and Total Orders**  
+A relation is *antisymmetric* if it is not symmetric, ie the only way for x\*y to imply y\*x is for y and x to be the same element.
 
+A relation is a partial order if it is reflexive, antisymmetric and transitive.
+
+A relation is a total order if it is a partial order and true for any x\*y or y\*x. All total orders are also partial orders.
 
 **8.3: Maximal and Minimal Elements**  
+The *maximal* element is the element at the top end of the order. For instance, 3 is the maximal element of {1, 2, 3} under >. The *minimal* element is the element at the other end of the order. In the same example, the minimal element is 1.
 
+In a partial order, zero or more minimal and maximal elements exist. In a total order, zero or one minimal and maximal elements exist.
 
 **8.4: Strict Partial Order**  
+A relation is *asymmetric* if (x, y) being true means (y, x) cannot be true.
 
+A relation is a *strict partial order* if it's asymmetric and transitive.
 
 **8.5: Orders on Rational and Real Numbers**  
+The order of rational and real numbers is a strict partial order. If a < b, then b !< a (asymmetry), and if a < b and b < c, then a < c (transitivity).
