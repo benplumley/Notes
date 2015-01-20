@@ -61,7 +61,7 @@
 
 **Mutable data types** can have their values modified after creation. The memory location storing their value is overwritten with the new value when it is changed.
 
-**Abstract data types** are classes whose implementation is encapsulated.
+**Abstract data types** are classes.
 
 **Queue** is a data type where elements leave at the opposite end to where they joined.
 
