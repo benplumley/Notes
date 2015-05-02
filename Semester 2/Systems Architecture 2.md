@@ -19,3 +19,4 @@ CPU power and energy consumption.
 The programmer who was to write applications for the machine does not want to have to know the details of the hardware, and they dont want to have to re-implement everything in every program, so the OS does this for them. Having an expert do this and provide a standard interface is a lot more practical. It means:
 - The programmer doesn't have to do it, therefore saving time.
 - The expert presumably has more programming experience, understands the hardware well, and is familiar with the intricacies of OS programming.
+
