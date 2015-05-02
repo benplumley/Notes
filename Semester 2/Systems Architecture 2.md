@@ -1,4 +1,4 @@
-#Systems Architecture 2
+#CM10195 - Systems Architecture
 ##Dr Russel Bradford
 
 An operating system is a program (often called the kernel) which:
