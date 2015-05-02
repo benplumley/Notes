@@ -20,3 +20,8 @@ The programmer who was to write applications for the machine does not want to ha
 - The programmer doesn't have to do it, therefore saving time.
 - The expert presumably has more programming experience, understands the hardware well, and is familiar with the intricacies of OS programming.
 
+The different layers are often confused with eachother. People often confuse the GUI and some applications as part of the OS - this is largely due to marketers advertising their operating systems based on the GUI. However this is a misconception, for example embedded systems massively outsell PCs and most of these do not have even the most basic of user interfaces.
+
+Here are two examples of layer abstraction, one good and one bad.
+
+  ![alt-text](http://i.gyazo.com/ee70ee4899e5a1dcf225f8c5e37fbb72.png)  ![alt-text](http://i.gyazo.com/598248022cb159db1a309ec5f1f9e0f6.png)
