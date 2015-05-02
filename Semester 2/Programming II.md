@@ -39,9 +39,25 @@ Items in a list are sorted using a key. This is a piece of the data that is part
 
 Alternatively, this can be done with a single array, instead of putting the smallest item into the first position, the smallest item and first item are swapped. This requires an extra temporary variable for storing the value of the item being swapped.
 
+**Selection sort is O(n^2).**
+
 *Insertion sort* splits the array into sorted and unsorted parts. Initially, the sorted part contains only the first item of the whole array. Then the first item of the unsorted part is inserted into the correct position into the sorted part and removed from the unsorted part. This is repeated until the unsorted part has no elements.
 
+**Insertion sort is O(n^2).**
+
 *Quick sort* chooses a number (typically the one in the middle of the array) as the pivot. All numbers smaller than this pivot are put into a new array to the left of the pivot, and likewise with larger numbers to the right. This is then repeated recursively on the new smaller arrays. When all arrays contain a single element, putting these back into a single array in the order they are currently in will result in an ordered list.
+
+**Quick sort is O(n log n).**
+
+*Bubble sort* starts at the first element, compares it to the second, and swaps them if they are out of order. It then repeats this from the second. Once it reaches the end, it comes back to the second item and repeats the process.
+
+**Bubble sort is O(n^2).**
+
+*Merge sort* splits the array in half recursively until each array has only one element. These arrays are then merged two at a time, sorting the items into the correct order at each merge.
+
+**Merge sort is O(n log n).**
+
+Algorithms which solve their problem by splitting the input in half recursively, such as quick sort and merge sort, are known as *divide and conquer* algorithms.
 
 Algorithms are evaluated based on their speed, size, risk of failure and ease of maintenance. The complexity of an algorithm typically is referring to its speed, but could also mean size. Due to the speed of modern computers, a slower but easier to maintain might be preferable because the computer's time is cheap compared to that of a programmer to maintain it. However, in situations where the result is needed quickly such as when rendering in a game engine, the speed of the algorithm is more important.
 
@@ -50,3 +66,9 @@ Speed of an algorithm is measured by counting the number of basic operations the
 An algorithm is called *fast* if it grows quickly, so a *slow* algorithm is better. In order from slow to fast, algorithms can be constant, logarithmic, linear, quadratic, polynomial, exponential, or factorial.
 
 A *binary tree* is like a list, except rather than each item having one pointer to an object and one pointer to the next item, has one to an object, one to the child "right" of it and one to the child "left" of it. Finding an item in a binary tree is log 2 complexity.
+
+*Big O notation* is used to record the complexity of an algorithm. The number of operations as a function of n (problem size) taken, and all terms other than the dominant one are removed. This is the big O complexity of the algorithm. For instance, an algorithm running in 2n^3 + 18n + 5 steps is O(n^3), or polynomial complexity.
+
+Algorithm complexity can be evaluated for the *worst case*, *best case*, or *average case*. In the worst case, the input data is presented in the worst possible way. For instance, a giving a bubble sort a list of items in descending order to be sorted into ascending. The best case is the best possible set of input data, for instance giving it a list that already happens to be sorted. The average case is the most likely situation to happen in practice.
+
+Technically, big O notation is used for the worst case, but it is often used for average case instead.
