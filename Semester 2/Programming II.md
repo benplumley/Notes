@@ -39,4 +39,14 @@ Items in a list are sorted using a key. This is a piece of the data that is part
 
 Alternatively, this can be done with a single array, instead of putting the smallest item into the first position, the smallest item and first item are swapped. This requires an extra temporary variable for storing the value of the item being swapped.
 
-*Insertion sort* >2.4.1
+*Insertion sort* splits the array into sorted and unsorted parts. Initially, the sorted part contains only the first item of the whole array. Then the first item of the unsorted part is inserted into the correct position into the sorted part and removed from the unsorted part. This is repeated until the unsorted part has no elements.
+
+*Quick sort* chooses a number (typically the one in the middle of the array) as the pivot. All numbers smaller than this pivot are put into a new array to the left of the pivot, and likewise with larger numbers to the right. This is then repeated recursively on the new smaller arrays. When all arrays contain a single element, putting these back into a single array in the order they are currently in will result in an ordered list.
+
+Algorithms are evaluated based on their speed, size, risk of failure and ease of maintenance. The complexity of an algorithm typically is referring to its speed, but could also mean size. Due to the speed of modern computers, a slower but easier to maintain might be preferable because the computer's time is cheap compared to that of a programmer to maintain it. However, in situations where the result is needed quickly such as when rendering in a game engine, the speed of the algorithm is more important.
+
+Speed of an algorithm is measured by counting the number of basic operations the algorithm performs. More importantly, the complexity is a measure of how this number of basic operations changes as the amount of input data the algorithm is processing changes. This is known as the *scaling* of the algorithm. This scaling happens with respect to some independent parameter. For a sorting algorithm, this parameter is the number of items to be sorted.
+
+An algorithm is called *fast* if it grows quickly, so a *slow* algorithm is better. In order from slow to fast, algorithms can be constant, logarithmic, linear, quadratic, polynomial, exponential, or factorial.
+
+A *binary tree* is like a list, except rather than each item having one pointer to an object and one pointer to the next item, has one to an object, one to the child "right" of it and one to the child "left" of it. Finding an item in a binary tree is log 2 complexity.
