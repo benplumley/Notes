@@ -9,10 +9,10 @@ The interface that the end user interacts with is just another program that uses
 #####Managing Resources
 
 There are 3 main reasons for managing resources:
-- **They are limited** - There is not always enough resources to go round, e.g. mobile phones have strict limtations on memory,
+- They are limited - There is not always enough resources to go round, e.g. mobile phones have strict limtations on memory,
 CPU power and energy consumption.
-- **They need protection** - This includes security (preventing programs from corrupting data or other programs), authorisation (ensuring that certain resources are only available to certain programs), authentication (ensuring that a program has the authorisation it claims to have), and protecting the user from their own mistakes (e.g. accidentally deleting files).
-- **They need to meet certain criteria** - This includes responsiveness (the program needs to respond quickly, or process network packets as they arrive), real time (certain events *must* be dealt with in a fixed amount of time e.g. video streaming), security (prevention of accidental or malicious access or modification.
+- They need protection - This includes security (preventing programs from corrupting data or other programs), authorisation (ensuring that certain resources are only available to certain programs), authentication (ensuring that a program has the authorisation it claims to have), and protecting the user from their own mistakes (e.g. accidentally deleting files).
+- They need to meet certain criteria - This includes responsiveness (the program needs to respond quickly, or process network packets as they arrive), real time (certain events *must* be dealt with in a fixed amount of time e.g. video streaming), security (prevention of accidental or malicious access or modification.
 
 #####Programming Interface
 
