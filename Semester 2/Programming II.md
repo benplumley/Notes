@@ -90,3 +90,21 @@ The time to find an element in a hash table depends on not how many cells or ite
 *Class variables*, or static variables, are variables whose values are consistent across any object of that class. The memory assigned to these variables is low on the stack so it stays there the whole time the program is running.
 
 In Java, Class is a class. This is instantiated to make every class, and contains methods such as getClass to get the class name of an object.
+
+Simplistically, programs execute sequentially from the first statement to the last. The program counter keeps track of the current line number. *Non-linear flow of control* is the deviation from this sequential flow introduced by statements such as goto and loops. In Java, *break* and *continue* are used in loops to change the flow of control. Break jumps out of the current innermost loop, or to the label if one is used. Continue skips all the remaining code in the current loop and goes back to the start of the next iteration.
+
+When a process dies or is killed, it is unsafe to simply stop its threads from running. To exit cleanly, a program must close any files it has open and give up any other resources, and kill any children it spawned. It will probably want to save its state to disk.
+
+When something goes wrong in many programming languages, the program is said to throw an exception. The routine for dealing with this problem occurring is said to catch the exception.
+
+In Java, *throwables* are errors and exceptions. They are full objects which can be instantiated and passed around. An *error* is something that can't be solved by the program whilst running, such as syntax errors. An *exception* are things that the program may be able to solve whilst running.
+
+Exceptions are further split into *checked* and *unchecked*. Checked exceptions must be caught and dealt with in order to compile. For instance, lots of IO operations can't be called without catching their possible IOExceptions. Unchecked exceptions mean the programmer has made a mistake. These don't have to be caught, but can be.
+
+Checked exceptions must be put inside a try clause, followed by a catch clause containing code for handling that particular exception. Finally clauses run after all other clauses.
+
+Throwing a checked exception can be done by creating a new Throwable and using the throw keyword. Methods which throw exceptions and don't catch them must instead *propagate* them, or pass them up to the calling method. A method's ability to do this must be included in the method signature.
+
+Throwing and propagating unchecked exceptions is done automatically and implicitly.
+
+>8
