@@ -69,4 +69,6 @@ The **B.C.S. Code of Conduct** (revised 2011) is as follows:
 3. **Duty to relevant authority**. Respect confidentiality of information unless the law requires disclosure. Avoid conflict of interest between work and relevant authorities.
 4. **Duty to Profession** Uphold the reputation of the profession. Encourage and support fellow members in thier professional development.
 
+The **UK Computer Misuse Act** supports prosecution of computer related crime. A person if guilty of an offence if he/she causes a computer to perform any function with the intent to secure access to programs/information on any computer, and if that access is unauthorised (and he/she knows this at the time). Causing unauthorised modification of a computer material is a more serious offence. It doesnt matter where the access was made from, or whether the offender is a British citizen.
+
 
