@@ -71,4 +71,20 @@ The **B.C.S. Code of Conduct** (revised 2011) is as follows:
 
 The **UK Computer Misuse Act** supports prosecution of computer related crime. A person if guilty of an offence if he/she causes a computer to perform any function with the intent to secure access to programs/information on any computer, and if that access is unauthorised (and he/she knows this at the time). Causing unauthorised modification of a computer material is a more serious offence. It doesnt matter where the access was made from, or whether the offender is a British citizen.
 
+###Models of Software Engineering Processes
 
+A **software process model** is an abstract representation of a process. It presents a description of a process from some particular perspective. It is a simplified version of reality, and is useful for planning and managing SE projects.
+
+The **waterfall process model**:    
+![alt-text](http://www.cs.odu.edu/~cs333/website-latest/Lectures/waterfall/page/waterfall0.gif)
+
+In the waterfall model, specification precedes development. One phase has to be complete and officially signed off by the client before moving onto the next phase (sign off means that the SE team won't go back and improve or redefine earlier work). This is suitable for projects that have 'change proof'requirements, e.g. large multi-site engineering projects, stable business environments. This creates a very clear project management model, with easy allocation of responsibility and milestones at the end of each activity. However it is difficult to respond to changing requirements - few business systems have stable requirements, and the clients operations may change too.
+
+Another process model is **formal development**. A waterfall-like process is used, with a formal specification (uses logical notation). However it is refined through several transformations to a design that can be implements.
+
+**Iteration** is very important in process models. There is almost always pressure to change system requirements in the course of a project - This means results of earlier activities must be reworked, and implications for later activities must be considered. This produces unpredictable results unless managed. Iteration can be applied to any of the generic process models, but is hard to do effectively. However, some special process models have been invented to systematically handle iteration.
+
+**Incremental software processess** have development and delivery broken down into increments, where each increment delivers useful service. Requirements are *well defined and prioritised*. High priority requirements are frozen and included in earlier increments. Requirements for later increments can continue to be defined whilst earlier increments are constructed.
+
+Abstract model of an incremental software process:    
+![alt-text](http://i.gyazo.com/3e26e7c9f19be0c2ca9c3b08887f47e3.png)
