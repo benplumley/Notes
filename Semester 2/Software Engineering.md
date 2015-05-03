@@ -84,7 +84,10 @@ Another process model is **formal development**. A waterfall-like process is use
 
 **Iteration** is very important in process models. There is almost always pressure to change system requirements in the course of a project - This means results of earlier activities must be reworked, and implications for later activities must be considered. This produces unpredictable results unless managed. Iteration can be applied to any of the generic process models, but is hard to do effectively. However, some special process models have been invented to systematically handle iteration.
 
-**Incremental software processess** have development and delivery broken down into increments, where each increment delivers useful service. Requirements are *well defined and prioritised*. High priority requirements are frozen and included in earlier increments. Requirements for later increments can continue to be defined whilst earlier increments are constructed.
+**Incremental software processess** have development and delivery broken down into increments, where each increment delivers useful service. Requirements are *well defined and prioritised*. High priority requirements are frozen and included in earlier increments. Requirements for later increments can continue to be defined whilst earlier increments are constructed. This model means that users gain immediate value, as the highest priority services are delivered first, so they dont have to wait as long for useful services. There is also a lower risk of project failure, because it is unlikely that no increments will be delivered, and high-priority services are completed first and therefore receive the most testing. Users can also gain experience from early increments as prototypes, improving requirements for later increments.
+
+However, the incremental software process can lead to trust problems, as the clients don't know exactly what they are getting. Also there may be multiple dependencies in very large projects, which may make it too difficult to decouple system components and break the process down into increments.
 
 Abstract model of an incremental software process:    
 ![alt-text](http://i.gyazo.com/3e26e7c9f19be0c2ca9c3b08887f47e3.png)
+
