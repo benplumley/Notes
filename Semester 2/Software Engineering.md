@@ -17,5 +17,14 @@ A **Software System** is a set of software components in technical and social en
 - Dependable - must be trustworthy
 - Efficient - should not be wasteful of system resources
 
-**Software Processes** are a defined set of activities and 
+**Software Processes** are a defined set of activities and associated results that produce a software product. There are several different models e.g. waterfall. Activities common to all software processes are:
+- Software specification
+- Software design and implementation
+- Software 'validation'
+- Software evolution
+
+Some key challenges faced in software engineering are:
+- **Heterogeneity Challenge** - Building dependable software to cope with the heterogeneity (diversity) of existing computer systems, support structures, and legacy software.
+- **Delivery Challenge** - Shortening delivery times for complex systems without compromising on quality.
+- **Trust Challenge** - To develop techniques that demonstrate software can be trusted by its users.
 
