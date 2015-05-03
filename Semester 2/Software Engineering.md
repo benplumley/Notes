@@ -41,7 +41,7 @@ Some key challenges faced in software engineering are:
 A **Gantt Chart** is used to represent the structure of the team's work, showing the tasks the project has been broken down into over time. It is designed to allow planning and monitoring of tasks. It gives a clear impression of task timing, clearly showing what needs to be done and when and any concurrencies. However, it is not so effective in showing dependencies and personnel responsibilities.
 
 A Gantt Chart:
-![alt-text](http://i.gyazo.com/a09a559ee3f3f56df6ae65bd38e39718.png)
+![](http://i.gyazo.com/a09a559ee3f3f56df6ae65bd38e39718.png)
 
 ###Ethics and Professional Conduct
 
@@ -76,7 +76,7 @@ The **UK Computer Misuse Act** supports prosecution of computer related crime. A
 A **software process model** is an abstract representation of a process. It presents a description of a process from some particular perspective. It is a simplified version of reality, and is useful for planning and managing SE projects.
 
 The **waterfall process model**:    
-![alt-text](http://www.cs.odu.edu/~cs333/website-latest/Lectures/waterfall/page/waterfall0.gif)
+![](http://www.cs.odu.edu/~cs333/website-latest/Lectures/waterfall/page/waterfall0.gif)
 
 In the waterfall model, specification precedes development. One phase has to be complete and officially signed off by the client before moving onto the next phase (sign off means that the SE team won't go back and improve or redefine earlier work). This is suitable for projects that have 'change proof'requirements, e.g. large multi-site engineering projects, stable business environments. This creates a very clear project management model, with easy allocation of responsibility and milestones at the end of each activity. However it is difficult to respond to changing requirements - few business systems have stable requirements, and the clients operations may change too.
 
@@ -89,5 +89,14 @@ Another process model is **formal development**. A waterfall-like process is use
 However, the incremental software process can lead to trust problems, as the clients don't know exactly what they are getting. Also there may be multiple dependencies in very large projects, which may make it too difficult to decouple system components and break the process down into increments.
 
 Abstract model of an incremental software process:    
-![alt-text](http://i.gyazo.com/3e26e7c9f19be0c2ca9c3b08887f47e3.png)
+![](http://i.gyazo.com/3e26e7c9f19be0c2ca9c3b08887f47e3.png)
 
+**Agile methods** were developed to promote rapid and adaptable software development, and have become more and more common in recent years. They focus on the production of working software rather than design and documentation.
+
+Abstract model of a generic agile cycle:
+![](http://i.gyazo.com/1615d952744b384874a6d15c78ebda92.png)
+
+An example of an agile software process model is eXtreme programming (XP). The client is part of the development team, and new versions may be built several times a day. Requirements are simply 'story cards' developed from user scenarios, and the test-first approach to development reduces the chance of new increments introducing errors into the existing software. This uses scripts for automated testing. The code is continuously refactored.
+
+Abstract model of a generic cycle with the XP proccess model:
+![](http://i.gyazo.com/87571ddedce23b445b7ccfbd26d41ff0.png)
