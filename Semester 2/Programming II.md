@@ -83,4 +83,4 @@ In the best case, where each cell contains a single element, searching for an el
 
 If the table has more cells than elements, a technique called *probing* can be used instead of chaining. Rather than putting a list of elements in each position, any subsequent elements after the first in each cell are put into the next empty cell after the one they are supposed to go in.
 
-The time to find an element in a hash table depends on not how many cells or items it contains, but how full it is:  ![](http://en.wikipedia.org/wiki/File:Hash_table_average_insertion_time.png)
+The time to find an element in a hash table depends on not how many cells or items it contains, but how full it is:  ![alt-text](http://upload.wikimedia.org/wikipedia/commons/1/1c/Hash_table_average_insertion_time.png)
