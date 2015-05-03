@@ -64,18 +64,9 @@ There are many potential difficulties with codes of conduct. They can be ambiguo
 
 The **B.C.S. Code of Conduct** (revised 2011) is as follows:
 
-1. Public Interest. This takes into account:
-  *Public health, privacy, security and well-being of others and the environment.
-  *Legitimate rights of third parties.
-  *Discrimination on grounds of sex, sexual orientation, maital status, nationality, colour, race, ethnic origin, religion, age or disability.
-2. Professional Competence and Integrity
-  *Do not claim to be competent when you know you are not.
-  *Develop your professional knowledge and skills (lifelong learning).
-  *Respect and value alternative viewpoints.
-  *Reject bribery.
-3. Duty to relevant authority
-  *Respect confidentiality of information unless the law requires disclosure.
-  *Avoid conflict of interest between work and relevant authorities.
-4. Duty to Profession
-  *Uphold the reputation of the profession.
-  *Encourage and support fellow members in thier professional development.
+1. **Public Interest**. This takes into account public health, privacy, security and well-being of others and the environment. It also covers legitimate rights of third parties, and discrimination on grounds of sex, sexual orientation, maital status, nationality, colour, race, ethnic origin, religion, age or disability.
+2. **Professional Competence and Integrity**. Do not claim to be competent when you know you are not. Develop your professional knowledge and skills (lifelong learning). Respect and value alternative viewpoints. Reject bribery.
+3. **Duty to relevant authority**. Respect confidentiality of information unless the law requires disclosure. Avoid conflict of interest between work and relevant authorities.
+4. **Duty to Profession** Uphold the reputation of the profession. Encourage and support fellow members in thier professional development.
+
+
