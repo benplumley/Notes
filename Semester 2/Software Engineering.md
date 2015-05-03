@@ -38,4 +38,5 @@ Some key challenges faced in software engineering are:
 
 A **Gantt Chart** is used to represent the structure of the team's work, showing the tasks the project has been broken down into over time. It is designed to allow planning and monitoring of tasks. It gives a clear impression of task timing, clearly showing what needs to be done and when and any concurrencies. However, it is not so effective in showing dependencies and personnel responsibilities.
 
+A Gantt Chart:
 ![alt-text](http://i.gyazo.com/a09a559ee3f3f56df6ae65bd38e39718.png)
