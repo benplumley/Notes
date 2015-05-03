@@ -1,6 +1,8 @@
 #CM10193 - Software Engineering
 ##Dr Leon Watts and Dr Fabio Nemetz
 
+###Software Systems
+
 A **system** is a purposeful composition of parts, i.e. multiple components working together as a single entity, e.g. a car as a collection of moving mechanical components, or an animal as a set of living biological parts.
 
 System properties: 
@@ -40,3 +42,40 @@ A **Gantt Chart** is used to represent the structure of the team's work, showing
 
 A Gantt Chart:
 ![alt-text](http://i.gyazo.com/a09a559ee3f3f56df6ae65bd38e39718.png)
+
+###Ethics and Professional Conduct
+
+**Codes of conduct** are set by professional bodies or institutions, and are necessary to maintain professionalism. They are typically a set of principles that are meant to guide rather than prescribe. Therefore they are often ambiguous in application and must be used in aid to professional judgement in ethical dilemmas.
+
+An example of ethics in the real world is the US Challenger space shuttle disaster in 1986. There were problems with the O-rings in relation to cold launch conditions, which was noted by an engineer. However, no testing was done due to more pressing problems. The engineers all unanimously recommended against the launch, however Space Centre was "surprised and appalled" at the recommendation, and went ahead with the launch due to political and financial pressures. The O-rings failed and the shuttle exploded 73 seconds into the mission, killing all seven crew.
+
+There are 8 main principles in the **ACM/IEEE Code of Ethics**. These are:
+
+1. Public - Software engineers shall act consistently with the public interest.
+2. Client and Employer - Act in the best interests of their client and employer, consistent with the puiblic interest.
+3. Product - Products and related modifications shall meet the highest professional standards possible.
+4. Judgement - Integrity and independence in their professional judgement.
+5. Management - Adopt and promote an ethical approach to the management of software development and maintenance.
+6. Profession - Advance the integrity and reputation of the profession, consisten with the public interest.
+7. Colleagues - Be fair and supportive of other colleagues.
+8. Self - Software engineers shall adopt both a "lifelong learning" and ethical approach to the practice of their profession.
+
+There are many potential difficulties with codes of conduct. They can be ambiguous, parts of it may conflict, and you may find yourself in situations which are not covered by the code, in which case you are expected to behave professionally and use your best judgement. Codes of conduct are also subject to continual development.
+
+The **B.C.S. Code of Conduct** (revised 2011) is as follows:
+
+1. Public Interest. This takes into account:
+..*Public health, privacy, security and well-being of others and the environment.
+..*Legitimate rights of third parties.
+..*Discrimination on grounds of sex, sexual orientation, maital status, nationality, colour, race, ethnic origin, religion, age or disability.
+2. Professional Competence and Integrity
+..*Do not claim to be competent when you know you are not.
+..*Develop your professional knowledge and skills (lifelong learning).
+..*Respect and value alternative viewpoints.
+..*Reject bribery.
+3. Duty to relevant authority
+..*Respect confidentiality of information unless the law requires disclosure.
+..*Avoid conflict of interest between work and relevant authorities.
+4. Duty to Profession
+..*Uphold the reputation of the profession.
+..*Encourage and support fellow members in thier professional development.
