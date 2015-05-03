@@ -84,3 +84,9 @@ In the best case, where each cell contains a single element, searching for an el
 If the table has more cells than elements, a technique called *probing* can be used instead of chaining. Rather than putting a list of elements in each position, any subsequent elements after the first in each cell are put into the next empty cell after the one they are supposed to go in.
 
 The time to find an element in a hash table depends on not how many cells or items it contains, but how full it is:  ![alt-text](http://upload.wikimedia.org/wikipedia/commons/1/1c/Hash_table_average_insertion_time.png)
+
+*Polymorphism* is applying the same method to different objects. There are several types of polymorphism. *Overloading* is where multiple methods in the same class have the same name but have different parameters and signature. *Overriding* is where a subclass redefines a method inherited from a superclass. This will have the same signature as the overridden method. *Dynamic binding* is where a method is called on an object, but that object's type isn't known until runtime. For instance, calling a method on each object in an array, where each object isn't necessarily of the same type.
+
+*Class variables*, or static variables, are variables whose values are consistent across any object of that class. The memory assigned to these variables is low on the stack so it stays there the whole time the program is running.
+
+In Java, Class is a class. This is instantiated to make every class, and contains methods such as getClass to get the class name of an object.
