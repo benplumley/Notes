@@ -25,6 +25,7 @@ The different layers are often confused with eachother. People often confuse the
 Here are two examples of layer abstraction, one good and one bad.
 
 Good:
-![alt-text](http://i.gyazo.com/ee70ee4899e5a1dcf225f8c5e37fbb72.png)  
+![alt-text](http://i.gyazo.com/ee70ee4899e5a1dcf225f8c5e37fbb72.png)
+
 Bad:
 ![alt-text](http://i.gyazo.com/598248022cb159db1a309ec5f1f9e0f6.png)
