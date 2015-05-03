@@ -77,4 +77,10 @@ Once a list is sorted, a binary search can be used instead of a linear search. T
 
 This also means that contiguous memory is needed for every possible key between the first and the last one. A dictionary arranged in a hash would be almost completely unused space, because every combination of letters of a reasonable length would need its own entry, whether it had a definition or not.
 
-The solution to this problem is a structure called a *hash table*. This uses an array that's about the right size to contain every element. The key is turned into the index array using the *hash function*. This function must be simple and fast because it must be performed on every access. For instance, the hash function could be the index mod something. >5.4.7
+The solution to this problem is a structure called a *hash table*. This uses an array that's about the right size to contain every element. The key is turned into the index array using the *hash function*. This function must be simple and fast because it must be performed on every access. For instance, the hash function could be the index mod something. Multiple items could have the same hash, so each location in the hash table contains a list of items with that hash. This is known as *chaining*.
+
+In the best case, where each cell contains a single element, searching for an element is O(1). In the worst case, where all elements share the same hash, finding an element is O(n). Therefore, the more collisions that occur, the longer it takes to find an element on average.
+
+If the table has more cells than elements, a technique called *probing* can be used instead of chaining. Rather than putting a list of elements in each position, any subsequent elements after the first in each cell are put into the next empty cell after the one they are supposed to go in.
+
+The time to find an element in a hash table depends on not how many cells or items it contains, but how full it is:  ![](http://en.wikipedia.org/wiki/File:Hash_table_average_insertion_time.png)
