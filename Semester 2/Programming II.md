@@ -72,3 +72,9 @@ A *binary tree* is like a list, except rather than each item having one pointer 
 Algorithm complexity can be evaluated for the *worst case*, *best case*, or *average case*. In the worst case, the input data is presented in the worst possible way. For instance, a giving a bubble sort a list of items in descending order to be sorted into ascending. The best case is the best possible set of input data, for instance giving it a list that already happens to be sorted. The average case is the most likely situation to happen in practice.
 
 Technically, big O notation is used for the worst case, but it is often used for average case instead.
+
+Once a list is sorted, a binary search can be used instead of a linear search. This is a divide and conquer algorithm, so takes log n time. This can be improved on using *hashing*. This uses the key as the array index. For instance, to find the student with ID 567, the algorithm accesses the item at position 567 in the array of students. This is O(1), or constant, time. This array can be sorted in O(n) time. However, this assumes that the key is unique. If this is not true, each array item will need to be a list of objects with that key.
+
+This also means that contiguous memory is needed for every possible key between the first and the last one. A dictionary arranged in a hash would be almost completely unused space, because every combination of letters of a reasonable length would need its own entry, whether it had a definition or not.
+
+The solution to this problem is a structure called a *hash table*. This uses an array that's about the right size to contain every element. The key is turned into the index array using the *hash function*. This function must be simple and fast because it must be performed on every access. For instance, the hash function could be the index mod something. >5.4.7
