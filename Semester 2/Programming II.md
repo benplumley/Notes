@@ -107,4 +107,34 @@ Throwing a checked exception can be done by creating a new Throwable and using t
 
 Throwing and propagating unchecked exceptions is done automatically and implicitly.
 
->8
+Computers are able to run more programs than they have concurrent threads in the CPU. As well as all the user programs, emails are being checked, virus scans are running, the clock is changing, and so on. A single CPU only runs a single process at a time, so to perform all the tasks it has, a computer must very quickly switch between different processes.
+
+Different tasks are given different priorities depending on how important it is that they execute soon. Clicking the mouse is something that is given very high priority, so the user does not experience a delay after having clicked something. Background tasks are only run when the computer would otherwise be doing nothing at all.
+
+Because swapping control between two processes takes cycles, a balance is found between swapping rarely - possibly causing the computer to feel unresponsive - and swapping often, which wastes cycles that could otherwise be used for processing.
+
+Any program that takes input from the user spends most of its time doing nothing, because thousands of cycles can elapse even in between key strokes.
+
+A single program can have multiple processes. For instance, a program that has a GUI for control and performs processing of data needs at least two threads, otherwise the GUI will be unresponsive while the data is being processed.
+
+The original way of creating a new thread was called spawning, and was used by calling fork within a program. This would create a clone of the currently running process, and return a different value to each version. All code intended to be performed by the child had to be inside a conditional on this value, and vice versa for the parent.
+
+A more modern approach is called threading, which is what Java uses. Threads created within programs are not copies of the original program. Depending on the OS, threads created will be *kernel threads*, which are efficient and fast. If the OS does not support these, the Java VM will create a thread independently of the OS called a *user thread*. These are not as efficient and slower. There is no difference in how programs are written, only how quickly they run.
+
+There are three ways to create threads in Java. The first is to write a class extending Thread, create an instance of it and call start on it. The second is to write a class implementing Runnable and do the same. The third is to write an inner class, which is the dominant method when creating GUIs.
+
+Threads run independently of one another, but they are still able to interact. Class variables set in one thread are accessible in another of the same class. Multiple threads in the same object share instance (global non-static) variables.
+
+The OS or VM gives each thread a time slice, and the thread will run in that slice until its time is up or it yields. It could also become blocked, put itself to sleep, wait for an event, or terminate.  The states a thread can be in are therefore new, ready, blocked, running, dead, or inactive.
+
+A new thread becomes ready when start is called, and becomes running when run is called. There's no guarantee about which order different threads will be run in, it's down to the OS to pick a thread and which gets picked isn't predictable by the programmer.
+
+Threads will become dead after finishing and dropping out the end of their code. They can also die after receiving an interrupt. This is a polite request for the thread to die, hence why some programs (eg ping) can print a summary after the user presses ^C to interrupt. The thread is in charge of how it dies, it is not forcibly killed by the operating system. Therefore, a thread could refuse to die at all when it receives an interrupt, in which case a different termination signal would have to be sent.
+
+It is down to the programmer to check for interrupts in the run method. If a program hangs waiting for IO, the interrupt request is handled by the VM or OS, but if the program is stuck in a tight loop (a loop which has been compiled to run very quickly) then interrupts should be checked for explicitly by the programmer.
+
+The problem with two threads sharing access to a class variable is if both try to change it at the same time, only of the changes will be registered. The solution to this is to lock variables that need to be changed by a thread. If another thread tries to access the locked variable, it will block as if on IO until the variable becomes unlocked and the blocked thread is rescheduled.
+
+In Java, a lock is called a *semaphore*. Each object has exactly one lock, which can be held by one thread at a time. If a thread does not hold an object's lock, it can't edit that object. Locks should be held for as short a time as possible.
+
+Locking in Java can be done implicitly using *synchronisation*. By declaring a code block or method synchronized, only one thread can call the code within that block at a time. Any other threads will be blocked. Synchronising a code block takes an argument, which is the object whose lock is to be synchronised with. For synchronisation to be effective, this object must be shared between any threads that could call this code block. It is pointless to synchronise on a local variable.
