@@ -138,3 +138,15 @@ The problem with two threads sharing access to a class variable is if both try t
 In Java, a lock is called a *semaphore*. Each object has exactly one lock, which can be held by one thread at a time. If a thread does not hold an object's lock, it can't edit that object. Locks should be held for as short a time as possible.
 
 Locking in Java can be done implicitly using *synchronisation*. By declaring a code block or method synchronized, only one thread can call the code within that block at a time. Any other threads will be blocked. Synchronising a code block takes an argument, which is the object whose lock is to be synchronised with. For synchronisation to be effective, this object must be shared between any threads that could call this code block. It is pointless to synchronise on a local variable.
+
+Deadlock occurs when a circle is formed of threads waiting for a locked object, where each object is locked by the thread next to it in the circle. This can be solved by requiring locks to be acquired in a certain order, but this is inefficient if a process needs a new lock that comes lower in the order than the locks it currently has. It also depends on the programmer to implement this properly. If the programmer makes a mistake, the program can still deadlock.
+
+Another solution to deadlock is to have the scheduler or other OS process look for processes which haven't done anything for a long time and interrupt them. This will release their locks and allow the other process to acquire them and finish. However, it means the interrupted process didn't finish what it was doing, which might have been important to the running of the program.
+
+The main way to avoid deadlock is by carefully designing the program to not have the possibility for it to happen, through use of good design patterns. Using synchronised code too much means that most of a process' time is spend blocked. The amount of time a process spends running compared to blocked is known as its liveness.
+
+Unless specified by the programmer, a new thread is grouped with its parent. This means it inherits certain attributes, such as which files it is allowed to manipulate, its priority when scheduling and its niceness.
+
+Livelock is similar to deadlock, except rather than being blocked, the threads immediately go back to sleep after waking up because they can't do anything. This is harder to detect and has to be solved by the programmer during program design.
+
+The *producer/consumer pattern* allows for two threads working at different rates, where one creates data and the other processes it. This pattern uses wait and notify to allow the faster thread to not fall over when it runs out of data to process.
