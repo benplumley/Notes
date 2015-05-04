@@ -91,12 +91,26 @@ However, the incremental software process can lead to trust problems, as the cli
 Abstract model of an incremental software process:    
 ![](http://i.gyazo.com/3e26e7c9f19be0c2ca9c3b08887f47e3.png)
 
-**Agile methods** were developed to promote rapid and adaptable software development, and have become more and more common in recent years. They focus on the production of working software rather than design and documentation.
+**Agile methods** were developed to promote rapid and adaptable software development, and have become more and more common in recent years. They focus on the production of working software rather than design and documentation. The key principles of agile methods are:
+- Customer involvement
+- Incremental delivery
+- People not process
+- Embrace change
+- Maintain simplicity
 
 Abstract model of a generic agile cycle:
 ![](http://i.gyazo.com/1615d952744b384874a6d15c78ebda92.png)
 
-An example of an agile software process model is eXtreme programming (XP). The client is part of the development team, and new versions may be built several times a day. Requirements are simply 'story cards' developed from user scenarios, and the test-first approach to development reduces the chance of new increments introducing errors into the existing software. This uses scripts for automated testing. The code is continuously refactored.
+An example of an agile software process model is **eXtreme programming (XP)**. The client is part of the development team, and new versions may be built several times a day. Requirements are simply 'story cards' developed from user scenarios, and the test-first approach to development reduces the chance of new increments introducing errors into the existing software. This uses scripts for automated testing. It also features par programming on shared workstations, which leads to constant informal reviewing and promotes refactoring. However, this can be perceived as constraining and invasive, and it requires a small co-located team that are happy to do pair programming.
 
 Abstract model of a generic cycle with the XP proccess model:
 ![](http://i.gyazo.com/87571ddedce23b445b7ccfbd26d41ff0.png)
+
+The **spiral model** is a software process represented as a spiral, rather than a sequence of activities with backtracking. Each loop in the spiral represents a phase of the software process. Risk are explictly assessed and resolved throughout the process. There are no fixed precossese e.g. specification or design, and loops in the spiral are chosen as required. There are four sectors of the spiral model:
+- Objective setting - specific objectives for the phase are identified.
+- Risk assessment and recution - risks are assessed and activities put in place to reduce key risks.
+- Development and validation - a development model for the system is chosen which can be any of the generic models.
+- Planning - the project is reviewed and the next phase of the spiral is planned.
+
+Abstract model of a generic spiral model:
+![](http://i.gyazo.com/87f8424666b35aa269a5e8dd08e878b3.png)
