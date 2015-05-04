@@ -114,3 +114,14 @@ The **spiral model** is a software process represented as a spiral, rather than 
 
 Abstract model of a generic spiral model:
 ![](http://i.gyazo.com/87f8424666b35aa269a5e8dd08e878b3.png)
+
+###Requirements - Gathering Evidence
+
+Requirements can come from a variety of sources:
+- Computer science literature (technical articles and case studies)
+- Domain information (descriptions of work from company documents from trade or professional bodies)
+- Information about commercial systems (vendor websites and reviews)
+- Interviews with primary, secondary and tertiary users
+- Observations of people who are currently in similar situations.
+
+However, people often struggle to express what they need in terms a software engineer would understand. Alternatively, what they think or say they would like to have may not be what they would actually like to have. Also, people may want different things - stakeholders can only tell you about their own part of the problem, and may disagree with one another. New stakeholders may also become involved, and the business environment may change.
