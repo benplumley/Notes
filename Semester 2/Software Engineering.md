@@ -147,3 +147,15 @@ For effective interview practice, there are many things to consider:
 - Prompt the interviewee with questions or proposal - don't simply expect them to respond to questions like "what do you want". Ask what they do, and build on the things they say.
 
 Ethical interview practice is also important. A written summary of the purposes of the interview should be prepared, including the goalds of the interview, what will happen to the findings, and how their privacy will be safeguarded. Consent must be obtained from the interviewee, with a time and place arranged. They should also be informed that they will be asked before being quoted, that they can stop the interview whenever they wish, and that they have the right of correction.
+
+###Functional and Non-Functional Requirements
+
+Requirements definal all aspects of a system engineering project; its capability and operational characteristics, the development process for creating the system etc. They are sets of structured and inter-related statements, with high-level features and low-level detail.
+
+**Functional requirements** are statements of services, features or functions that the system should provide. They commonly relate inputs to outputs.
+
+**Non-functional requirements** are general properties of the system and its behaviour. They are constraints on development and delivery. Examples of system properties are usability, performance and responsiveness, safety and security. Examples of constraints on development are process stipulations e.g. delivery schedule, quality assurance standards, and technologies to be used (infrastructure and legacy). Non-functional requirements should be structured as follows:
+- Product requirements - Specifications about how the system must behave e.g. execution speed, system reliability, downtime limits.
+- Organisational requirements - Compliance with organisational policies and procedures e.g. process standards used, implementation requirements.
+- External requirements - Wider constraints on the system and its development process e.g. legal compliance, professional standards, interoperability requirements.
+
