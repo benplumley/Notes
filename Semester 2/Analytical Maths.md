@@ -18,7 +18,8 @@ If one row of a matrix is proportional to another, the determinant is zero.
 If one row is multiplied by a constant and added to another row, the determinant doesn't change.
 
 **Inductive Definition of Determinant**  
-If A is an square n*n matrix, let Aij mean the matrix obtained by removing row i and column j from A. If n = 1, A contains only one element, its determinant. Assume that n > 1 and we have defined the determinant for square matrices of size n-1. Fix i between 1 and n. Then   ![](http://i.gyazo.com/eab194fc531873d8879ab41f801b8d5d.png)
+If A is an square n*n matrix, let Aij mean the matrix obtained by removing row i and column j from A. If n = 1, A contains only one element, its determinant. Assume that n > 1 and we have defined the determinant for square matrices of size n-1. Fix i between 1 and n. Then  
+![](http://i.gyazo.com/eab194fc531873d8879ab41f801b8d5d.png)
 
 **Row Echelon Form**  
 A matrix is in row echelon form if all rows consisting of only zeroes are at the bottom of the matrix and each row has at least as many leading zeroes as the row above it.
@@ -26,8 +27,8 @@ A matrix is in row echelon form if all rows consisting of only zeroes are at the
 **Guassian Elimination**  
 1. Put all zero rows to the bottom.  
 2. Move the row with the least first zeroes to the top. a_ij is the first non-zero element.  
-3. For each non-zero element in column j, by multiplying row i by a constant and adding the rows, make column j all zeroes.
-4. Remove the top row and columns 0 through j. Repeat from step 1 until the matrix has just one element.
+3. For each non-zero element in column j, by multiplying row i by a constant and adding the rows, make column j all zeroes.  
+4. Remove the top row and columns 0 through j. Repeat from step 1 until the matrix has just one element.  
 5. Add the removed rows back in. This is now in upper triangular form. Its determinant is the product of the leading diagonal.  
 A matrix in upper triangular form in a system of equations can be solved easily for the last row, with the result from this substituted into the next row, and so on until all variables have values.
 
