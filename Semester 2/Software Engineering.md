@@ -137,3 +137,13 @@ Issues with interviews:
 - Deciding which users to interview or observe, taking budget and schedule into account.
 - Devising a scheme for bringing together data, with an indexed and secure archive for raw data and structured requirements statements linked to the data.
 - Selecting equipment e.g. notebooks, pens and cameras (static information) or voice/video recorders and batteries (dynamic information).
+
+For effective interview practice, there are many things to consider:
+- You must introduce yourself - Say who you are, the purpose and duration of the interview, and the recording method to be used.
+- Warm-up - make the first questions easy and non-threatening.
+- Main body - present questions in a logical order.
+- Closure - signal the end of the interview and thank the interviewee.
+- Be open minded - be prepared to ask *and* listen, and avoid pre-conceived ideas about the software system to be constructed.
+- Prompt the interviewee with questions or proposal - don't simply expect them to respond to questions like "what do you want". Ask what they do, and build on the things they say.
+
+Ethical interview practice is also important. A written summary of the purposes of the interview should be prepared, including the goalds of the interview, what will happen to the findings, and how their privacy will be safeguarded. Consent must be obtained from the interviewee, with a time and place arranged. They should also be informed that they will be asked before being quoted, that they can stop the interview whenever they wish, and that they have the right of correction.
