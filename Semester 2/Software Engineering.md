@@ -21,12 +21,6 @@ A **Software System** is a set of software components in technical and social en
 
 The complex relationships between the components in a system mean that a system is more than simply the sum of its parts. It has properties that are properties of the system as a whole and cannot be attributed to any specific part of the system, known as **emergent properties**.
 
-**Software Processes** are a defined set of activities and associated results that produce a software product. There are several different models e.g. waterfall. Activities common to all software processes are:
-- Software specification
-- Software design and implementation
-- Software 'validation'
-- Software evolution
-
 Some key challenges faced in software engineering are:
 - **Heterogeneity Challenge** - Building dependable software to cope with the heterogeneity (diversity) of existing computer systems, support structures, and legacy software.
 - **Delivery Challenge** - Shortening delivery times for complex systems without compromising on quality.
@@ -73,6 +67,12 @@ The **UK Computer Misuse Act** supports prosecution of computer related crime. A
 
 ###Models of Software Engineering Processes
 
+A **Software Processes** is an organisational mechanism for controlling software development. It has a 'lifecycle' that depends on its environment, and it ensures that software products meet the needs for which they were commissioned. They are a defined set of activities and associated results that produce a software product. There are several different models e.g. waterfall. Activities common to all software processes are:
+- Software specification
+- Software design and implementation
+- Software 'validation'
+- Software evolution
+
 A **software process model** is an abstract representation of a process. It presents a description of a process from some particular perspective. It is a simplified version of reality, and is useful for planning and managing SE projects.
 
 The **waterfall process model**:    
@@ -101,12 +101,12 @@ Abstract model of an incremental software process:
 Abstract model of a generic agile cycle:
 ![](http://i.gyazo.com/1615d952744b384874a6d15c78ebda92.png)
 
-An example of an agile software process model is **eXtreme programming (XP)**. The client is part of the development team, and new versions may be built several times a day. Requirements are simply 'story cards' developed from user scenarios, and the test-first approach to development reduces the chance of new increments introducing errors into the existing software. This uses scripts for automated testing. It also features par programming on shared workstations, which leads to constant informal reviewing and promotes refactoring. However, this can be perceived as constraining and invasive, and it requires a small co-located team that are happy to do pair programming.
+An example of an agile software process model is **eXtreme programming (XP)**. The client is part of the development team, and new versions may be built several times a day. Requirements are simply 'story cards' developed from user scenarios, and the test-first approach to development reduces the chance of new increments introducing errors into the existing software. This uses scripts for automated testing. It also features pair programming on shared workstations, which leads to constant informal reviewing and promotes refactoring. However, this can be perceived as constraining and invasive, and it requires a small co-located team that are happy to do pair programming.
 
 Abstract model of a generic cycle with the XP proccess model:
 ![](http://i.gyazo.com/87571ddedce23b445b7ccfbd26d41ff0.png)
 
-The **spiral model** is a software process represented as a spiral, rather than a sequence of activities with backtracking. Each loop in the spiral represents a phase of the software process. Risk are explictly assessed and resolved throughout the process. There are no fixed precossese e.g. specification or design, and loops in the spiral are chosen as required. There are four sectors of the spiral model:
+The **spiral model** is a software process represented as a spiral, rather than a sequence of activities with backtracking. Each loop in the spiral represents a phase of the software process. Risk are explictly assessed and resolved throughout the process. There are no fixed processes e.g. specification or design, and loops in the spiral are chosen as required. There are four sectors of the spiral model:
 - Objective setting - specific objectives for the phase are identified.
 - Risk assessment and recution - risks are assessed and activities put in place to reduce key risks.
 - Development and validation - a development model for the system is chosen which can be any of the generic models.
