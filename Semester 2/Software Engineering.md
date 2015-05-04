@@ -125,3 +125,18 @@ Requirements can come from a variety of sources:
 - Observations of people who are currently in similar situations.
 
 However, people often struggle to express what they need in terms a software engineer would understand. Alternatively, what they think or say they would like to have may not be what they would actually like to have. Also, people may want different things - stakeholders can only tell you about their own part of the problem, and may disagree with one another. New stakeholders may also become involved, and the business environment may change.
+
+There is not a single solution to the problem of defining system requirements. **Viewpoints** represent the perspectives of different stakeholders and help to organise requirements information. They also identify integration challenges, keep track of conflicts and tensions and allow multi-perspective analysis. There are 3 different types of viewpoints:
+- Interactor viewpoints (primary and secondary users) - People or other systems that interact directly with the system.
+- Indirect viewpoints (tertiary users) - Stakeholders who will not use the software system themselves, but who influence ther requirements.
+- Domain viewpoints (e.g. standards, rules) - Domain characteristics and constraints that influence the requirements.
+
+In software engineering, an **interview** is a guided conversation between one or more engineers and one or more 'domain experts'. The SE team prepares questions to stakeholders about their current sociotechinical system, and the software system to be developed. They are *good* for getting an overall understanding of stakeholders viewpoints (what they do, how they might interact with the system), but *not good* for understanding domain requirements - requirements engineers cannot udnerstand specific domain terminology, and some domain knowledge is so familiar that people find it hard to state or don't think it's worth explaining. Interviews can be *fully-structured*, in which interviewers stick to a set of pre-defined questions, or *unstructured/semi-structured*, which use prompts and guides but no rigid agenda, and explore a range of issues with the stakeholders.
+
+Issues with interviews:
+- Deciding which users to interview or observe, taking budget and schedule into account.
+- Devising a scheme for bringing together data, with an indexed and secure archive for raw data and structured requirements statements linked to the data.
+- Selecting equipment e.g. notebooks, pens and cameras (static information) or voice/video recorders and batteries (dynamic information).
+
+
+- 
