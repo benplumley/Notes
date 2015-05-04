@@ -137,6 +137,3 @@ Issues with interviews:
 - Deciding which users to interview or observe, taking budget and schedule into account.
 - Devising a scheme for bringing together data, with an indexed and secure archive for raw data and structured requirements statements linked to the data.
 - Selecting equipment e.g. notebooks, pens and cameras (static information) or voice/video recorders and batteries (dynamic information).
-
-
-- 
