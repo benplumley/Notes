@@ -162,3 +162,19 @@ The differences between a client and a server are that the server starts first, 
 Sockets are the most basic networking concept in a networking-capable language. They provide a door between a program and the network the computer is running on, allowing a program to send data through a pipe over a network. A program will have one socket per connection, so a typical client has one socket and a typical server has as many sockets as it has clients connected. Sockets on the client side have a one-to-one mapping with sockets on the server side. Once connected by a pipe, output from one program becomes input to the other and vice versa.
 
 To connect programs over the internet, an address and port number are needed. The address specifies which machine the other program is running on, and the port number specifies which program to connect to on that machine. A program will typically only listen on one port, so connecting to the wrong one won't allow the machines to communicate.
+
+A *buffer* is a piece of memory that holds a value that will be written to somewhere else. This is because storage is slow, so a process would waste time by waiting for its data to be written to storage. It instead writes its data to the buffer, which is fast, and another process comes along later and writes the contents of the buffer the correct location in storage or on the network.
+
+Standard services, in theory, run on all servers and are publically available. For instance, a client could send a request to any server for the current date and time and the server would respond. Nowadays, these services have been turned off on most servers for security reasons. Standard services have standard port numbers, so they will be the same on any machine.
+
+The telnet program allows the user to type messages to be sent directly to a port on a machine, and if the user types the correct protocol the server might not even know that it's talking to a human rather than to a program.
+
+A *protocol* is a pre-agreed set of procedures for communicating between two computers. It must be followed exactly or the receiving computer won't know what to do with the data being received. A computer can use lots of different protocols depending on who it's talking to and what type of information is being exchanged.
+
+The OSI model defines the layers data travelling between a program and the internet should pass through in an internet protocol. The layers are *physical*, *data link*, *network*, *transport*, *session*, *presentation*, and *application*.
+
+The physical layer describes the physical connection medium, such as the type of wires being used, as well as what electrical signals on that wire mean what data. For instance, a 1 could be represented by a high or a low, or a change up or a change down. It is decided by the physical layer which method is used.
+
+The data link layer sends the frames of data over the physical layer.
+
+The network layer describes how >11.4.4.3
