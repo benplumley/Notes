@@ -159,3 +159,8 @@ Requirements definal all aspects of a system engineering project; its capability
 - Organisational requirements - Compliance with organisational policies and procedures e.g. process standards used, implementation requirements.
 - External requirements - Wider constraints on the system and its development process e.g. legal compliance, professional standards, interoperability requirements.
 
+It is very important for the requirements to be clear and precise, otherwise the wrong job may get done. Developers could misinterpret the clients needs, and team members may be working against each other if they interpret requirements differently. Also, dependencies between requirements may be missed, halting further work until the dependecy is completed. Some functionalities may be duplicated, and there may be conflicts in subsystem operations. 
+
+Imprecise requirements cannot be verified. For example, instead of "must be fast", use "number of trancastions per second/hour/day" or "response time (milliseconds, seconds, minutes)".
+
+Requirements statements should be formatted with an index number and concise name for the requirement ("5.3.6 Daily data recovery script"), a priority (high medium or low) and a statement ("The system should execute a test script at 21:00 hours each day to retrieve five files from the most recent backup"). It should also have an author/source, and any dependencies and relationships.
