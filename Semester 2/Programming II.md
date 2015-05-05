@@ -175,6 +175,26 @@ The OSI model defines the layers data travelling between a program and the inter
 
 The physical layer describes the physical connection medium, such as the type of wires being used, as well as what electrical signals on that wire mean what data. For instance, a 1 could be represented by a high or a low, or a change up or a change down. It is decided by the physical layer which method is used.
 
-The data link layer sends the frames of data over the physical layer.
+The data link layer sends the frames of data over the physical layer. It is responsible for adding hardware address headers, controlling the rate of flow of the data and checking for errors.
 
-The network layer describes how >11.4.4.3
+The network layer describes how to forward packets to the next hop in the journey, and so adds the physical address headers for source and destination.
+
+The transport layer describes a single connection between two hosts which can be written to and read from as a data stream.
+
+The session layer describes a single session between two hosts.
+
+The presentation layer describes the syntax of the data, to define what byte values refer to what data types.
+
+The application layer describes what data should be sent, and where to display the information that is received.
+
+An alternative model is the Internet Model, which has four layers. The TCP/IP model fits roughly into the seven-layer model, skipping the presentation and session layers.
+
+The higher layers are typically more human-readable to make debugging easier, and the lower layers are more compact and less human-readable to allow them to be sent over networks efficiently and redundantly. The physical layer, for instance, deals only in single bit values and electrical signals.
+
+Java's sockets provide a connection-oriented protocol with error checking. Java's connections use TCP/IP.
+
+The internet was invented by Larry Roberts and Tom Merrill, who connected a computer in MIT to one in Stanford in 1965. They invented the idea of splitting the data into packets. Their research was funded by the US military and was intended to allow the US government to survive a nuclear war. This is why it was so important for it to be decentralised, so that communications between any points in the country would still be possible if a major city was destroyed.
+
+Internet IPv4 addresses are made up of four 8-bit numbers, allowing 4 billion unique IP addresses. This isn't enough for everyone, so the switch is slowly being made to IPv6 addresses.
+
+Getting a packet to the right destination is divide and conquer, because each router only has to worry about matching one of the four numbers. When the first is matched, the routers will try to match the second, and so on. By the time the last one is matched, the packet is at its destination.
