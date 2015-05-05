@@ -198,3 +198,27 @@ The internet was invented by Larry Roberts and Tom Merrill, who connected a comp
 Internet IPv4 addresses are made up of four 8-bit numbers, allowing 4 billion unique IP addresses. This isn't enough for everyone, so the switch is slowly being made to IPv6 addresses.
 
 Getting a packet to the right destination is divide and conquer, because each router only has to worry about matching one of the four numbers. When the first is matched, the routers will try to match the second, and so on. By the time the last one is matched, the packet is at its destination.
+
+Intelligence, by one definition, is the ability to generate appropriate behaviour in response to an unpredictable environment. An agent is something that can cause change in its environment. Intelligence is more than agency.
+
+Behaviour is the interaction between an intelligent agent and its environment. This could mean physical changes caused by the agent as a result of a change in the environment, or just a change of state of the intelligent system.
+
+Intelligence can also be thought of as choosing the best action from a list of available actions, or choosing to do nothing until a better action becomes available.
+
+There are two processes going on when an AI decides what action to do. It must generate a set of suitable actions, and test each one against some objective function. If it can consistently generate the best action on its first attempt, there's no need to test. If the testing procedure is fast enough, it can generate randomly until it generates something good.
+
+Humans don't consider every possible action at every moment, we only consider a subset of them. This subset is generated based on our previous experience of being in that environment, or the actions of people we've seen acting in that environment. We can then elaborate from the good actions we identified.
+
+Both generation and testing can be thought of in terms of search algorithms. In games, by looking a certain number of moves ahead, an AI can search through many (even all) different combinations of moves to see which one gives it the best result. It can then take the first step towards this combination.
+
+Most AI problems are NP-hard. It is computationally intractable to find the absolute best solution. However, if a potential solution is found, it can be verified correct in polynomial time. If a problem is polynomial time or easier, it's nearly always possible to write an unintelligent algorithm to find the solution rather than using AI. However, there are still cases where AI is preferable.
+
+Depth first search looks all the way to the end of each branch until it finds a solution. Breadth first search looks across every branch at one depth, and if it doesn't find a solution, it moves one level deeper and repeats.
+
+Depth first search is faster, but doesn't give the optimal answer unless the entire tree is searched. Breadth first search guarantees that when the answer is found, it is the best answer in the tree, but isn't possible in cases like chess because of how much memory would be needed to store the state of the tree. Depth first search can enter an infinite loop.
+
+Heuristics can be used to make the process more efficient. In some games, a minimax search can be used. This is true of any game where a move that helps one player must by definition hurt the other player. With minimax, branches that hurt the AI on its turn or help the AI on the opponent's turn can be discarded as bad moves, so the trees under those moves don't have to be searched.
+
+A heuristic search makes an estimate of the value of each branch, and searches those with the higher estimate first. The estimates are based on heuristics, which are metrics from previous experience which give a reasonable estimate of the value of the branch. For instance, in chess, the heuristic could be how many pieces of each type each player has left. While it's not a guarantee of a good branch (they could be awkwardly positioned) it gives a reasonable estimate of the value of each branch.
+
+A* search is a type of breadth first search which sorts the list after every move and chooses to explore the best value path first. If the heuristic can be guaranteed to never underestimate the cost of a branch, A* is guaranteed to give the optimal solution. This algorithm is used in most computer games for pathfinding.
