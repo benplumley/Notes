@@ -25,11 +25,13 @@ If A is an square n*n matrix, let Aij mean the matrix obtained by removing row i
 A matrix is in row echelon form if all rows consisting of only zeroes are at the bottom of the matrix and each row has at least as many leading zeroes as the row above it.
 
 **Guassian Elimination**  
+The Gaussian elimination algorithm turns a square matrix into upper triangular form, and a non-square matrix into row echelon form.
 1. Put all zero rows to the bottom.  
 2. Move the row with the least first zeroes to the top. a_ij is the first non-zero element.  
 3. For each non-zero element in column j, by multiplying row i by a constant and adding the rows, make column j all zeroes.  
 4. Remove the top row and columns 0 through j. Repeat from step 1 until the matrix has just one element.  
-5. Add the removed rows back in. This is now in upper triangular form. Its determinant is the product of the leading diagonal.  
+5. Add the removed rows back in. This is now in upper triangular form. Its determinant is the product of the leading diagonal.
+
 A matrix in upper triangular form in a system of equations can be solved easily for the last row, with the result from this substituted into the next row, and so on until all variables have values.
 
 **Linear Dependence**  
@@ -44,3 +46,22 @@ There can only be be n linearly independent vectors in n-dimensional vector spac
 The rank of a matrix is a number relating to any matrix. The rank of A is the largest number of linearly independent rows of A.  
 The rank of an upper triangular matrix is zero.  
 The rank of a matrix in row echelon form is the number of non-zero rows.
+
+**Solving linear systems with Gaussian Elimination**  
+To solve a system of linear equations, add the answer vector to the end of the matrix as a new column. Perform the Gaussian elimination algorithm until the matrix is in row echelon form. Take the answer vector back to the other side of the equality. Any rows containing only zeroes at this point can be removed. If a row of the matrix contains all zeroes but that position in the answer vector is not zero, the system has no solutions.
+
+If there aren't enough simultaneous equations to find a unique solution, we can pick arbitrary values for the variables whose values can't be found. This will give a solution, but this is not the only solution. There are infinitely many.
+
+Alternatively, we can keep the unknowns as variables and not give them values at all. The other variables become dependent on them.
+
+**Affine Maps**  
+A map from the plane to the plane is called an affine transformation or affine map. This represents a general solution to a system of equations. They can be written in the form X = BY+C. If and only if B is square and non-singular, the map is bijective.
+
+**Spans**  
+A span is a straight shape connecting the origin to a point. A span in the plane is written as span{(a, b)} which defines a line passing through (0, 0) and (a, b).
+
+**Calculating a plane from points**  
+Given three points in the vector space, (x1, y1, z1), (x2, y2, z2), (x3, y3, z3), the equation of the plane passing through all three is given by  
+![](http://i.gyazo.com/64484ada44e6c062b90804120e450128.png)
+
+A straight n-1 dimensional shape in n-dimensional space is known as a hyperplane.
