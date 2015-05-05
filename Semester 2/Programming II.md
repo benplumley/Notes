@@ -1,6 +1,7 @@
 #CM10228 - Programming
 ##Dr Joanna Bryson
 
+###Languages  
 All programming languages run on physical computers, take time to run, take space in memory, and run algorithms. The amount of time and space a program takes to run is known as the program's *complexity*. Algorithms with lower complexity are better.
 
 The *Church-Turing thesis* says that any algorithm can be run on a Turing machine. All computers are Turing equivalent, and every real programming language is Turing complete. An algorithm is defined as something that can run on a Turing machine.
@@ -17,6 +18,7 @@ Languages can be *dynamic* or not. A dynamic langauge can write and evaluate (ru
 
 In the real world, not all languages fit these binary definitions. Java, for instance, is partially compiled and partially interpreted, strictly typed, object oriented, high level, and partially dynamic.
 
+###Data Structures  
 Arrays of primitive data types are chunks of adjecent memory locations. Arrays of objects are arrays of references to other memory locations containing the objects in the array. An item in a list is made up of two references, one to the object at that position and one to the location of the next item in the list. The "next" reference of the last list item is null.
 
 Arrays are faster when the array length is known ahead of time. This is because accessing the nth item in an array is a constant complexity operation; it takes as long to find the object at position 100 than the object at position 1.
@@ -29,6 +31,7 @@ In modern computers, the time taken to complete these operations is negligible i
 
 The language *Lisp* implements lists as described here. The reference to the object is called *first* and the pointer to the next list item is called *rest*.
 
+###Sorting and Searching  
 Sorting is useful because it makes searching faster. A sorted list can be searched with a binary search in logarithmic time, an unsorted list must be searched item by item in linear time. It is therefore useful to common applications of searching to sort the list first.
 
 Artificial intelligence can be generalised to a problem of searching a list of things to do for the best one, and this must be performed quickly otherwise the conditions specifying what a good thing to do is may have changed by the time an action is chosen.
@@ -59,6 +62,7 @@ Alternatively, this can be done with a single array, instead of putting the smal
 
 Algorithms which solve their problem by splitting the input in half recursively, such as quick sort and merge sort, are known as *divide and conquer* algorithms.
 
+###Algorithmic Complexity  
 Algorithms are evaluated based on their speed, size, risk of failure and ease of maintenance. The complexity of an algorithm typically is referring to its speed, but could also mean size. Due to the speed of modern computers, a slower but easier to maintain might be preferable because the computer's time is cheap compared to that of a programmer to maintain it. However, in situations where the result is needed quickly such as when rendering in a game engine, the speed of the algorithm is more important.
 
 Speed of an algorithm is measured by counting the number of basic operations the algorithm performs. More importantly, the complexity is a measure of how this number of basic operations changes as the amount of input data the algorithm is processing changes. This is known as the *scaling* of the algorithm. This scaling happens with respect to some independent parameter. For a sorting algorithm, this parameter is the number of items to be sorted.
@@ -91,10 +95,12 @@ The time to find an element in a hash table depends on not how many cells or ite
 
 In Java, Class is a class. This is instantiated to make every class, and contains methods such as getClass to get the class name of an object.
 
+###Threading  
 Simplistically, programs execute sequentially from the first statement to the last. The program counter keeps track of the current line number. *Non-linear flow of control* is the deviation from this sequential flow introduced by statements such as goto and loops. In Java, *break* and *continue* are used in loops to change the flow of control. Break jumps out of the current innermost loop, or to the label if one is used. Continue skips all the remaining code in the current loop and goes back to the start of the next iteration.
 
 When a process dies or is killed, it is unsafe to simply stop its threads from running. To exit cleanly, a program must close any files it has open and give up any other resources, and kill any children it spawned. It will probably want to save its state to disk.
 
+###Exceptions  
 When something goes wrong in many programming languages, the program is said to throw an exception. The routine for dealing with this problem occurring is said to catch the exception.
 
 In Java, *throwables* are errors and exceptions. They are full objects which can be instantiated and passed around. An *error* is something that can't be solved by the program whilst running, such as syntax errors. An *exception* are things that the program may be able to solve whilst running.
@@ -234,3 +240,35 @@ The model contains the functionality and data required for the program. It shoul
 The view describes how the program will look on the screen. It contains all the objects needed to display on the screen, such as the widgets. Different people could use different views that use the same model, which might allow different options and data to be seen.
 
 The controller connects the view to the model. In Java, this is done using a Listener. Performing actions in the GUI generates events, which are handled in the controller, which calls the appropriate methods in the model.
+
+Top level containers in Java are *frames* and *dialogs*. Everything that appears as part of a Java program must be in one of these. Normal windows are frames, and dialogs are popup boxes that typically appear over frames to give information or ask questions.
+
+Layout managers define how content is layed out within a window.
+
+Languages are invented to fill a need in the market; they tend to do one thing better than anything else available.
+
+Lisp machines were technically very capable computers. They were easy to program, ran a good language, and had a good development environment. However, they were inefficient compared to machines running languages such as C, so lost market share. An efficient version of lisp was created by Lucid, but its development environment was hard to use so its market share kept declining.
+
+Java was written by Sun, which was a hardware company. Their computers ran Unix, and most software was being written for Windows. This was hurting their market share, so their plan was to make Java so that programs written for Windows were also usable on Sun machines.
+
+Microsoft attempted to *embrace, extend, extinguish* this plan as they had done before with internet standards. They wrote a Java VM that supported more functionality than Sun's. Programs written for Microsoft's VM were still Java, but wouldn't run on a Sun machine. Sun programs would still run on Windows.
+
+Microsoft was taken to court twice over this. The first lawsuit was brought by the US government over anticompetitive behaviour. Microsoft were found guilty. The second lawsuit was brought by Sun, which Microsoft settled out of court. This settlement included discontinuing their Java VM.
+
+Monopolies are not inherently a bad thing, as long as the company holding the monopoly does not become anticompetitive. If a company uses its dominant position to hurt its competitors as Microsoft did, this is anticompetitive behaviour and illegal. It is also bad for society, because if only one company has all the money in a field then progress in that field will stagnate, and no new advancements will be made.
+
+Intellectual property rewards innovation in a field. If anybody could sell someone's invention, inventors would be unable to support themselves financially and there would be far less incentive to solve problems.
+
+Copyright is given automatically to literature, films and music, and expires up to 70 years after the author's death, although this keeps changing.
+
+Patents apply to a solved problem rather than a program or piece of code. If someone has a patent on how to solve a problem, nobody else can release a competing solution to that problem for 20 years. This is a relic from the era when patents applied only to manufacturing, when 20 years was a reasonable time to see a return on your investment in factories and production lines.
+
+If a problem is patented, solutions to it can be made but only used in academia until the original patent expires.
+
+Discoveries, including mathematical equations and algorithms cannot be patented or copyrighted. All software was originally considered to be an algorithm, and therefore not patentable. Companies worked around this restriction by turning their software into a physical logic circuit and patenting that instead.
+
+The copyleft movement, created by Richard Stallman, says that the service of writing programs should be sold rather than the algorithms written. Once a program is written, it has no owner. This wouldn't allow for companies the size of Microsoft, but it is still possible to make a reasonable amount of money using only copyleft licenses.
+
+One of the defining features of a copyleft license is that any software that includes a piece of copyleft code must itself be copyleft. This means that a company can't make money from a program if it includes any copyleft code. Not all free software is copyleft.
+
+>http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture-JavaIP.html 3.1
