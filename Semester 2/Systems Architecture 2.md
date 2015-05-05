@@ -6,7 +6,7 @@ An operating system is a program (often called the kernel) which:
 - Provides the programmer with a usable programming interface to access those resources
 The interface that the end user interacts with is just another program that uses the OS, *not* a part of the OS.
 
-#####Managing Resources
+####Managing Resources
 
 There are 3 main reasons for managing resources:
 - They are limited - There is not always enough resources to go round, e.g. mobile phones have strict limtations on memory,
@@ -14,7 +14,7 @@ CPU power and energy consumption.
 - They need protection - This includes security (preventing programs from corrupting data or other programs), authorisation (ensuring that certain resources are only available to certain programs), authentication (ensuring that a program has the authorisation it claims to have), and protecting the user from their own mistakes (e.g. accidentally deleting files).
 - They need to meet certain criteria - This includes responsiveness (the program needs to respond quickly, or process network packets as they arrive), real time (certain events *must* be dealt with in a fixed amount of time e.g. video streaming), security (prevention of accidental or malicious access or modification.
 
-#####Programming Interface
+####Programming Interface
 
 The programmer who was to write applications for the machine does not want to have to know the details of the hardware, and they dont want to have to re-implement everything in every program, so the OS does this for them. Having an expert do this and provide a standard interface is a lot more practical. It means:
 - The programmer doesn't have to do it, therefore saving time.
@@ -29,3 +29,15 @@ Good:
 
 Bad:  
 ![alt-text](http://i.gyazo.com/598248022cb159db1a309ec5f1f9e0f6.png)
+
+An OS should be efficient and lightweight: every CPU cycle that the OS uses is one that is taken awaay from the user's programs. It should also be flexible and not get in the way of the programmer - so a perfect OS would be completely invisible.
+
+####Background
+
+An OS is just a program, so we can have differents OSs on the same hardware, and the same OS on different hardware, e.g. on intel hardware (PC) you can run Windows, OS X, Linux and many others. Since an OS has to deal with the details of hardware, it is not entirely trivial to port on OS from one architecture to another. Well designed OSs mninimise the hardware dependent parts and try to keep mose code hardware-independent. Historically, some OSs tied themselves too closely to the hardware so that porting was very difficult. For example, for much of its lifetime Windows only ran on Intel, so the assumption of Intel hardware ran throughout the code. In contrast, the Android OS shares a large amount of code with the Linux that runs everywhere else.
+
+The general public often think of the OS as the GUI (there is some basis for this confusion, as Microsoft and Apple tie their GUIs indivisibly to their OSs), and some software companies encourage and make capital out of this confusion.
+
+####History
+
+At first, computers had no operationg systems (1960s) - every programmer had to write their programs for the particular machine they were using, and therefore had to know exactly what kind of hardware they had and how to use it. This meant there was no portability, and lots of repeated code between programs.
