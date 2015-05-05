@@ -61,6 +61,7 @@ The issue with multitasking is that program 1 can now corrupt program 2 *and* th
 - Resume running the interrupted program
 - Kill the program if it has used up its allotted resources
 - Switch to running some other program
+
 Similarly, interrupts from peripherals like terminals or disks pass control to the monitor. This is called *preemptive scheduling*, and enables *timesharing* - where several programs share the available CPU time and so appear to be running simultaneously. 
 
 This interrupt mechanism allowed the use of *terminals*, allowing users to interact directly with the computer rather than just via job submission. A program can sit and wait (i.e. not be scheduled to run by the monitor) until the user hits a key on the terminal. When a key is hit, an interrupt happens, the monitor takes over, and chooses to run (schedules) the appropriate program to deal with the keystroke. Thus the program uses no CPU resources until they are needed. This is another way of bridging the gap between slow humans and fast computers.
