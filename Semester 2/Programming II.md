@@ -222,3 +222,15 @@ Heuristics can be used to make the process more efficient. In some games, a mini
 A heuristic search makes an estimate of the value of each branch, and searches those with the higher estimate first. The estimates are based on heuristics, which are metrics from previous experience which give a reasonable estimate of the value of the branch. For instance, in chess, the heuristic could be how many pieces of each type each player has left. While it's not a guarantee of a good branch (they could be awkwardly positioned) it gives a reasonable estimate of the value of each branch.
 
 A* search is a type of breadth first search which sorts the list after every move and chooses to explore the best value path first. If the heuristic can be guaranteed to never underestimate the cost of a branch, A* is guaranteed to give the optimal solution. This algorithm is used in most computer games for pathfinding.
+
+Most languages are capable of using windows to make applications with GUIs. One of the reasons Java is popular for this is that the widgets it uses to create its windows are platform-independent. A Java GUI application created in Windows will be equally usable and equivalent in appearance across OSX, Windows and Linux. This includes matching the look and feel of that operating system.
+
+The original Java windowing system was AWT. Its successor was Swing, but modern applications still use some components from AWT.
+
+The standard system for making a GUI application is called MVC, for Model, View and Controller.
+
+The model contains the functionality and data required for the program. It should contain all the program's algorithms and data structures other than those used to create the GUI.
+
+The view describes how the program will look on the screen. It contains all the objects needed to display on the screen, such as the widgets. Different people could use different views that use the same model, which might allow different options and data to be seen.
+
+The controller connects the view to the model. In Java, this is done using a Listener. Performing actions in the GUI generates events, which are handled in the controller, which calls the appropriate methods in the model.
