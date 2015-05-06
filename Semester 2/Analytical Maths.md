@@ -88,6 +88,9 @@ If the sum converges, then the series converges to zero. The sum *converges abso
 If f is an infinitely differentiable function from the interval (a, b) to the real numbers, and x_0 is a real number in (a, b), the Taylor Series of f is given by  
 ![](http://i.stack.imgur.com/MAMOg.png)
 
-If x_0 is set to zero, the series is called the Maclaurin Series.
+If x_0 is set to zero, the series is called the Maclaurin Series, which is given by this equivalent equation  
+![](http://i.gyazo.com/e7061aa5d581fde6fa1c2f071ac015e9.png)
 
 A function is analytic if its Taylor Series converges.
+
+**Eigenvectors and Eigenvalues**  
