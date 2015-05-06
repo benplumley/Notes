@@ -99,3 +99,38 @@ The next issue is memory protection - stopping a program from reading and writin
 
 Setting the flags in the MMU is a privileged operation. On every memory access by an unprivileged program, the MMU checks the flags to see if that access is allowed, and if not, raises an interrupt and the OS takes control again. Doing this on a byte-by-byte level wouldn't be feasible, so memory is divided into blocks called pages. A page is just a continuous area of memory (4096 bytes is popular on modern machines, though current hardware can support 4mb pages). The page is marked as read/writable as a whole, which makes technique more practicle. Each process has its own set of flags, and this is part of the process's state that must be saved and restored when that process is resheduled. There is often also a third, executable flag - can you execute code at this memory address?
 
+####Proccesses
+
+The word **process** is used to describe the executable code, its data and the associated information the OS needs to run it. A single program might use more than one process, for example one press to compute a picture and another to display it. This is called *structure by process*. However this is somewhat of an exception these days, quite often a program uses just one process, and structuring can be done by using multiple threads of execution.
+
+An OS needs to keep lots of information about a process, which it uses to schedule and protect the process. This information includes:
+- Where in memory it is (the code)
+- What parts of memory belong to it (the data)
+- What permissions it has on those parts of memory (flags from the MMU)
+- How much time it is allocated
+- How much time it has used
+- Similarly for other shared resources, e.g. the amount of I/O done
+- The CPU's PC and registers
+- And more...
+
+A process can be in one of several states. There are 5 main states (although real OSs have many more than this):
+1. New - A process that has just been created
+2. Running - It is currently executing on the CPU
+3. Ready - It is ready to run, but some other process (or the OS) is currently using the CPU
+4. Blocked - Waiting for some event or resource to become available e.g. waiting for some data to arrive from the disk
+5. Exit - A process that has finished
+
+The OS will be managing many processes, and keeps lists of which processes are in which state, so scheduling is simply making the choice of which process to move between which states. In real OSs, for efficiency, these will not be simple lists - they may be arranged in priority order, or maybe some more sophisticated datastructure e.g. a tree (like in Unix). This allows control of a group of processes. A group within the tree has a *session leader*, which would typically kill all the processes in the group if it is killed.
+
+There is a standard finite state machine which describes the allowed transitions between states:
+
+![](http://i.gyazo.com/5c0a2ed582b54ce84269ebf030098f6a.png)
+
+A typical transition is:
+1. The OS decides to schedule a process on the ready list
+2. The process is dispatched - the OS marks its state as running and starts executing it (jump and drop privilege)
+3. The process may choose to voluntarily suspend itself - *relinquish* (e.g. a clock program displaying the time might suspend itself for a minute).
+4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.
+5. Alternatively, a timer interrupt may happenw hen the process has used its time slice.
+6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)
+7. 
