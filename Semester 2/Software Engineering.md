@@ -26,7 +26,7 @@ Some key challenges faced in software engineering are:
 - **Delivery Challenge** - Shortening delivery times for complex systems without compromising on quality.
 - **Trust Challenge** - To develop techniques that demonstrate software can be trusted by its users.
 
-**Technical computer-based systems** include both hardware and software. The operators and operational prcesses are not normally considered to be part of the system. They are not self-aware.
+**Technical computer-based systems** include both hardware and software. The operators and operational processes are not normally considered to be part of the system. They are not self-aware.
 
 **Socio-technical systems** *include* technical systems, as well as the operational proccesses and the people who use and interact with the technical system. They are non-deterministic, and governed by organisational policy.
 
