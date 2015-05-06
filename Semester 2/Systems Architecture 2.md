@@ -88,3 +88,7 @@ The system starts in kernel (privileged) mode:
 5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor
 6. This special jump also enables privileged mode, so the monitor regains control with privilege
 7. The monitor saves the state of the program, then decides what to do next
+
+The syscall instruction always jumps to the monitor, so the program cannot use it to gain privilege for itself. The jumping between modes ensures that the monitor is runing in privileged mode and the user program is running in unprivileged mode. The user program can never get into privileged mode, as every transition to privileged mode is tied by the hardware to a jump to the monitor. Forcing access to hardware via the monitor also provides protection and management for other system resources, like access to files or the network. System libraries often include some nicer interfaces to the syscalls, wrapping them to make them easier to use e.g. the 'open file' syscall might need a file name to be place in certain registers.
+
+Switching in and out of kernel mode is a relatively time consuming operation in many OSs, due to overheads like saving and restoring the CPU state of the running process.
