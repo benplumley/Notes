@@ -42,6 +42,9 @@ A set of row vectors is always linearly dependent if one of the vectors is zero.
 **Basis**  
 There can only be be n linearly independent vectors in n-dimensional vector space. Any system of n+1 vectors is linearly dependent. A set of n linearly independent vectors in a vector space is called its basis.
 
+The standard basis of n-dimensional real space is the set of n linearly independent row vectors  
+![](http://i.gyazo.com/847034963aa2df0ee314be4aac26958c.png)
+
 **Rank**  
 The rank of a matrix is a number relating to any matrix. The rank of A is the largest number of linearly independent rows of A.  
 The rank of an upper triangular matrix is zero.  
@@ -84,3 +87,7 @@ If the sum converges, then the series converges to zero. The sum *converges abso
 **Taylor Series**  
 If f is an infinitely differentiable function from the interval (a, b) to the real numbers, and x_0 is a real number in (a, b), the Taylor Series of f is given by  
 ![](http://i.stack.imgur.com/MAMOg.png)
+
+If x_0 is set to zero, the series is called the Maclaurin Series.
+
+A function is analytic if its Taylor Series converges.
