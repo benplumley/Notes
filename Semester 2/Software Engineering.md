@@ -41,16 +41,16 @@ A Gantt Chart:
 
 **Codes of conduct** are set by professional bodies or institutions, and are necessary to maintain professionalism. They are typically a set of principles that are meant to guide rather than prescribe. Therefore they are often ambiguous in application and must be used in aid to professional judgement in ethical dilemmas.
 
-An example of ethics in the real world is the US Challenger space shuttle disaster in 1986. There were problems with the O-rings in relation to cold launch conditions, which was noted by an engineer. However, no testing was done due to more pressing problems. The engineers all unanimously recommended against the launch, however Space Centre was "surprised and appalled" at the recommendation, and went ahead with the launch due to political and financial pressures. The O-rings failed and the shuttle exploded 73 seconds into the mission, killing all seven crew.
+An example of ethics in the real world is the US Challenger space shuttle disaster in 1986. There were problems with the O-rings in relation to cold launch conditions, which was noted by an engineer. However, no testing was done due to more pressing problems. The engineers unanimously recommended against the launch, however Space Centre was "surprised and appalled" at the recommendation, and went ahead with the launch due to political and financial pressures. The O-rings failed and the shuttle exploded 73 seconds into the mission, killing all seven crew.
 
 There are 8 main principles in the **ACM/IEEE Code of Ethics**. These are:
 
 1. Public - Software engineers shall act consistently with the public interest.
-2. Client and Employer - Act in the best interests of their client and employer, consistent with the puiblic interest.
+2. Client and Employer - Act in the best interests of their client and employer, consistent with the public interest.
 3. Product - Products and related modifications shall meet the highest professional standards possible.
 4. Judgement - Integrity and independence in their professional judgement.
 5. Management - Adopt and promote an ethical approach to the management of software development and maintenance.
-6. Profession - Advance the integrity and reputation of the profession, consisten with the public interest.
+6. Profession - Advance the integrity and reputation of the profession, consistent with the public interest.
 7. Colleagues - Be fair and supportive of other colleagues.
 8. Self - Software engineers shall adopt both a "lifelong learning" and ethical approach to the practice of their profession.
 
