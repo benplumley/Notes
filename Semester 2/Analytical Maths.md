@@ -95,3 +95,17 @@ A function is analytic if its Taylor Series converges.
 
 **Eigenvectors and Eigenvalues**  
 For a vector x and real number b, Ax = bx is true if x is the eigenvector of A and b is the eigenvalue of A. In other words, for a matrix A there is a vector and a single number such that multiplying A by each gives the same result.
+
+When the matrix transformation A is applied, points on the line through the origin and x stay on that line, and move along it by a factor of b.
+
+**Finding Eigenvectors and Eigenvalues**  
+Given concrete values for A, and that Ax - bx = 0  
+(A - bI)x = 0 where I is the identity matrix with the same dimensions as A  
+|A - bI| = 0 if an eigenvector exists  
+Replace A with its values to get a quadratic in b; solve for eigenvalues.
+
+Substitute found eigenvalues into (A - bI)x = 0 to get simultaneous equations in x; solve for eigenvectors.
+
+**Rotation Matrix**  
+A rotation matrix is any matrix of the form  
+![](http://i.gyazo.com/956c4b4419b31b11a8a79133cfa15b26.png)
