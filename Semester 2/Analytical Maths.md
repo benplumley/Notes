@@ -94,3 +94,4 @@ If x_0 is set to zero, the series is called the Maclaurin Series, which is given
 A function is analytic if its Taylor Series converges.
 
 **Eigenvectors and Eigenvalues**  
+For a vector x and real number b, Ax = bx is true if x is the eigenvector of A and b is the eigenvalue of A. In other words, for a matrix A there is a vector and a single number such that multiplying A by each gives the same result.
