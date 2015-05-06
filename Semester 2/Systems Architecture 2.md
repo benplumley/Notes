@@ -75,3 +75,16 @@ On the other hand, too frequent interrupts mean the monitor is forever being cal
 A 'large slice of time' means the monitor will allow a program to continue running for a relatively long amount of time before scheduling a different program, i.e. the monitor will continue to schedule the program through several interrupts. A 'small slice of time' means the monitor will deschedule the program after only a brief amount of running time, perhaps just a few interrupts. Thus, the monitor can deal out CPU time to the programs in appropriately sized chunks - this is all part of the scheduling decision computations that happen potentially every time the monitor runs.
 
 Low power gadgets like to keep the number of interrupts down, as this increases the amount of time the CPU can be idling in low power *sleep states* - an interrupt is a wake up call that the CPU must deal with. Tuning an OS is very difficult and depends critically on the applications it needs to run. When an OS spends more time deciding what to do than doing useful work, it is called *thrashing*, a problem many early OSs had.
+
+Certain operations like accessing tape or a printer must be reserved for use by the monitor, and not be accesible by a random user program. In the CPU, machine instructions are divivded into two (or more) classes, unprivileged operations (arithmetic, tests, jumps) which any program can execute, and privileged operations (like access to peripherals) that only certain programs can run. The processor can also run in two (or more) modes; unprivileged, called the user mode and used for normal computation, and privileged, called the kernel mode and used for systems operation. Some processor architectures have four or more levels of privilege, sometimes using a ring system. Note that privelege is a state of the processor. 
+
+Privilege is a state of the processor, not the program, but we tend to say "a privileged program" rather than "a program running with the CPU in privileged mode". If an unprivileged program tries to execute a privileged operation, the hardware causes an interrupt (also called a system trap) and sets the processor to privileged mode. The interrupt service routine then jumps back to the monitor program, which decides what to do next e.g. disallow the operation, kill the program.
+
+The system starts in kernel (privileged) mode:
+1. The monitor decides which process to schedule
+2. It restores the state of the program, then uses a special jump-and-drop-privilege instruction to start running the program
+3. The program runs unprivileged (user mode)
+4. The program finishes or decides it needs a system resource, so it should call the monitor
+5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor
+6. This special jump also enables privileged mode, so the monitor regains control with privilege
+7. The monitor saves the state of the program, then decides what to do next
