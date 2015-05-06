@@ -133,4 +133,4 @@ A typical transition is:
 4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.
 5. Alternatively, a timer interrupt may happenw hen the process has used its time slice.
 6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)
-7.
+7.asdf
