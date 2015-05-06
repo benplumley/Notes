@@ -65,3 +65,22 @@ Given three points in the vector space, (x1, y1, z1), (x2, y2, z2), (x3, y3, z3)
 ![](http://i.gyazo.com/64484ada44e6c062b90804120e450128.png)
 
 A straight n-1 dimensional shape in n-dimensional space is known as a hyperplane.
+
+**Intermediate Value Theorem**  
+Intermediate value theorem says that a function f is continuous between two points a and b if for all t in the range there exists a c in the domain such that f(c) = t.
+
+**Analytical Functions**  
+Analytical functions are infinitely differentiable and can be expanded into a Taylor Series.
+
+**Partial Differentiation**  
+To differentiate a function with two variables *f(x, y)* we first fix *x=a* and calculate the gradient with *a* as a constant. Then substitute *a=x*. This is the partial derivative of f.
+
+**Sum of a Series**  
+The partial sum of a series, denoted by S_n, is the sum of its first n terms. The sum of the series is the limit of this partial sum as n tends to infinity.
+
+**Convergence**  
+If the sum converges, then the series converges to zero. The sum *converges absolutely* if the sum of the absolute values converges.
+
+**Taylor Series**  
+If f is an infinitely differentiable function from the interval (a, b) to the real numbers, and x_0 is a real number in (a, b), the Taylor Series of f is given by  
+![](http://i.stack.imgur.com/MAMOg.png)
