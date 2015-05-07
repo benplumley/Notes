@@ -230,3 +230,13 @@ Safety is improved by putting all safety-critical operations in a single subsyst
 Security is improved by using a layered model, where the most critical information is stored in the innermost layers and each layer can only communicate with its immediate neighbours. This allows security validation to be implemented more easily.
 
 Maintainability is improved by using fine-grained components which can easily be substituted for alternatives. This reduces code coupling. Shared data structures, such as in a repository model, should be avoided to improve maintainability.
+
+###Context and Scope
+
+The requirements document will have two groups of users. The client organisation will have users, such as business managers, end users and the administrators who will support and maintain the system. The developer organisation will have users such as the architects, developers, managers and testers.
+
+Software systems exist in a context, which is the environment the system will fit into. They are usually themselves subsystems of a larger business or organisational context.
+
+The architects must scope the system to decide which parts of the client's problem is to be solved by the system. They must also decide how much of the problem context is relevant to the development.
+
+>Lecture 10 slide 7
