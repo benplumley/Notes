@@ -223,3 +223,37 @@ Similarly, priorities can be:
 - All processes make equal process in terms of CPU time.
 - Interactive processes get good attention as they use relatively little CPU.
 - Long jobs can be starved by lots of small jobs.
+
+**Highest response ration next** - A variation of shortest remaining time, where we take the time a process has been waiting since its last time slice into account. The formula is:
+
+![](http://i.gyazo.com/9dbd1d140709dbf115975196dc6d6b11.png)
+
+- A process executes repeated time slices until its priority drops below that of another process.
+- Trieds to avoid starvation.
+- Long jobs will eventually get a slice.
+- New jobs will get immediate attention as CPU time is near 0
+- But now critical shorter jobs might not finish in time as they could get scheduled after a long waiting job. This needs frequent re-evaluation of priorities to get good behaviour, which implies small timeslices, and so lots of scheduling overhead.
+
+**Multilevel feedback queueing** - Can be used when we have no estimates on run times.
+- There are multiple FIFO run queues, RQ0, RQ1, ..., RQn, where RQ0 is highest priority and RQn the lowest.
+- Queues are processed in FIFO fashion, in priority order, so RQ1 does not get a look-in until RQ0 has emptied.
+- Each process is allocated a *quantum* of time (a timeslice).
+- A new process is admitted to the end of RQ0.
+- When the running process has used its quantum of time, it is interrupted and placed at the end of the next lower queue (demoted).
+- If the running process relinquishes voluntarily before the end of the quantum, it gets placed back at the end of the *same* queue.
+- If it blocks for I/O, it will be promoted and placed at the end of the next higher queue (when ready to run).
+- Demoted processes in RQn get placed at the end of RQn.
+- Gives newer, shorter processes priority over older, longer ones.
+- I/O processes tend to rise, getting more priority.
+- Compute processes tend to sink, getting less.
+
+With this algorithm the old processes tend to starve, so a variant of this doubles the quantum for each level - RQ0 gets 1, RQ1 gets 2, RQ2 gets 4 etc. So compute intensive processes get a big bite, whenever they get a chance, at the potential cost of responsiveness to a new process. This scheme was used by Windows NT and Unix derivatives.
+
+Multilevel feedback queueing diagram:
+![](http://i.gyazo.com/048af5ba35c7fe67c18adb847a2a8946.png)
+
+**Traditional Unix scheduling** - As used in older Unix derivatives (modern scheduling is much more sophisticated). Everything is based on timer interrupts every 1/60th of a second. A priority is computed from the CPU use of each process:
+
+![](http://i.gyazo.com/2b68b6ee8d253133f37a8890b186f374.png)
+
+
