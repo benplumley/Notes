@@ -277,8 +277,20 @@ Say process P1 wants to copy some data from disk D1 to disk D2, while process P2
 Formal definition: A set or processes D is **deadlocked** if each process Pi in D is blocked on some event Ei, and event Ei can only be caused by some process in D.
 
 Deadlock is only possible if certain necessary conditions are met, called the **Coffman conditions**:
+
 1. Mutual exclusion - Only one process can use a resource at a time.
 2. Hold and wait - A process continues to hold a resource while waiting for the other resource.
 3. No preemption - No resource can forcibly be removed from a process holding it.
+4. Circular wait - There is a circular chain of processes where each holds a resource that is needed by the next in the circle.
 
+This is actually quite hard to avoid. If hold and wait never happens, e.g. a process is required to drop other resources it holds when it gets blocked, when it gets the new resource it will have to go back and pick up the other resources again. This may require it to drop the new resource while waiting, and it can easily get into a situation where the process never manages to get all the resources it needs. This is called **indefinite postponement**.
 
+There are two approaches to the problem of deadlock:
+
+1. Prevention - Stopping it from every happening by preventing one of the conditions from occuring.
+2. Detection and breaking - Letting deadlock happen, but spotting it when it does and then breaking it by destroying one of the conditions.
+
+Prevention can be broken down further into:
+
+1. Prevention - Constrain resource allocation to prevent at least one of the conditions (e.g. ensure hold and wait never happens).
+2. Avoidance - This is even more careful not to allocate a resource that it can be determined that might possible lead to a deadlock in the future. Avoidance is harder to manage, but tends to be more efficient on the use of resources than prevention as it avoids bad computation paths earlier.
