@@ -298,3 +298,17 @@ A *Production Rule System* is an AI that uses productions, which are preconditio
 However, many productions are likely to be true simultaneously, so the system must be able to choose which production takes priority. To do this, it must use heuristic rules such as *recency*, which prefers productions most recently matched, and *efficacy*, a measure of that action's previous success rate. Both of these require the system to learn from its past actions.
 
 An *Expert System* is a production rule system designed to encode the actions of human experts in a field. This is hard, because human experts don't store their knowledge as a strict set of productions and actions. They are also capable of learning new actions and productions, something not inherent to production rule systems.
+
+In any learning AI, there is a tradeoff between what is programmed into the AI and what is learned on the fly. The pre-programmed knowledge is analogous to instinctive knowledge contained in our genes, created by evolution.
+
+Learning is a kind of search, only rather than it being performed when the decision needs to be made, it is performed in advance. The programmer includes variable parameters and how they change. When the AI experiences its environment, it sets the parameters according to how they were defined to change.
+
+Some problems are impossible unless the AI can learn, and others are more efficient to learn than they are to program.
+
+An AI can be made aware of its environment by giving it a representation. There are several kinds of representation:  
+- No representation. Called *environmental determinism*, the AI responds to inputs (eg I can't move any further in this direction so I will turn) without recording information about its environment.  
+- *Deictic representation*. A minimalistic reference that can change depending on the action being taken. The AI only records the information relevant to the action it needs to take, so rather than "the tree" or "player 2" it just records "an obstacle" or "the enemy".  
+- *Specialised representations*. If the environment is well defined, this representation has a special-purpose memory which will fit its environment. For instance, our coursework bot memory.
+- *General purpose representations*. These are capable of storing arbitrary information. When applied to too complex a problem, combinatorics becomes a problem and these are too inefficient to be of any use. They are useful in specific situations.
+
+> http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture17-SocialAI.html not started
