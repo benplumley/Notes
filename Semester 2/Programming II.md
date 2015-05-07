@@ -288,3 +288,13 @@ The Applet class contains four methods:
 If allowed to run, untrusted applets are prevented from reading or writing on the host, opening sockets other than to the server that served the page, starting processes, and running native methods. Applets can bypass these restrictions if they have a valid signature.
 
 Parameters can be passed between the webpage and the applet using tags to send parameters to the applet and methods for the applet to get data about the HTML.
+
+When an AI is searching for an action, it must decide how far to look ahead in its tree of possible actions. For instance, if a chess AI tries to look all the way to the end of the game, it will take far too long to be practical, and run out of memory. Instead, it could choose to look a certain number of moves ahead. A more sophisticated concept is an anytime algorithm.
+
+Anytime algorithms, if interrupted, will give a solution to the problem. If left to run, they will keep searching to improve on their current best solution. This means the time the algorithm takes to run is no longer a variable but a constant if that suits the program. It could also mean that the algorithm is started preemptively and only stopped when the time comes to make the decision.
+
+A *Production Rule System* is an AI that uses productions, which are preconditions related to a certain action. To choose an action, the system will go through its list of productions to find one that evaluates as true. It will then execute the relevant action.
+
+However, many productions are likely to be true simultaneously, so the system must be able to choose which production takes priority. To do this, it must use heuristic rules such as *recency*, which prefers productions most recently matched, and *efficacy*, a measure of that action's previous success rate. Both of these require the system to learn from its past actions.
+
+An *Expert System* is a production rule system designed to encode the actions of human experts in a field. This is hard, because human experts don't store their knowledge as a strict set of productions and actions. They are also capable of learning new actions and productions, something not inherent to production rule systems.
