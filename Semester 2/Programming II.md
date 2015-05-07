@@ -271,4 +271,20 @@ The copyleft movement, created by Richard Stallman, says that the service of wri
 
 One of the defining features of a copyleft license is that any software that includes a piece of copyleft code must itself be copyleft. This means that a company can't make money from a program if it includes any copyleft code. Not all free software is copyleft.
 
->http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture-JavaIP.html 3.1
+Initially, it was very important that applications matched the theme of the OS, because so many of the end users were inexperienced enough that a slight deviation from the design could confuse them. The AWT used code native to the OS, meaning programs written with AWT were fast and looked just like the OS they were running on. However, they weren't portable between operating systems, which was their fatal flaw.
+
+Applets are Java programs designed to be embedded into webpages and executed automatically by the browser. Netscape, the dominant browser maker at the time, agreed to support applets using AWT, forcing Microsoft to do the same to be competitive. When Java released Swing, however, IE was dominant and Microsoft refused to support it.
+
+Swing uses no native code, so is completely portable between operating systems. It also fixed a lot of bugs present in AWT. It is the a large part of the reason Java has stayed popular after the decline of applets.
+
+An applet is part a web page. It owns a rectangular section of the page in which it read keyboard and mouse input. Applets essentially allow webpages to run arbitrary code on a computer without (in theory) confirmation, which is why they are blocked by default in modern browsers.
+
+The Applet class contains four methods:  
+1. init() is analogous to a constructor. Applets do have constructors, but they are called too early to be of any use to the programmer.  
+2. start() is called when the applet is loaded or scrolled into view.  
+3. stop() is called when the applet is scrolled out of view. It should be used to stop the applet when it can't be seen, but this is up to the programmer.  
+4. destroy() is called by the browser when it's finished with the applet.
+
+If allowed to run, untrusted applets are prevented from reading or writing on the host, opening sockets other than to the server that served the page, starting processes, and running native methods. Applets can bypass these restrictions if they have a valid signature.
+
+Parameters can be passed between the webpage and the applet using tags to send parameters to the applet and methods for the applet to get data about the HTML.
