@@ -147,3 +147,79 @@ Creation of a process involves the following steps:
 This is what hapens in the New state - it can then move to Ready when the OS decides it is time to do so. Again, the process might not start running immediately as there could be some higher priority process that must run first. Most processes are created (forked/spawned) by other processes. Of course, only the OS can actually create processes. When a process wants a new process to be created, it needs to ask the OS to do so. The OS than creates a new process according to the specifications given. The original calling process will generally be the parent of the new process. However, the OS can choose not to create the new process if some policy says not to, or there is not enough memory (or any other reason). In this case, the original process gets a message back explaining the problem.
 
 This creates a problem however: If processes are always created by other processes, how do we get started? This is the **bootstrapping problem**. In Unix, there is an incestor process called init with PID 1, that gets created at switch on time and it serves to create all other processes. Bootstrapping is complicated as it has to determine the hardware and how it is connected and initialise it, set up all the appropriate datastructures the OS needs, start lots of service processes running, all before it can begin to look at what the user wants. This is quite often simply called *booting*.
+
+####Scheduling
+
+**Scheduling** is the issue of choosing which process to run next, and is an extremely difficult problem. These are some of the problems:
+- Giving each process its fair share of CPU time
+- No starvation of any process
+- Make interactive processes respond in human timescales
+- Give as much computation time as possible to compute-heavy processes
+- Ensuring critical real-time processes are dealt with before it is too late
+- Service peripherals in a timely way
+- Understanding the various requirements of the hardware: mice and printers are slow, while networks and disks are fast
+- Distribute work amongst multiple devices e.g. CPUs and networks
+- Make best use of the hardware and use it efficiently
+- Make the system behaviour predictable - we dont want wildly erratic behaviour
+- Try to degrade gracefully under heavy load
+
+And all of this must be done quickly. Scheduling can be divided into three classes, each addressing different resource concerns:
+- Short term - Effective use of the CPU. Which of the ready processes to run next.
+- Medium term - Deciding which processes to keep or load into memory.
+- Long term - Deciding which processes to admit into the scheduling system, ensuring there are enough resources to get it started.
+
+Long term decides which processes should be considered by the medium term scheduler, medium term decides which processes should be considered by the short term scheduler, and short term decides which process should be considered to be run. Long term scheduling was an issue in the 60s and 70s when resources were more limited, but is not so relevant these days due to alternative approaches (virtual resources).
+
+Measurements used in sheduling algorithms include CPU cycles used by the process, memory used, disk used, network used etc. We can also quantify the results:
+- Throughput - more of fewer jobs finished in a given time
+- Turnaround (response time) - interactive response should be snappy
+- Real time - e.g. this data *must* be dealt with now else the car will crash
+- Money - we've been given money to get this data ready in the next hour
+
+This information was originally collected to calculate how much money to charge the user (cloud services still sell time on their machines like this), but nowadays we generally own our own computers, so are more concerned about making the best use of it. Here are some simple scheduling algorithms:
+
+**Run until completion** - first in first out (FIFO), non-preemptive batch, as on pre-OS machines. Not really suitable for most modern machines (although still the basis for large clusters and the Grid).
+- Good for large amounts of computation
+- No overheads of multitasking
+- Poor interaction with other hardware - can't process while printing (spooling)
+- No interactivity
+
+**Shortest job first** - The shortest time to completion process runs next. Non-preemptive.
+- No multitasking
+- Good throughput
+- Similar behaviour to FIFO on average
+- Long jobs suffer and might get starved
+- Difficult to estimate time-to-completion
+
+**Run until completion + cooperative multitasking** - Non preemptive. Was used on millions of computers until relatively recently.
+- Weak multitasking
+- Needs round-robin or something more sohpisticated to choose another task on relinquish
+- Poor utilisation of hardware
+- Poor interactivity
+- Easy for a process to starve other processes
+- Hard to write "good citizen" programs
+
+**Preemptive round robin** - Gives each process a fixed time slice.
+- Multitasking
+- Better utilisation of hardware
+- No starvation
+- Gives interactive processes the same time as compute processes
+- Not good for interactive or real time - may have to wait a long time for a slice of time.
+
+**Round robin** is more suited to systems where all the processes are of equal importance, e.g. dedicated appliances like network routers that have to decide how to share network capacity fairly. However we need to tweak round robin a bit first - it needs to take interactivity, priority etc. into account. To know if a process is interactive or compute intensive, watch how much I/O is happening and how long we are waiting for it; high I/O per compute is interactive, low is compute intensive. A process can be a mix of both, or it might move between the two over time.
+
+Similarly, priorities can be:
+- Static - Unchanging through the life of the process. Simple, but unresponsive to change (e.g. a process that alternates inactivity with urgent computation).
+- Dynamic - Priority responds to changes in the load. Harder to get right, and more expensive to compute.
+- Purchased - The more you pay, the higher the priority.
+
+**Shortest remaining time** - Have a time slice, pick the next process by the estimate of the shortest time remaining. Preemptive.
+- This is a round robing version of shortest job first.
+- Still hard to make estimates.
+- Good for short jobs.
+- Long jobs can still be starved.
+
+**Least completed next** - The process that has consumed the least amount of CPU time goes next.
+- All processes make equal process in terms of CPU time.
+- Interactive processes get good attention as they use relatively little CPU.
+- Long jobs can be starved by lots of small jobs.
