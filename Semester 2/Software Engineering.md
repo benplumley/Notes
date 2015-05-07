@@ -173,5 +173,48 @@ Good requirements, therefore, must be
 - Modifiable, because they will need to be changed during the project  
 - Traceable, so dependencies can be resolved easily  
 - Unambiguous  
-- Verifiable  
+- Verifiable
+
 These are known as the *six essential properties* of requirements statements.
+
+###High-Level Models of Software and Architectural Design
+
+Programming is a type of problem solving. Programming a system can be thought of as splitting the system down into smaller and smaller subsystems and tasks, until each individual task is small enough to be written in a single line of code.
+
+An **architecture** describes how the system will be split up into manageable parts. These will probably correspond to the different parts of the problem the system is trying to solve. Software architecture, therefore, is a strategy for reducing complexity whilst adhering to functional, performance and cost goals. It requires the system to be separated into modular components, and describes their connection.
+
+The benefits of architectural design are  
+- It helps stakeholder communication because they can be shown a coherent model and provide feedback on it  
+- It allows for large-scale reuse because the individual modules will work on their own or as part of a different system
+- It supports thinking about non-functional requirements.
+
+If each module corresponds to a group of dependent requirements, then any change in requirements will hopefully only affect that one module. Grouping dependent requirements into the same module means that changes can be implemented more quickly and with less potential for integration problems.
+
+An architectural design document consists of graphical models and text explaining them. Architectural models can be static, showing the layout of the system, or dynamic, showing how it will run. An example of a static structural model is a box-line diagram.
+
+The organisational style should be decided on early in the design process. It defines how the subsystems will communicate and be layed out.
+
+A common organisational style is the **repository model**. Subsystems may only exchange information through a central repository. This is popular with systems that generate and consume a large amount of data. Benefits are  
+- Backup, recovery and security of the data is centralised because the data is stored in one component  
+- The producers of the data don't need any logic relating to how it is consumed, ie who to send it to  
+- Sending data is efficient because it only needs to be sent once and then any subsystem that needs it can read it  
+- It is easy to integrate new subsystems without changing the current ones
+
+Some disadvantages are  
+- A central repository is a single point of failure. If the repository fails, none of the subsystems can work  
+- Subsystems must compromise in what they can do in order to conform to the data structure expected by the repository  
+- It is very hard to change the format of the data expected by the repository because all of the subsystems depend on it being in a certain format  
+- Different subsystems may want different backup or security policies but only one policy can be applied to all data. For instance, if one subsystem handles sensitive data and the others handle publicly available data, all of the data must be encrypted despite the computational overhead.
+
+Another organisational style is the **client-server model**. Subsystems fit into one of  
+- Server subsystems, which offer services to other subsystems  
+- Network subsystems, which offer communication and notification between client and server  
+- Client subsystems, which use the data and services provided by the servers. A thick client is   mostly independent of its servers; a thin client is highly dependent on the servers.
+
+Clients access the servers by sending a request over the network subsystems and receiving a reply from the servers over them. The numbers and identities of clients don't need to be known about by the servers, and the clients only need to know about the servers relevant to them.
+
+Advantages are  
+- Servers and clients can be upgraded without impacting the operation of the system
+- There is no shared data model, so each subsystem can handle its data in the most appropriate way for that data
+
+The main disadvantage is that clients are not guaranteed to be able to take advantage of server upgrades, and may have to be upgraded themselves.
