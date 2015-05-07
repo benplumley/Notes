@@ -256,4 +256,29 @@ Multilevel feedback queueing diagram:
 
 ![](http://i.gyazo.com/2b68b6ee8d253133f37a8890b186f374.png)
 
+A process with the smallest priority value is chosen next (i.e. a process that has used less CPU). Processes of the same priority are treated round robin. This is actually very similar to multilevel feedback queueing where each priority corresponds to a queue. The base priority depends on whether this is a system process or a user process, with user priority being lower (i.e. a larger value). The CPU time recorded is halved every second. This decays the influence of CPU usage over time, and makes the priority based on recent bahaviour. This algorithm gives more attention to processes that have used less CPU recently, e.g. interactive and I/O processes.
+
+With this, processes can choose to be *nice*. This is a value which gets added to the priority of that prosess. Generally, -20 <= nice <= 19, but only privileged users (administrators) can use negative nices. A process that has nice -20 can really jam up the system. But nice also enables a purchased priority.
+
+There are a few problems with traditional Unix scheduling. The priorities were recomputed once per second, all in a single pass, taking a significant chunk of time (on old machines). It does not respond fast enough to dynamic changes in the system, and doesn't scale to large numbers of processes. So this isn't used in modern systems, where many 100s of processes is common. There are also other problems to address, e.g. if there are two users running simultaneously on one machine, and user A has 9 processes while user B has 1, should user A get 90% of the CPU time and B 10%?
+
+**Fair share scheduling** - Where each user gets a fair share, rather than each process. Modern Unix derivatives use much better and more complicated scheduling algorithms than this. The priority is calculated like this:
+
+![](http://i.gyazo.com/dd1737b9ce0d6965d9d0da73d594076e.png)
+
+All of these algorithms only handle scheduling of one resource - the CPU. There are new issues that arise when scheduling multiple resources.
+
+####Deadlock
+
+Processes compete for resources like disks and networks, and the OS mediates this. To read from the disk, a process must call the OS kernel and wait for the kernel to reply. When we say a "a process waits for the kernel", what actually happens is the kernel marks the process as blocked, and does not consider it for sccheduling until the requested resource has arrived. There is no "waiting" happening - the process does not run when blocked.
+
+Say process P1 wants to copy some data from disk D1 to disk D2, while process P2 wants to copy some data from D2 to D1. The OS (rather stupidly) gives P1 exclusive access to D2 and P2 exclusive access to D1. The OS then runs P1, which requests an access to D1, but P2 has locked it so P1 must wait, and is therefore moved to the block state. The OS then runs P2 which requests an access to D2, but P1 has locked it so P2 must wait, and is moved to the block state. Now both processes are blocked and the OS can't run either process. This is called **deadlock**, and can happen on any kind of shared resources that require exclusive access. It can also happen with more than two processes, there could be three or more all waiting for the other.
+
+Formal definition: A set or processes D is **deadlocked** if each process Pi in D is blocked on some event Ei, and event Ei can only be caused by some process in D.
+
+Deadlock is only possible if certain necessary conditions are met, called the **Coffman conditions**:
+1. Mutual exclusion - Only one process can use a resource at a time.
+2. Hold and wait - A process continues to hold a resource while waiting for the other resource.
+3. No preemption - No resource can forcibly be removed from a process holding it.
+
 
