@@ -164,3 +164,14 @@ It is very important for the requirements to be clear and precise, otherwise the
 Imprecise requirements cannot be verified. For example, instead of "must be fast", use "number of transactions per second/hour/day" or "response time (milliseconds, seconds, minutes)".
 
 Requirements statements should be formatted with an index number and concise name for the requirement ("5.3.6 Daily data recovery script"), a priority (high medium or low) and a statement ("The system should execute a test script at 21:00 hours each day to retrieve five files from the most recent backup"). It should also have an author/source, and any dependencies and relationships.
+
+Changing a requirement can have a knock-on effect on any requirements that depend on it - to solve this, a method is needed to track which requirements depend on which others. An example of this is a square table with columns and rows as requirement numbers and a mark where the column depends on the row.
+
+Good requirements, therefore, must be  
+- Prioritised  
+- Correct in that they are based on what the client needs, not what the developer wants to make  
+- Modifiable, because they will need to be changed during the project  
+- Traceable, so dependencies can be resolved easily  
+- Unambiguous  
+- Verifiable  
+These are known as the *six essential properties* of requirements statements.
