@@ -218,3 +218,15 @@ Advantages are
 - There is no shared data model, so each subsystem can handle its data in the most appropriate way for that data
 
 The main disadvantage is that clients are not guaranteed to be able to take advantage of server upgrades, and may have to be upgraded themselves.
+
+When choosing an organisational structure and designing the system architecture, five factors must be considered: performance, security, safety, availability and maintainability.
+
+Performance is improved by localising critical operations within a small number of subsystems, and having minimal communication between these subsystems.
+
+Availability is improved by building components in such a way that a broken component can be swapped out for a redundant version without bringing the whole system down. This is called hot-swapping.
+
+Safety is improved by putting all safety-critical operations in a single subsystem, or as few as possible. This reduces the complexity of the safety validation, making it easier to be sure that the safety measures implemented work properly.
+
+Security is improved by using a layered model, where the most critical information is stored in the innermost layers and each layer can only communicate with its immediate neighbours. This allows security validation to be implemented more easily.
+
+Maintainability is improved by using fine-grained components which can easily be substituted for alternatives. This reduces code coupling. Shared data structures, such as in a repository model, should be avoided to improve maintainability.
