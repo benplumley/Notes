@@ -246,4 +246,14 @@ The IEEE has a standard defining how a requirements document should be layed out
 - Appendices  
 - Index  
 
-The descriptions of each requirement are in English but constrained to a standard format to reduce ambiguity.
+The descriptions of each requirement are in English but constrained to a standard format to reduce ambiguity. This standard format uses *shall* for mandatory requirements and *should* for desirable requirements. Text highlighting should be used to identity the key parts of the requirement.
+
+The problems with this format are that when a complex but precise idea is put into natural language, it can be difficult to read. Some requirements might also be written better as multiple requirements.
+
+Diagrams can be used to represent the components needed for each requirement, and the relationships between these requirements. They are most useful for understanding dependencies, reasoning about changes of state of the system, and describing sequences of actions.
+
+An *architectural system context model* uses boxes and lines to represent the subsystems and the communications between them respectively. A *process-based system context model* uses round rectangles and arrows to describe processes performed by the system.
+
+These models can be created from the requirements document, and are intended to give the developers instructions on how to meet the requirements and provide a basis for designing the system.
+
+>start of lecture 11
