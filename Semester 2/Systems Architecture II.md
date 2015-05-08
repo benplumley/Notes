@@ -294,3 +294,5 @@ Prevention can be broken down further into:
 
 1. Prevention - Constrain resource allocation to prevent at least one of the conditions (e.g. ensure hold and wait never happens).
 2. Avoidance - This is even more careful not to allocate a resource that it can be determined that might possible lead to a deadlock in the future. Avoidance is harder to manage, but tends to be more efficient on the use of resources than prevention as it avoids bad computation paths earlier.
+
+> Just finished slides 9
