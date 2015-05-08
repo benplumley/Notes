@@ -237,6 +237,13 @@ The requirements document will have two groups of users. The client organisation
 
 Software systems exist in a context, which is the environment the system will fit into. They are usually themselves subsystems of a larger business or organisational context.
 
-The architects must scope the system to decide which parts of the client's problem is to be solved by the system. They must also decide how much of the problem context is relevant to the development.
+The architects must scope the system to decide which parts of the client's problem is to be solved by the system. They must also decide how much of the problem context is relevant to the development. Scoping the system requires the architects to set boundaries on the intended features of the system. They must decide which functions will be handled by the software and which goals the software must meet.
 
->Lecture 10 slide 7
+The IEEE has a standard defining how a requirements document should be layed out. The standard for a *Software Requirements Specification* consists of  
+- Section 1 Introduction  
+- Section 2 Overall description  
+- Section 3 Specific requirements  
+- Appendices  
+- Index  
+
+The descriptions of each requirement are in English but constrained to a standard format to reduce ambiguity.
