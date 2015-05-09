@@ -256,4 +256,30 @@ An *architectural system context model* uses boxes and lines to represent the su
 
 These models can be created from the requirements document, and are intended to give the developers instructions on how to meet the requirements and provide a basis for designing the system.
 
->start of lecture 11
+###Modular Decomposition
+
+*Modular decomposition*, or top-down decomposition, is the process of splitting the work performed by the system into self-contained modules. Bottom-up composition the process of combining these modules to create a complete system.
+
+One technique for decomposition is *function-oriented pipelining*. This uses the idea that the modules act as a pipeline through which all the data in the application must pass. Each module filters the data in a certain way. The modular arrangement must begin with a data source and end with a data store.
+
+Advantages of function-oriented pipelining are  
+- The role of each module is easy to understand
+- Modules which take arbitrary data and transform it can be reused with different data
+- The system can grow by adding new sections into the pipeline
+
+Some disadvantages are  
+- Communication between modules is limited by data communication rules  
+- It will struggle to represent event-driven systems such as GUIs
+
+Another technique is *object-oriented decomposition*. Each module is an object which holds data, processing capabilities and responsibilities for what work it needs to do. Objects are tangible entities in the system (such as 'the address book') or participating agents (such as 'the salesman').
+
+Objects must define their public interfaces that other objects can use to send data to and request data from. They are instantiated from classes.
+
+Advantages of object-oriented decomposition are  
+- It is easy to understand the link between a module and the entity it represents  
+- It provides encapsulation, improving security and reducing coupling
+- Allows for very easy reuse, through inheritance as well as complete reuse
+
+The main disadvantage is that the object-oriented approach is time- and memory-hungry at runtime, which restricts its use in certain situations.
+
+>End of Modularity
