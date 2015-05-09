@@ -311,4 +311,29 @@ An AI can be made aware of its environment by giving it a representation. There 
 - *Specialised representations*. If the environment is well defined, this representation has a special-purpose memory which will fit its environment. For instance, our coursework bot memory.
 - *General purpose representations*. These are capable of storing arbitrary information. When applied to too complex a problem, combinatorics becomes a problem and these are too inefficient to be of any use. They are useful in specific situations.
 
-> http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture17-SocialAI.html not started
+A robot is defined as something that generates actions in the real world based on its perception of the real world. This includes things as simple as thermostats. Intelligent behaviour is defined by these interactions, so a robot's physical structure is as important as its control.
+
+A *moral agent* is responsible for its own behaviour. Adults are moral agents, young children are not. *Moral patients* are things we have a moral obligation towards. These might be moral agents, they might not even be agents, for example the environment.
+
+The question of whether robots can be moral agents is an open question. One argument is that since humans create AI, we should keep our moral agency and not pass it to the AI. This would mean the behaviour of the AI is the responsiblity or 'fault' of its creator.
+
+*Parallel search* is the use of multiple threads to search through possibilities of actions. Every time there is a branch in what needs to be searched, a new thread is spawned so that no branch has to wait to be searched. With enough processors, all NP problems could be turned into P problems. The number of steps taken to solve a chess game would be the number of moves in that game, so searching them would be near instantaneous. However, there are multiple problems with this in practice:  
+- Even very large parallel computers only have thousands of processors, not enough to make a dent in a problem like chess  
+- On a normal PC, parallel would have no advantage because the different threads would have to wait for each other to get time on the processor  
+- When a thread does find the answer, it must communicate this somehow to every other thread, which is still an open problem with concurrency  
+
+Quantum computing is an experimental branch of computing intended to solve NP problems, and it has been done for small numbers of qubits. A specific type of quantum computer, using *quantum annealing*, is already in commercial use.
+
+Biological computing uses genes to create a biological representation of logic gates. Even though a single operation can take 48 hours, this can be done billions of times simultaneously in a single test tube.
+
+Evolution and evolutionary algorithms solve problems by making random changes to the best adapted members of each generation. The better communication the system has, the faster these adaptations can spread through the population. This is also true of memetics, where evolution is applied to ideas.
+
+Cloud computing uses massively parallel 'clouds' of computers to power the AI that companies like Google run on.
+
+Evolution of species and algorithms doesn't necessarily discover globally optimal solutions, it can only approach local maxima. It can be thought of as an anytime algorithm, because wherever it is stopped it will have produced a system that is adapted to its environment, and the longer it runs the better these adaptations will be.
+
+A genetic algorithm follows very similar rules to those of natural selection, where the programs that complete their task best by some measure are used as the next generation, and crossover is achieved by choosing some of the variable settings from two or more parents.
+
+The problems with this are that a program first needs to be created that goes some way to solving the problem. An evolutionary algorithm can't start from scratch. It also requires the objective function to be defined, which is a non-trivial problem.
+
+> http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture20-Relations.html not started
