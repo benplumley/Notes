@@ -313,7 +313,7 @@ An AI can be made aware of its environment by giving it a representation. There 
 
 A robot is defined as something that generates actions in the real world based on its perception of the real world. This includes things as simple as thermostats. Intelligent behaviour is defined by these interactions, so a robot's physical structure is as important as its control.
 
-A *moral agent* is responsible for its own behaviour. Adults are moral agents, young children are not. *Moral patients* are things we have a moral obligation towards. These might be moral agents, they might not even be agents, for example the environment.
+A *moral agent* is responsible for its own behaviour. Adults are moral agents, young children are not. *Moral patients* are things we have a moral obligation towards. These might be moral agents, or they might not even be agents. For example, the environment is a moral patient because we have a moral obligation not to damage it but it does not have agency.
 
 The question of whether robots can be moral agents is an open question. One argument is that since humans create AI, we should keep our moral agency and not pass it to the AI. This would mean the behaviour of the AI is the responsiblity or 'fault' of its creator.
 
