@@ -356,16 +356,23 @@ To get all the information about an entity out of a relational database, you nee
 
 > Part 3 of the powerpoint
 
-Chunks of memory are called *blocks*, and when you change something in one you need to make copies. This can result in succesfful completion, partial failure (destination block has incorrect information), or total failure (destination block was never updated). Keeping the data safe requires detecting and correcting these failures.
-
-A *transaction* is a unit of program execution that accesses and possibly updates various data items. To start, a transaction must have a consistent databse. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent. There are two main issues to deal with, failures (e.g. hardware failures and system crashes) and concurrency (e.g. simultaneous execution of multiple transactions.
-
-There are two tpes of blocks - *physical blocks* are blocks residing on the disk. *Buffer blocks* are blocks residing temporarily in main memory. There are two operations to move blocks between disk and main memory:
+Chunks of memory are called *blocks*, and when you change something in one you need to make copies. This can result in successful completion, partial failure (destination block has incorrect information), or total failure (destination block was never updated). Keeping the data safe requires detecting and correcting these failures. There are two types of blocks - *physical blocks* are blocks residing on the disk. *Buffer blocks* are blocks residing temporarily in main memory. There are two operations to move blocks between disk and main memory:
 
 - *input(B)* transfers the physical block B to main memory
 - *output(B)* transfers the buffer block B to the disk, and replaces the appropriate physical block there.
 
-Each transaction has it's private work area in which local copies of all data items accessed and updated by it are kept. Here is a diagram showing a standard data access:
+A *transaction* is a unit of program execution that accesses and possibly updates various data items. Each transaction has its own private work area in which local copies of all data items accessed and updated by it are kept. It transfers data items between system buffer blocks and its private work-area. To start, a transaction must have a consistent database. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent. 
+Transactions perform *read(X)* while accessing X for thie first time; all subsequent accesses are to the local copy. After the last access, the transaction executes *write(X)*. Output(Bx) doesn not necessarily immediately follow write(X), the system can perform the output operation whenever it deems fit. But until Bx is updated on the disk, it's not safe, so the transaction isnt committed. Here is a diagram showing a standard data access:
 
 ![](http://i.gyazo.com/5b6961fb513509e2f4b0c717a5370fea.png)
 
+There are two main issues to deal with, failures (e.g. hardware failures and system crashes) and concurrency (e.g. simultaneous execution of multiple transactions. To ensure data is really saved on non-volatile memory before committment, a description of the modifications is output to stable storage without modifying the database itself. Only then is the database updated. There are two ways to do this, *shadow-paging* and *log-based recovery*.
+
+Shadow paging assumes only one transaction is active at a time. The db_pointer always points to the current consistent copy of the database. Updates are made on a copy of the database, which the pointer moves to after the transaction reaches partial commit and pages written. On transaction failer, the old consistent copy pointed to by db_pointer is used, and the shadow copy is deleted. This assumes disks don't fail, and while useful for text editors, is extremely inefficient for a large database - executing a single transaction requires copying the entire database.
+
+Log-based recovery keeps a *log* on stable storage. A log is a sequence of log records, which record the update activities on the database. When transaction Ti starts, it  registers itself by writing a *<Ti start>* log record. Before Ti executes write(X), a log record <Ti, X, V1, V2> is written, where V1 is the value of X before the write and V2 the value to be written to X. When Ti finishes its last statement, the log record <Ti commit> is written. This is when the transaction Ti is committed. Log records must be written directly to stable storage (they can't be buffered).
+
+*Deferred database modification* records all modifications to the log, but defers all writes to after a partial commitment. 
+A transaction starts by writing a <Ti start> record to the log. A write(X) operation results in a log record <Ti, X, V> being written, where V is the new value for X (the old value is not needed for this). The real write is not performed on X at this time, but is deferred. When Ti partially commits, <Ti commit> is written to the log. Finally, the log records are used to actually execute the previously deferred writes.
+
+During recovery, a transaction needs to be redone if and only if both <Ti start> and <Ti commit> are in the log. Redoing a transaction Ti (redo Ti) sets thevalue of all data items updated by the transaction to the new values. Crashes can occur while the transaction is executing the original updates, or while recovery action is being taken.
