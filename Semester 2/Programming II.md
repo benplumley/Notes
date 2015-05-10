@@ -52,7 +52,7 @@ Alternatively, this can be done with a single array, instead of putting the smal
 
 **Quick sort is O(n log n).**
 
-*Bubble sort* starts at the first element, compares it to the second, and swaps them if they are out of order. It then repeats this from the next element. Once it has passed through the array it will carried the largest number to the end of the unsorted area, and into the sorted area. The process is then repeated from the start of the unsorted area.
+*Bubble sort* starts at the first element, compares it to the second, and swaps them if they are out of order. It then repeats this from the next element. Once it has passed through the array it will have carried the largest number to the end of the unsorted area, and into the sorted area. The process is then repeated from the start of the unsorted area.
 
 **Bubble sort is O(n^2).**
 
@@ -336,4 +336,20 @@ A genetic algorithm follows very similar rules to those of natural selection, wh
 
 The problems with this are that a program first needs to be created that goes some way to solving the problem. An evolutionary algorithm can't start from scratch. It also requires the objective function to be defined, which is a non-trivial problem.
 
-> http://www.cs.bath.ac.uk/~jjb/here/CM10228/Lecture20-Relations.html not started
+Databases are groups of tables used to store data. They provide security and concurrency, and if the database is properly normalised, then they take up as little space as possible.
+
+Before databases were used, data was stored in files. This can be made efficient if done properly, but if the software for reading the files is lost then the data may be meaningless without it. They could also be hardware dependent.
+
+This storage method was superseded by tables, where a row was an entity and a column was an attribute. This allows each columns to have a name and type, allowing the data to be more easily understood without the program. However, in a table, a lot of the data is redundant because it is recorded twice or more. This is a waste of space. Some fields need to be arbitrarily large, because we don't know how much data needs to go in them. This makes computations more complex.
+
+Relational databases solve all of these problems using *normal forms*. Each table has an index called the primary key, and each entity has a unique identifier which is used as a key when searching for that entity. Any cell has at most one atomic value in it (*first normal form*). All the data in each row should depend only on that row's index (*second normal form*).
+
+To get all the information about an entity out of a relational database, you need to join the tables. Each table must make a reference to another table's index. This is called a secondary or foreign key.
+
+*Structured Query Language*, SQL, is used to get data out of a database or change it.
+- SELECT gets one or more rows  
+- INSERT adds a row  
+- DELETE deletes a row
+- UPDATE changes a row
+- CREATE makes a new table
+- DROP deletes a table
