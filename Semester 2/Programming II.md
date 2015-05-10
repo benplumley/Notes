@@ -354,14 +354,43 @@ To get all the information about an entity out of a relational database, you nee
 - CREATE makes a new table
 - DROP deletes a table
 
-> Part 3 of the powerpoint
+Databases not only store data, but also provide functionality through stored procedures. They also act like servers in that clients which access them can run on any platform and be written in any language.
+
+There are risks with using databases, however.
+- Crackers can sabotage the data or steal it. This can be prevented with backups, honest staff, secure and up-to-date software, logging and testing.
+- The database or any part of the stack can fail. This can be prevented by using a reliable stack and having redundancy in components and systems.
+- The laws regarding data storage can change. This can be dealt with by monitoring legislation and joining associations.
+- The company can outgrow its data storage systems. This can be prevented by proper handling of concurrent requests and easily scalable design.
+
+If confidential data is exposed, the company will face fines and lose customer trust. Data such as medical records, payment details and passwords should be stored on a server that isn't completely web-accessible. Users should be required to authenticate themselves with a properly encrypted password, and only able to connect over a secure connection. The database server should be in a physically secure location.
+
+Data modification can be hard to detect if only small changes are made. This can be prevented with proper security and authentication, and monitoring of changes.
+
+Denial of service attacks are hard to defend against, but their effects can be limited by redundant servers and specialised services.
+
+Repudiation is where one party to a transaction denies having taken part. This can be preveted with the use of password-based authentication and digital certification.
+
+Software errors can also pose a threat, if the software specification was wrong, the developers made false assumptions or there was inadequate testing. This can be prevented with user involvement in development and contingency plans.
+
+The types of data storage are volatile storage, non-volatile storage and stable storage. Data is stored in a hierarchy of how often it will need to be accessed.
+
+*Volatile* storage needs power to retain its data. If power is cut, the data is lost. Memory is volatile storage. In the hierarchy, this is primary storage.
+
+*Non-volatile* storage can survive power outages, but is slower to access. Magnetic disks are non-volatile storage. This is secondary storage or *online storage*. Other non-volatile storage media, such as magnetic tapes and optical storage, are *tertiary storage* or *offline storage*. These have the slowest access times.
+
+*Stable* storage is a theoretical medium that survives all failures. It can be approximated using multiple copies of the data in different locations on different non-volatile storage media.
+
+The storage hierarchy  
+![](http://i.gyazo.com/6be7f6584cefa18b88fc70b2201b38a3.png)
+
+Magnetic disks are the primary medium for long-term storage of data. They are slower to access than memory, but are cheaper and non-volatile. The data on them can still be destroyed by disk failure, but this is relatively rare. Data is recorded by polarising magnetic cells on a spinning platter to face in one of two directions using a read-write head.
 
 Chunks of memory are called *blocks*, and when you change something in one you need to make copies. This can result in successful completion, partial failure (destination block has incorrect information), or total failure (destination block was never updated). Keeping the data safe requires detecting and correcting these failures. There are two types of blocks - *physical blocks* are blocks residing on the disk. *Buffer blocks* are blocks residing temporarily in main memory. There are two operations to move blocks between disk and main memory:
 
 - *input(B)* transfers the physical block B to main memory
 - *output(B)* transfers the buffer block B to the disk, and replaces the appropriate physical block there.
 
-A *transaction* is a unit of program execution that accesses and possibly updates various data items. Each transaction has its own private work area in which local copies of all data items accessed and updated by it are kept. It transfers data items between system buffer blocks and its private work-area. To start, a transaction must have a consistent database. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent. 
+A *transaction* is a unit of program execution that accesses and possibly updates various data items. Each transaction has its own private work area in which local copies of all data items accessed and updated by it are kept. It transfers data items between system buffer blocks and its private work-area. To start, a transaction must have a consistent database. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent.
 Transactions perform *read(X)* while accessing X for thie first time; all subsequent accesses are to the local copy. After the last access, the transaction executes *write(X)*. Output(Bx) doesn not necessarily immediately follow write(X), the system can perform the output operation whenever it deems fit. But until Bx is updated on the disk, it's not safe, so the transaction isnt committed. Here is a diagram showing a standard data access:
 
 ![](http://i.gyazo.com/5b6961fb513509e2f4b0c717a5370fea.png)
@@ -372,7 +401,7 @@ Shadow paging assumes only one transaction is active at a time. The db_pointer a
 
 Log-based recovery keeps a *log* on stable storage. A log is a sequence of log records, which record the update activities on the database. When transaction Ti starts, it  registers itself by writing a *<Ti start>* log record. Before Ti executes write(X), a log record <Ti, X, V1, V2> is written, where V1 is the value of X before the write and V2 the value to be written to X. When Ti finishes its last statement, the log record <Ti commit> is written. This is when the transaction Ti is committed. Log records must be written directly to stable storage (they can't be buffered).
 
-*Deferred database modification* records all modifications to the log, but defers all writes to after a partial commitment. 
+*Deferred database modification* records all modifications to the log, but defers all writes to after a partial commitment.
 A transaction starts by writing a <Ti start> record to the log. A write(X) operation results in a log record <Ti, X, V> being written, where V is the new value for X (the old value is not needed for this). The real write is not performed on X at this time, but is deferred. When Ti partially commits, <Ti commit> is written to the log. Finally, the log records are used to actually execute the previously deferred writes.
 
 During recovery, a transaction needs to be redone if and only if both <Ti start> and <Ti commit> are in the log. Redoing a transaction Ti (redo Ti) sets thevalue of all data items updated by the transaction to the new values. Crashes can occur while the transaction is executing the original updates, or while recovery action is being taken.
