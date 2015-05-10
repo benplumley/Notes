@@ -353,3 +353,19 @@ To get all the information about an entity out of a relational database, you nee
 - UPDATE changes a row
 - CREATE makes a new table
 - DROP deletes a table
+
+> Part 3 of the powerpoint
+
+Chunks of memory are called *blocks*, and when you change something in one you need to make copies. This can result in succesfful completion, partial failure (destination block has incorrect information), or total failure (destination block was never updated). Keeping the data safe requires detecting and correcting these failures.
+
+A *transaction* is a unit of program execution that accesses and possibly updates various data items. To start, a transaction must have a consistent databse. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent. There are two main issues to deal with, failures (e.g. hardware failures and system crashes) and concurrency (e.g. simultaneous execution of multiple transactions.
+
+There are two tpes of blocks - *physical blocks* are blocks residing on the disk. *Buffer blocks* are blocks residing temporarily in main memory. There are two operations to move blocks between disk and main memory:
+
+- *input(B)* transfers the physical block B to main memory
+- *output(B)* transfers the buffer block B to the disk, and replaces the appropriate physical block there.
+
+Each transaction has it's private work area in which local copies of all data items accessed and updated by it are kept. Here is a diagram showing a standard data access:
+
+![](http://i.gyazo.com/5b6961fb513509e2f4b0c717a5370fea.png)
+
