@@ -52,7 +52,7 @@ Alternatively, this can be done with a single array, instead of putting the smal
 
 **Quick sort is O(n log n).**
 
-*Bubble sort* starts at the first element, compares it to the second, and swaps them if they are out of order. It then repeats this from the second. Once it reaches the end, it comes back to the second item and repeats the process.
+*Bubble sort* starts at the first element, compares it to the second, and swaps them if they are out of order. It then repeats this from the next element. Once it has passed through the array it will carried the largest number to the end of the unsorted area, and into the sorted area. The process is then repeated from the start of the unsorted area.
 
 **Bubble sort is O(n^2).**
 
