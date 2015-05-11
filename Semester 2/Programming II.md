@@ -69,7 +69,7 @@ Speed of an algorithm is measured by counting the number of basic operations the
 
 An algorithm is called *fast* if it grows quickly, so a *slow* algorithm is better. In order from slow to fast, algorithms can be constant, logarithmic, linear, quadratic, polynomial, exponential, or factorial.
 
-A *binary tree* is like a list, except rather than each item having one pointer to an object and one pointer to the next item, has one to an object, one to the child "right" of it and one to the child "left" of it. Finding an item in a binary tree is log 2 complexity.
+A *binary tree* is like a list, except rather than each item having one pointer to an object and one pointer to the next item, it has one to an object, one to the child "right" of it and one to the child "left" of it. Finding an item in a binary tree is log 2 complexity.
 
 *Big O notation* is used to record the complexity of an algorithm. The number of operations as a function of n (problem size) taken, and all terms other than the dominant one are removed. This is the big O complexity of the algorithm. For instance, an algorithm running in 2n^3 + 18n + 5 steps is O(n^3), or polynomial complexity.
 
