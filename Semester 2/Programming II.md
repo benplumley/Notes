@@ -38,7 +38,7 @@ Artificial intelligence can be generalised to a problem of searching a list of t
 
 Items in a list are sorted using a key. This is a piece of the data that is part of the list item. For instance, the key to sort a dictionary is the word to be defined. The key to sort a phone book is the name of the person. Choosing the key is sometimes non-trivial; it should (or must) be unique, have a sensible order (eg numerical, alphabetical, chronological) and be the part of the object that is already known. A phone book ordered numerically by phone number would be useless.
 
-*Selection sort* can use two arrays. The first array is iterated through to find the smallest item, which is inserted into the first position of the second array. This is repeated until no items are left in the first array. The second array is sorted.
+*Selection sort* can use two arrays. The first array is iterated through to find the smallest item, which is inserted into the first position of the second array. This is repeated until no items are left in the first array. The second array is now in order.
 
 Alternatively, this can be done with a single array, instead of putting the smallest item into the first position, the smallest item and first item are swapped. This requires an extra temporary variable for storing the value of the item being swapped.
 
