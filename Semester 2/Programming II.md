@@ -71,7 +71,7 @@ An algorithm is called *fast* if it grows quickly, so a *slow* algorithm is bett
 
 A *binary tree* is like a list, except rather than each item having one pointer to an object and one pointer to the next item, it has one to an object, one to the child "right" of it and one to the child "left" of it. Finding an item in a binary tree is log 2 complexity.
 
-*Big O notation* is used to record the complexity of an algorithm. The number of operations as a function of n (problem size) taken, and all terms other than the dominant one are removed. This is the big O complexity of the algorithm. For instance, an algorithm running in 2n^3 + 18n + 5 steps is O(n^3), or polynomial complexity.
+*Big O notation* is used to record the complexity of an algorithm. The number of operations as a function of n (problem size) is taken, and all terms other than the dominant one are removed. This is the big O complexity of the algorithm. For instance, an algorithm running in 2n^3 + 18n + 5 steps is O(n^3), or polynomial complexity.
 
 Algorithm complexity can be evaluated for the *worst case*, *best case*, or *average case*. In the worst case, the input data is presented in the worst possible way. For instance, a giving a bubble sort a list of items in descending order to be sorted into ascending. The best case is the best possible set of input data, for instance giving it a list that already happens to be sorted. The average case is the most likely situation to happen in practice.
 
@@ -103,7 +103,7 @@ When a process dies or is killed, it is unsafe to simply stop its threads from r
 ###Exceptions  
 When something goes wrong in many programming languages, the program is said to throw an exception. The routine for dealing with this problem occurring is said to catch the exception.
 
-In Java, *throwables* are errors and exceptions. They are full objects which can be instantiated and passed around. An *error* is something that can't be solved by the program whilst running, such as syntax errors. An *exception* are things that the program may be able to solve whilst running.
+In Java, *throwables* are errors and exceptions. They are full objects which can be instantiated and passed around. An *error* is something that can't be solved by the program whilst running, such as syntax errors. An *exception* is something that the program may be able to solve whilst running.
 
 Exceptions are further split into *checked* and *unchecked*. Checked exceptions must be caught and dealt with in order to compile. For instance, lots of IO operations can't be called without catching their possible IOExceptions. Unchecked exceptions mean the programmer has made a mistake. These don't have to be caught, but can be.
 
