@@ -390,7 +390,7 @@ Chunks of memory are called *blocks*, and when you change something in one you n
 - *input(B)* transfers the physical block B to main memory
 - *output(B)* transfers the buffer block B to the disk, and replaces the appropriate physical block there.
 
-A *transaction* is a unit of program execution that accesses and possibly updates various data items. Each transaction has its own private work area in which local copies of all data items accessed and updated by it are kept. It transfers data items between system buffer blocks and its private work-area. To start, a transaction must have a consistent database. During the transaction execution the database may become inconsistent, but a transaction isnt committed (done) until the database is consistent.
+A *transaction* is a unit of program execution that accesses and possibly updates various data items. Each transaction has its own private work area in which local copies of all data items accessed and updated by it are kept. It transfers data items between system buffer blocks and its private work-area. To start, a transaction must have a consistent database. During the transaction execution the database may become inconsistent, but a transaction isn't committed (done) until the database is consistent.
 Transactions perform *read(X)* while accessing X for thie first time; all subsequent accesses are to the local copy. After the last access, the transaction executes *write(X)*. Output(Bx) doesn not necessarily immediately follow write(X), the system can perform the output operation whenever it deems fit. But until Bx is updated on the disk, it's not safe, so the transaction isnt committed. Here is a diagram showing a standard data access:
 
 ![](http://i.gyazo.com/5b6961fb513509e2f4b0c717a5370fea.png)
