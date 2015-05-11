@@ -169,7 +169,7 @@ Sockets are the most basic networking concept in a networking-capable language. 
 
 To connect programs over the internet, an address and port number are needed. The address specifies which machine the other program is running on, and the port number specifies which program to connect to on that machine. A program will typically only listen on one port, so connecting to the wrong one won't allow the machines to communicate.
 
-A *buffer* is a piece of memory that holds a value that will be written to somewhere else. This is because storage is slow, so a process would waste time by waiting for its data to be written to storage. It instead writes its data to the buffer, which is fast, and another process comes along later and writes the contents of the buffer the correct location in storage or on the network.
+A *buffer* is a piece of memory that holds a value that will be written to somewhere else. This is because storage is slow, so a process would waste time by waiting for its data to be written to storage. It instead writes its data to the buffer, which is fast, and another process comes along later and writes the contents of the buffer to the correct location in storage or on the network.
 
 Standard services, in theory, run on all servers and are publically available. For instance, a client could send a request to any server for the current date and time and the server would respond. Nowadays, these services have been turned off on most servers for security reasons. Standard services have standard port numbers, so they will be the same on any machine.
 
