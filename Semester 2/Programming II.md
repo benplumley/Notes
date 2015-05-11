@@ -340,7 +340,7 @@ Databases are groups of tables used to store data. They provide security and con
 
 Before databases were used, data was stored in files. This can be made efficient if done properly, but if the software for reading the files is lost then the data may be meaningless without it. They could also be hardware dependent.
 
-This storage method was superseded by tables, where a row was an entity and a column was an attribute. This allows each columns to have a name and type, allowing the data to be more easily understood without the program. However, in a table, a lot of the data is redundant because it is recorded twice or more. This is a waste of space. Some fields need to be arbitrarily large, because we don't know how much data needs to go in them. This makes computations more complex.
+This storage method was superseded by tables, where a row was an entity and a column was an attribute. This allows each column to have a name and type, allowing the data to be more easily understood without the program. However, in a table, a lot of the data is redundant because it is recorded twice or more. This is a waste of space. Some fields need to be arbitrarily large, because we don't know how much data needs to go in them. This makes computations more complex.
 
 Relational databases solve all of these problems using *normal forms*. Each table has an index called the primary key, and each entity has a unique identifier which is used as a key when searching for that entity. Any cell has at most one atomic value in it (*first normal form*). All the data in each row should depend only on that row's index (*second normal form*).
 
