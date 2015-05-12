@@ -160,7 +160,7 @@ This creates a problem however: If processes are always created by other process
 - Understanding the various requirements of the hardware: mice and printers are slow, while networks and disks are fast
 - Distribute work amongst multiple devices e.g. CPUs and networks
 - Make best use of the hardware and use it efficiently
-- Make the system behaviour predictable - we dont want wildly erratic behaviour
+- Make the system behaviour predictable - we don't want wildly erratic behaviour
 - Try to degrade gracefully under heavy load
 
 And all of this must be done quickly. Scheduling can be divided into three classes, each addressing different resource concerns:
@@ -193,7 +193,7 @@ This information was originally collected to calculate how much money to charge 
 
 **Run until completion + cooperative multitasking** - Non preemptive. Was used on millions of computers until relatively recently.
 - Weak multitasking
-- Needs round-robin or something more sohpisticated to choose another task on relinquish
+- Needs round-robin or something more sophisticated to choose another task on relinquish
 - Poor utilisation of hardware
 - Poor interactivity
 - Easy for a process to starve other processes
@@ -224,7 +224,7 @@ Similarly, priorities can be:
 - Interactive processes get good attention as they use relatively little CPU.
 - Long jobs can be starved by lots of small jobs.
 
-**Highest response ration next** - A variation of shortest remaining time, where we take the time a process has been waiting since its last time slice into account. The formula is:
+**Highest response ratio next** - A variation of shortest remaining time, where we take the time a process has been waiting since its last time slice into account. The formula is:
 
 ![](http://i.gyazo.com/9dbd1d140709dbf115975196dc6d6b11.png)
 
@@ -270,7 +270,7 @@ All of these algorithms only handle scheduling of one resource - the CPU. There 
 
 ####Deadlock
 
-Processes compete for resources like disks and networks, and the OS mediates this. To read from the disk, a process must call the OS kernel and wait for the kernel to reply. When we say a "a process waits for the kernel", what actually happens is the kernel marks the process as blocked, and does not consider it for sccheduling until the requested resource has arrived. There is no "waiting" happening - the process does not run when blocked.
+Processes compete for resources like disks and networks, and the OS mediates this. To read from the disk, a process must call the OS kernel and wait for the kernel to reply. When we say a "a process waits for the kernel", what actually happens is the kernel marks the process as blocked, and does not consider it for scheduling until the requested resource has arrived. There is no "waiting" happening - the process does not run when blocked.
 
 Say process P1 wants to copy some data from disk D1 to disk D2, while process P2 wants to copy some data from D2 to D1. The OS (rather stupidly) gives P1 exclusive access to D2 and P2 exclusive access to D1. The OS then runs P1, which requests an access to D1, but P2 has locked it so P1 must wait, and is therefore moved to the block state. The OS then runs P2 which requests an access to D2, but P1 has locked it so P2 must wait, and is moved to the block state. Now both processes are blocked and the OS can't run either process. This is called **deadlock**, and can happen on any kind of shared resources that require exclusive access. It can also happen with more than two processes, there could be three or more all waiting for the other.
 
