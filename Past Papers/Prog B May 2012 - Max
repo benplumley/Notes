@@ -1,3 +1,15 @@
 1: Lisp so not needed
 
-2: False - The number of nodes would be the same and would therefore take the same time to search through them all. It would change the order in which the nodes are searched however.
+2: False - An algorithm is something which can run on a turing complete machine, so should run on any OS. However a program may have platform dependencies.
+
+3: False - The number of nodes would be the same and would therefore take the same time to search through them all. It would change the order in which the nodes are searched however.
+
+4: False - The hashing function, i.e. converting the keys into indices in the array (for example mod 15) is a constant time algorithm. Searching the hash using linear probing however is exponential with respect to how full the array is.
+
+5: False - The different exceptions in java are their own classes, and when an exception is thrown an object of that class is created, and passed to the catch statement if there is one for that object.
+
+6: True - In Java, multiple threads can be prevented from operating on the same data simultaneously using the word 'sychronized' in the method declaration. This will block any threads trying to access the method if it is already being accessed by another thread. 
+
+7: False - Only the blocks of code which need to be synchronised should be, otherwise the programmer is preventing threads from operating simultaneously for no real reason. The extreme version of this is making the whole program synchronised, in which case there is no point in using multiple threads.
+
+8: False - 
