@@ -12,4 +12,4 @@
 
 7: False - Only the blocks of code which need to be synchronised should be, otherwise the programmer is preventing threads from operating simultaneously for no real reason. The extreme version of this is making the whole program synchronised, in which case there is no point in using multiple threads.
 
-8: False - 
+8: False - asdf
