@@ -321,3 +321,9 @@ Deadlock detection be done using **resource request and allocation graphs**, or 
 This shows process P1 requesting resource R1, and resource R1 being currently held by process P2. P1 is blocked. When deadlock occurs, this diagram will form a circuit:  
 ![](http://gyazo.com/4f692e9f37cb7d9309c962ef745e115a.png)  
 Deadlock detection involves finding these circuits in RRAGs using a process called graph reduction. This is done by removing all request links for available resources, then removing all allocated links from resources to the process.
+
+Deadlocks can also be broken by detecting pairs of processes which have been blocked for a long time, and killing one or both of them. Determining which processes can be safely killed isn't trivial.
+
+In real life, prevention and virtualisation are used to prevent deadlock. With virtualisation, each process believes it has sole access to a resource, but actually it only has access to a virtual resource which will be translated to an action on the real resouce by the OS. This process is called I/O scheduling.
+
+**Priority inversion** is where a low-priority process can deadlock a high-priority process. This can be fixed with **priority inheritance**, where the low-priority process inherits the high priority of the process it is blocking until it can complete. Alternatively, **priority ceilings** are assigned to each resource, and any process holding that resource has its priority temporarily boosted to the ceiling of that resource.
