@@ -20,3 +20,13 @@ This user-level protection is what prevents one users processes intefering with 
 A big reason for the spread of malware in Windows OSs is that too many programs run as administrator, which can cause the whole system to be be affected if the program contains malware. If an OS *requires* the use of a virus checker, this is a sign that the OS isn't confident in its implementation of process protection. Virus scanners address the symptom, not the problem.
 
 ####Capabilities
+
+Root access is a bit all-or-nothing, as it allows root all access to all resources. A refinement of the root idea is *capabilities*, which break access rights down into small parts e.g. right to access the network driver, access the filesystem, reboot the computer etc. This can be broken all the way down to rights to access individual files. These rights are called capabilities, and are like tokens that can be passed around and inherited by processes.
+
+They allow finer control of security at the cost of a more complicated checking system. A few OSs, notable Flex, were built around the notion of capabilities and required hardware support to make things work with an acceptable speed - however, these never really took off. The idea has come back to modern OSs however. When Android installs an application, it asks the user whether that application should be allowed to access various system resources e.g. WiFi network access, phone contact list access, initiate phone calls etc.
+
+Android calls these permissions rather than capabilities. It means that when an application runs, it can only access the resources the user has approved. This mechanism would be great if the user could be trusted to read and understand the list of requests.
+
+####Inter-Process Communication
+
+Many processes can be created, process then exit without needing to refer to any other process, but there are many processes that need to send data to, or receive data from other running processes.
