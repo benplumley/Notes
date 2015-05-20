@@ -29,4 +29,16 @@ Android calls these permissions rather than capabilities. It means that when an 
 
 ####Inter-Process Communication
 
-Many processes can be created, process then exit without needing to refer to any other process, but there are many processes that need to send data to, or receive data from other running processes.
+Many processes can be created, process then exit without needing to refer to any other process, but there are many processes that need to send data to, or receive data from other running processes. For example, a new program starting might wish to tell the process managing the display that it wishes to pop up a window on the display. Or, one process may have to wait for another process to finish some action (e.g. pop up a window) before it can progress itself - this is called *synchronisation*.
+
+IPC can be acheived in many ways, but it must be supported by the OS, because by default the kernel tries to stop on process interfering with others. IPC contradicts this non-interference, so there must be rules and restrictions, or else onpe process could just blast another process with data, preventing it from doing any useful work.
+
+######Files
+
+The simplest way for two process to communicate is using an existing resource, namely files. Process A wishes to send some data to process B, so A writes it to a file and B reads it from the file.
+
+There are issues however - which file to use? A and B need to agree on a filename to use. They can use a single "well known" file, but this is problematic if many processes are all writing to the same file simultaneously. They could have a seperate file for each pair of processes, but to agree on a file name A and B must have previously communicated.
+
+Also, how can B know when data has arrived? It might have to repeatedly poll the file until the data arrives, which doesn't scale well to large numbers of files or processes. The file protections must also be set properly (with userids) to allow only the authorised processes to read and write to them.
+
+Files are quite slow relative to other IPC mechanisms, and in general aren't used for IPC. However, they should be considered as a choice when *huge* amounts of data need to be transferred.
