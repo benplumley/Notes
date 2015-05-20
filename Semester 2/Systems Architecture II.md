@@ -316,6 +316,8 @@ For this algorithm to work, for each process the OS needs to know the current al
 - The safety test is expensive to compute
 - Requests can be refused that could have completed without deadlock, meaning resources are idle
 
-Deadlock detection be done using **resource request and allocation graphs**.  
+Deadlock detection be done using **resource request and allocation graphs**, or RRAGs.  
 ![](http://gyazo.com/fb577ecd8ec71f7240f46815ed676dec.png)  
-This shows process P1 requesting resource R1, and resource R1 being currently held by process P2. P1 is blocked.
+This shows process P1 requesting resource R1, and resource R1 being currently held by process P2. P1 is blocked. When deadlock occurs, this diagram will form a circuit:  
+![](http://gyazo.com/4f692e9f37cb7d9309c962ef745e115a.png)  
+Deadlock detection involves finding these circuits in RRAGs using a process called graph reduction. This is done by removing all request links for available resources, then removing all allocated links from resources to the process.
