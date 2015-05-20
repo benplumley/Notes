@@ -295,4 +295,27 @@ Prevention can be broken down further into:
 1. Prevention - Constrain resource allocation to prevent at least one of the conditions (e.g. ensure hold and wait never happens).
 2. Avoidance - This is even more careful not to allocate a resource that it can be determined that might possible lead to a deadlock in the future. Avoidance is harder to manage, but tends to be more efficient on the use of resources than prevention as it avoids bad computation paths earlier.
 
-Breaking any one of the four Coffman conditions would make deadlock impossible. Mutual exclusion can't be broken without a change in the architecture, because resources such as disks only have a single read-write head which can't be shared between two processes. The architecture change required to break mutual exclusion is the use of *virtual devices*, such as print spooling.
+Breaking any one of the four Coffman conditions would make deadlock impossible. Mutual exclusion can't be broken without a change in the architecture, because resources such as disks only have a single read-write head which can't be shared between two processes. The architecture change required to break mutual exclusion is the use of **virtual devices**, such as print spooling.
+
+Hold-and-wait can be broken by requiring a process to drop all of its held resources if it becomes blocked on another resource. This is inefficient, as it might take a long time for all of the necessary resources to become available at the same time. A variant of this is for a process to request all of the resources that it could possibly need and block until they are all available. The problem with this is that a process could carry on doing useful work until it needs a resource, which is impossible in this system because the process can't start until it has its resources. It's also possible for a process not to know what resources it will need ahead of time.
+
+No preemption can only be broken for certain kinds of resources, whose state can be saved and restored. This is because if a resource is taken from a process through preemption then it must be returned to that process in exactly the same state it was left in. For instance, if memory was written to, taken away, overwritten and returned, the first process would think its data was still in memory. Some resources can have their states easily saved, making preemption possible.
+
+Circular waits can be resolved by assigning an order to resources, and requiring that processes must request resources in this order. If a process needs a resource lower down in the order, it must drop all higher-ordered resources, pick up the new one, and then pick up all the ones it dropped. This can be inefficient, and attempts to increase its efficiency usually reduce to processes requesting all of their resources at once.
+
+Deadlock avoidance doesn't try to stop one of the conditions, but tries to determine whether each resource allocation will possibly lead to deadlock in the future. Requests deemed unsafe will not be granted by the OS.
+
+The **Banker's Algorithm**, proposed by Dijkstra, uses two tests to see whether an allocation might result in deadlock. It tests for **feasibility**, whether the request is possible, and **safety**, whether the request can lead to deadlock.
+
+The feasiblity test is easy - it passes if, after granting the request, the allocated resource is not more than the total resource. The safety test passes if there is at least one sequence of allocations and releases by which all processed can complete. Only requests which are both feasible and safe are granted.
+
+For this algorithm to work, for each process the OS needs to know the current allocation of each resource, and the maximum possible allocation of each resource. Problems with this algorithm are
+- There must be a fixed number of resources to allocate
+- The process list must remain fixed, new processes cannot join
+- Processes must know their maximum needs for each resource in advance
+- The safety test is expensive to compute
+- Requests can be refused that could have completed without deadlock, meaning resources are idle
+
+Deadlock detection be done using **resource request and allocation graphs**.  
+![](http://gyazo.com/fb577ecd8ec71f7240f46815ed676dec.png)  
+This shows process P1 requesting resource R1, and resource R1 being currently held by process P2. P1 is blocked.
