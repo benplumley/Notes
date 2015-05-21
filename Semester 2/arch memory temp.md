@@ -46,3 +46,25 @@ The difference between swapping and overlays is that swapping is done by the OS 
 The task of choosing which process to swap isn't easy. An I/O intensive process won't be scheduled for a long time, but when it is scheduled again it must respond very quickly. A CPU intensive process benefits from being scheduled often but is not so sensitive to a delay through being swapped.
 
 Swapping is helped by *paging*. Fragments and processes can be irregular sizes, so copying them from and to disk can't be optimised. Paging splits memory into small contiguous chunks, typically 4096 bytes. The hardware is then optimised to copy a whole page at a time, and processes can't own part of a page.
+
+Addresses can be *virtual* or *physical*. A physical address is the numbering of the actual bytes in memory, but each process sees only virtual addresses, which are the bytes it owns in memory but renumbered to start from zero. The system can translate between virtual and physical addresses on the fly using *page tables*.
+
+A per-process page table contains mappings from virtual to physical address for that process. Each page in the process's virtual address space matches with a page in the physical memory. This means different processes can use the same virtual addresses but have them correspond to different physical addresses. It also means physical memory doesn't have to be contiguous any more, because the virtual memory is contiguous. This also increases security, because not only are processes not allowed to access each other's memory, they now physically can't attempt to.
+
+These tables are stored in memory as part of the process control block. This would mean that every time an instruction was executed or data read or written to memory, there would be another memory read first to find the mapping. This isn't feasible, so a piece of hardware called the *translation lookaside buffer* (TLB) is used. This is part of the memory management unit.
+
+The TLB keeps a copy of a small subset of the mappings from the page table of the currently running process and can translate them very quickly. The TLB is small (only a few hundred entries) because the memory used is so expensive.
+
+When the CPU sends an address to the TLB it looks it up in its table. If it is present, this is a *TLB hit*. If it isn't, this is a *TLB miss* and the mapping must be fetched from memory. Two techniques can be used for this. A *page walk* is used in a hardware-managed TLB. This is where the TLB itself looks up the translation in memory, installs it into the table, and carries on. The OS is not involved with or even aware of the miss.
+
+The second technique, in a software-managed TLB, is to raise a TLB miss interrupt when a TLB miss occurs. The OS then performs the page walk.
+
+If the process isn't currently using the page it's requesting, or the page was swapped, the page table won't have a mapping for that page. A *page fault* interrupt will be raised and the OS will allocate a physical page and write the relevant mapping to the TLB and page table. The OS could alternatively choose not to allocate a page, and send a segmentation violation signal to the process.
+
+*Minor page fault* refers to a TLB miss, and *major page fault* refers to a page fault.
+
+The speed of translation relies on the TLB maintaining a good proportion of currently used addresses, to minimise page faults and TLB misses. A well-written program will tend to use the same addresses a lot, and these will be loaded into the TLB for fast translation.
+
+If a page has been swapped out to disk, a page fault will be raised and the page will have to be copied back into memory from disk. This is a very slow operation.
+
+If there is a TLB miss and the TLB table is full, the OS will typically remove the least recently used entry because pages that haven't been touched in a long time are often not needed in the near future. This is called *temporal locality*. The TLB therefore has to keep track of when each page is used.
