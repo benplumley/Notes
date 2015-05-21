@@ -375,3 +375,91 @@ Files are quite slow relative to other IPC mechanisms, and in general aren't use
 A pipe connects two processes together, taking output from one and feeding it as input to the other.  They have a fixed size: 4096 bytes is common. A writes to the pipe and B reads from the pipe independently of each other, like with files. Bytes are read out in the same order they were written in (FIFO). Unlike files, pipes also provide elements of coordination and synchronisation.
 
 If A tries writing to the pipe when it is full, or B tries reading from the pipe while it is empty, the process is blocked by the OS until space has been freed up by B reading some or until bytes are available by A writing some. Thus the scheduling of A and B will be affected.
+
+The pipe is implemented as a buffer held by the kernel. Every write to or read from the pipe involves a syscall - this is how the kernel can control blocking A and B, making sure A does not overfill the buffer and making sure B is not reading data that is not there.
+
+Implementation of a pipe:
+![](http://i.gyazo.com/225a66d5c853a8069337b72666ce5c71.png)
+
+Pipes are supported well by Unix and are very easy to create and use from a shell. For example, if I were to write "% ps | sort". % is the shell prompt, ps is the list processes command, | is the notation for a pipe and sort is the sorting program. So this would create a pipe between the process listing program and the sorting program, meaning the list of processes is the input to the sorting program, so it would produce a sorted list of processes. I could also write "% gendata | sort | uniq" - gendata is a user program that generates some data, sort sorts it, and uniq removes duplicates, so this produces a list of the unique lines in the data.
+
+A typical sequence in a program is for a process to create a pipe then fork a child process. The pipe is now ready to use for IPC between parent and child.
+
+Pipe advantages:
+- Simple and efficient
+- Easy to use from programs and from a shell
+- A powerful way of combining processes and programs
+- Used a great deal
+
+Pipe disadvantages:
+- Unidirectional
+- Are only between related processes. Often one is the parent of the other.
+- Can create deadlocks if used carelessly (A creates a child process B with two pipes A->B and B->A)
+
+Pipes are so useful that there have been a couple of extensions to them. *Named pipes* can be shared by unrelated processes, and *sockets* are pipes between processes on different machines, and are the basis of the Internet.
+
+######Sockets
+
+A socket allows bidirectional IPC between two processes (remember pipes are unidirectional). The processes may be on the same or widely remote machines. The technical issues behind implementing sockets are much more complicated than basic pipes, but they present the same kind of FIFO, byte oriented blocking channel for communication.
+
+######Shared Memory
+
+In early computers, all memory was shared between processes - one process could easily write tot eh memory allocated to another process. One process could easily write to the memory allocated to another process (this is generally a bad idea, so is now prevented by the kernel with MMUs). However, access to memory is very fast, so can be useful for IPC. This goes against the original purpose of an OS, so must be carefully controlled.
+
+Like files, we have the issues of:
+- Which area of memory to use? A well known area, or per-process areas?
+- How does B know when data has arrived? Memory is always there, unlike files which can be created and removed, so when polling memory it can be hard to know if you are reading the data you want or some junk that happened to be lying around. A might write a special value to a specific memory location to flag that the data is complete, but again B must poll this location to see when this is done.
+- The memory protections must be set properly to allow only the authorised processes to read or write it.
+
+The speed of shared memory makes it very good for IPC, particularly large chunks of data, as long as it is supported by further mechanisms like signals or smeaphores to flag when data is ready.
+
+######Signals
+
+A signal is a software equivalent of a hardware interrupt, and can be sent (initiated/raised) by the kernel or a process. When a process receives a signal, it stops what its currently doing and goes off to execute a signal handler, just like a hardware interrupt with interrupt handlers. This all happens within the user program - the signal handler is just some specific code in the program, written by the programmer.
+
+When a signal is raised, the process is preempted (if it was running) and the OS takes over. If the process wasn't running, the OS just notes the signal in the process, and when the OS next runs the process it jumps to the signal handler code within the process, rather than to the place where the process was preempted.
+
+A process can send a signal to another process (or even itself) that has the same userid. The normal userid restrictions apply here - only root can send a signal to another users process. Naturally, the kernel can send signals to any process. The POSIX function kill() is used to send a signal in a user program.
+
+A signal is just a single bit, but there are many different types of signal (HUP, INT, KILL, PIPE etc). A process can, to some extent, choose how to react to a signal. It can:
+- Ignore it
+- Accept it and act on it, i.e. run the signal handler code
+- Suspend (voluntarily relinquish)
+- Terminate
+
+There are some signals which cannot be ignored, particularly the KILL signal, which will always terminate the process. This is why signals are regulated by the kernel; a user can kill their own processes, but not others.
+
+Signals are *asynchronous*, meaning they may arrive at any point during the running of the program. Programs that use signals must be written accordingly, as they may arrive at inconvenient times. There exists default signal actions for each type of signal, but a program must include its own handler functions if it wants to do something other than the default action when it receives that signal. When a signal is received, the process stops what its doing, saves it's state and calls the signal handler. If and when the handler exits, the process continues from where it was interrupted.
+
+Here are some example signals:
+- INT - A general interrupt. Ignorable.
+- ILL - Sent by the kernel to a process when it has tried to use a privileged (or non-existent) machine instruction.
+- KILL - Non-ignorable terminate.
+- SEGV - Sent by the kernel to a process when it has tried to access memory it shouldn't.
+- ALRM - A timer signal.
+
+Signals are:
+- Fast and efficient
+- Used a very great deal
+- Only transmit a small amount of information, so often are used in concert with other IPC mechanisms
+- Are a bit fiddly to program correctly.
+
+######Semaphores
+
+The action of process A waiting for process B to finish something before A can continue is very common, e.g. waiting for data to be written to an area of shared memory. Signals can be used for this, and are appropriate when you want to continue computing on something else. An alternative is to use a semaphore, which is used for waiting.
+
+Invented by Djikstra, a semaphore allows *mutual exclusion*, where we can be sure only one process is accessing a resource at once. A semaphore is a variable whose value can only be accessed and altered by two operations, V and P. There are many alternative names for this; signal and wait, post and wait, raise and lower, up and down, lock and unlock etc.
+
+Let S be a semaphore variable, usually residing in a chunk of shared memory, and start with S=1. P(S) sets S=0 if S=1, otherwise it will block on S. V(S) checks if one or more processes are blocking on S, and allows one to proceed if there are. Otherwise it sets S=1. So if another process wants to use the resource, it has to wait until the first process has done a V to signal the resource is ready. These operations are atomic, meaning there is no gap between the tests and the actions.
+
+If multiple processes attempt a P(S) simultaneously, only one will succeed and continue, and hte others will be blocked. So if we had the code 'wait(S), some code, signal(S)' being run by multiple simultaneous processes using the shared semaphore S, only one process can execute the code at a time. The others will be blocked and get their turn later. Generally this code would be to access some shared resource (often shared memory, e.g. B shouldn't read until A has finished writing), so the semaphore makes sure only one process can access the resource at a time. The protected code is called a *critical section* - it is critical that only one process runs it at a time.
+
+The previous example used a *binary semaphore*, as it takes just two values, 0 and 1. An alternative is a *counting semaphore*. Start with S=n. P(S) sets S=S-1 if S>0, else blocks on S. V(S) checks if one or more processes are blocking on S then allows one to proceed, else sets S=S+1. This system allows no more than n processes into the region at once.
+
+Semaphores were first used within OS kernels to protect shared resources, but can be used in user programs to protect resources there too, e.g. a chunk of shared memory.
+
+Correct implementation of user mode semaphores is very hard. The code above won't work as a semaphore because there is a gap between the testing and setting, which could lead to problems if:
+- The process is rescheduled in the middle between the test and the decrement of the count.
+- There are multiple parallel processors accessing the semaphore simultaneously.
+
+One solution 
