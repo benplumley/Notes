@@ -32,3 +32,17 @@ There are many other algorithms, and despite virtual memory not having these pro
 If a big enough space can't be found, the OS runs the *garbage collection*. This is stops all processes from being scheduled, and defragments memory by moving all processes down to close up fragments. Garbage collection is not often used in OSs because it is very expensive and would make a real-time or interactive system difficult to use, because all processes must pause while it happens.
 
 Garbage collection also relies on processes being relocatable, meaning they must only use relative JUMP operations rather than absolute memory locations. This is a reasonable assumption in modern OSs, but any processes that break it will not work after garbage collection has run.
+
+If a suitable free space can't be found even after garbage collection, there are several options:
+- Don't admit the new process
+- Kill an existing process. This means any work it did will be lost, and should be avoided
+- Preemption of memory belonging to another process
+- Swapping
+
+Swapping is where a process is selected by the OS and copied from memory to disk. Typically, a blocked process is chosen to minimise impact on the system. When the swapped process is scheduled again, it must be copied back into memory again, which might require swapping something else out.
+
+The difference between swapping and overlays is that swapping is done by the OS transparently to the process and programmer, where overlays were controlled by the programmer. Swapping also applies to multiple processes where overlays applied to multiple sections of the same process (though types of swapping can do this too).
+
+The task of choosing which process to swap isn't easy. An I/O intensive process won't be scheduled for a long time, but when it is scheduled again it must respond very quickly. A CPU intensive process benefits from being scheduled often but is not so sensitive to a delay through being swapped.
+
+Swapping is helped by *paging*. Fragments and processes can be irregular sizes, so copying them from and to disk can't be optimised. Paging splits memory into small contiguous chunks, typically 4096 bytes. The hardware is then optimised to copy a whole page at a time, and processes can't own part of a page.
