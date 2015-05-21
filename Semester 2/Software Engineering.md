@@ -285,3 +285,19 @@ The main disadvantage is that the object-oriented approach is time- and memory-h
 ###Unified Modelling Language (UML)
 
 *Object Oriented Development* is a more modern approach to software development. It comprises object-oriented analysis, design, and programming. OO analysis identifies an object oriented model of the application domain, and the operations associated with the problems to be solved. OO design identifies an object oriented model of the software system to implement the identified requirements. OO programming realises the object oriented software design, e.g. using Java, C++ etc.
+
+###Use Cases and Scenarios
+
+*Scenarios* are narrative descriptions of exactly how a user might use the system. They are written in English in paragraph form, and provide a description of the user's interaction with the system. They will describe ordinary and exceptional situations.
+
+An effective scenario includes:
+- The starting situation
+- The normal flow of events
+- A description of what could go wrong
+- Information about concurrent activities
+- The finishing state of the system
+
+*Use cases* are descriptions of the system as a sum of its possible scenarios. They typically are represented by diagrams of actors and their interactions with system objects. Actors are external entities including users (eg 'customer') and other systems (eg 'the payment database'). Use cases, therefore, identify which functions will be available to which actors and how the system will behave with respect to actor input.
+
+In UML, use cases are represented as a static diagram accompanied by descriptions of the scenarios named. They must be object-oriented and relate to what the user wants to achieve with their interaction.
+![](http://gyazo.com/180542551a9a69d4724e8b23d69932ee.png)
