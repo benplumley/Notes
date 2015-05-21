@@ -305,7 +305,7 @@ A *class model* provides a diagram of the static relations between entitites in 
 
 
 
-The typical UML class notation is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type.
+The typical UML class notation is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type.                              
 ![](http://i.gyazo.com/bfc1ad4b6217f54e6b196b2dfb83f410.png)
 
 Associations between classes are denoted by dotted arrows (denotes a 'has a' relationship). Thjese are usually annotated with semantics (e.g. purchases, issued to) and multiplicity. Multiplicity is denoted as follows:
@@ -313,6 +313,9 @@ Associations between classes are denoted by dotted arrows (denotes a 'has a' rel
 - 1 - Exactly one instance
 - 0..* or * - Zero or more instances
 - n..* - N or more instances
+
+![](http://i.gyazo.com/e3187daeb999105782e7ed56cc99395c.png)
+
 
 ###Use Cases and Scenarios
 
