@@ -474,20 +474,20 @@ Because it is a process, the kernel also needs to be statically and dynamically 
 
 In early operating systems with no dynamic allocation, processes had to be a fixed size and a fixed number of them could run at a time. Early languages such as FORTAN reflect this in only allowing data types with statically declared size. Modern languages have dynamic allocation, implemented using *implicit memory management*, where the language controls how much memory each object has, or *explicit memory management*, where the programmer uses commands such as malloc to allocate memory.
 
-Free memory above the kernel allows it to grow dynamically, and free memory within each process allows data and stack to grow. This is how memory would be layed out in an early dynamic system:
-![](http://gyazo.com/5c806358d7e705881e52c8a41f890085.png)
+Free memory above the kernel allows it to grow dynamically, and free memory within each process allows data and stack to grow. This is how memory would be layed out in an early dynamic system:  
+![](http://gyazo.com/5c806358d7e705881e52c8a41f890085.png)  
 Before dynamic allocation, languages could not have a stack. This is true of FORTRAN, which can't use recursion as a result.
 
-The earliest and simplest static memory layout is called *partitioning*, where areas of memory of fixed size are created at boot time.
-![](http://gyazo.com/2406bb1210b1cf76a33b6c81df35cdb7.png)
+The earliest and simplest static memory layout is called *partitioning*, where areas of memory of fixed size are created at boot time.  
+![](http://gyazo.com/2406bb1210b1cf76a33b6c81df35cdb7.png)  
 When a process is created and declares how much memory it will need, it is loaded into the smallest partition into which it will fit. This is very simple to implement, but memory is wasted if a process doesn't fill its partition, and larger processes can't necessarily be run at all. Variable size partitions are most effective if the expected process sizes are already known.
 
 In early systems, if a process was too large to fit in any partition, *overlays* could be used. This meant that not all of the code would be loaded into memory, and a subroutine in the program would load in code from storage when it was needed, overwriting another part of the same program. The same could be done with data, if the data held in memory was written to storage first. This technique was difficult to implement.
 
 Processes need to be put into a contiguous area of memory because it would be complicated for the OS to remember which areas of memory are owned by which processes, and code can't be split up because instructions must be in sequence for the program counter to work correctly. However, this can all be solved using *virtual memory*.
 
-Dynamic partitioning (still a type of static allocation) is more complicated to implement than partitioning, and allows each process to state how much memory it will need when it starts. The OS will allocate that much memory to that process. Memory can be allocated sequentially to processes from the bottom (where the kernel lives) to the top.
-![](http://i.gyazo.com/71b5a8211d634b27dfa212047e567f1a.png)
+Dynamic partitioning (still a type of static allocation) is more complicated to implement than partitioning, and allows each process to state how much memory it will need when it starts. The OS will allocate that much memory to that process. Memory can be allocated sequentially to processes from the bottom (where the kernel lives) to the top.  
+![](http://i.gyazo.com/71b5a8211d634b27dfa212047e567f1a.png)  
 The problem with this is that when a process finishes, it will leave a hole where it was. Even if there is enough memory to run a new process, unless the memory is contiguous then the new process can't be started. This problem is called *fragmentation*. The more processes come and go, the worse the fragmentation becomes.
 
 The kernel keeps a list of free blocks of memory, called the *freelist*. When a block is freed, it is added to the block. When two adjecent blocks are freed, they are coalesced into one block. When a new process starts, the freelist is searched for a space to put it. There are several strategies for choosing a block in the freelist:
@@ -557,8 +557,8 @@ More sophisticated TLBs have an *address space number* (ASN) tag on each entry i
 
 When a process tries to read, write or execute a page which it doesn't have permission to, the OS sends a segmentation violation signal to the process. This is useful when processes can share memory. The TLB makes memory sharing easy, because different virtual addresses can be mapped to the same physical addresses.
 
-This use of shared memory allows for *shared libraries*. Many programs have shared functionality such as writing to files, so rather than reimplementing all of this in every program, the program simply refers to the relevant library. These are not part of the OS, but provide interaction with it.
-![](http://gyazo.com/c8c85f37d9b5445bdc9a28c9b43c4560.png)
+This use of shared memory allows for *shared libraries*. Many programs have shared functionality such as writing to files, so rather than reimplementing all of this in every program, the program simply refers to the relevant library. These are not part of the OS, but provide interaction with it.  
+![](http://gyazo.com/c8c85f37d9b5445bdc9a28c9b43c4560.png)  
 Each program using the library has a virtual address to it, and each of these is mapped to the same physical address so the library only needs to be in memory once. This reduces page faults as well as reducing memory usage.
 
 A similar trick can be used for data. Different processes can share the same data as long as they don't try to update it, and data that processes do want to update can be put in pages with the *copy-on-write* flag set.
