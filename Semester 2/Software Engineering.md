@@ -284,7 +284,30 @@ The main disadvantage is that the object-oriented approach is time- and memory-h
 
 ###Unified Modelling Language (UML)
 
-*Object Oriented Development* is a more modern approach to software development. It comprises object-oriented analysis, design, and programming. OO analysis identifies an object oriented model of the application domain, and the operations associated with the problems to be solved. OO design identifies an object oriented model of the software system to implement the identified requirements. OO programming realises the object oriented software design, e.g. using Java, C++ etc.
+*Object Oriented Development* is a more modern approach to software development. It comprises object-oriented analysis, design, and programming. OO analysis identifies an object oriented model of the application domain, and the operations associated with the problems to be solved. OO design identifies an object oriented model of the software system to implement the identified requirements. Good OO design aims for high cohesion and low coupling. OO programming realises the object oriented software design, e.g. using Java, C++ etc
+
+There are 5 activities in a typical OO design process:
+- Define system context and modes of use (e.g. use cases)
+- Design the system architecture
+- Define the main "objects" in the system (abstraction)
+- Construct design models
+- Specify object interfaces
+
+There are two basic types of design model. *Static models* describe the static structure of the system, i.e. organisation of components, including models of object classes. *Dynamic models* show the interaction of objects.
+
+*UML* is a set of graphical notations for creating OO software. It can represent both data (attributes) and processes (operations), and was standardised by the Object Management Group (1997). It provides 13 different modelling diagrams, 6 static and 7 dynamic. There are 4 considered in this unit: Class (static), use cases, sequence and state machine (all dynamic).
+
+An *object* is a self contained software entity with well defined characteristics and behaviour. The characteristics are represented by attributes, and the behavours are represented by its methods.
+
+A *class* is a generic definition of an entity, for a set of similar objects. It is like a blueprint for creating software objects.
+
+A *class model* provides a diagram of the static relations between entitites in an applicaton. It shows the key components (classes) and their relationships (associations) within the application.
+
+Here is a typical UML class notation for the class Cat:
+
+![](http://i.gyazo.com/bfc1ad4b6217f54e6b196b2dfb83f410.png)
+
+It is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type.
 
 ###Use Cases and Scenarios
 
