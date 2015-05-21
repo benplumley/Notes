@@ -1,5 +1,6 @@
-###Memory
+####Memory
 
+######Memory Allocation
 When a process runs, it must be assigned, or *allocated*, memory. Memory assigned when the process is initialised is the *static allocation*. Memory assigned while the process is running is the *dynamic allocation*. This didn't exist in early computers; processes could only use the memory they said they would need when they were created. Memory can also be dynamically freed while the process is running, and all of its memory freed when it completes.
 
 Because it is a process, the kernel also needs to be statically and dynamically assigned memory.
@@ -39,6 +40,8 @@ If a suitable free space can't be found even after garbage collection, there are
 - Preemption of memory belonging to another process
 - Swapping
 
+######Swapping
+
 Swapping is where a process is selected by the OS and copied from memory to disk. Typically, a blocked process is chosen to minimise impact on the system. When the swapped process is scheduled again, it must be copied back into memory again, which might require swapping something else out.
 
 The difference between swapping and overlays is that swapping is done by the OS transparently to the process and programmer, where overlays were controlled by the programmer. Swapping also applies to multiple processes where overlays applied to multiple sections of the same process (though types of swapping can do this too).
@@ -46,6 +49,8 @@ The difference between swapping and overlays is that swapping is done by the OS 
 The task of choosing which process to swap isn't easy. An I/O intensive process won't be scheduled for a long time, but when it is scheduled again it must respond very quickly. A CPU intensive process benefits from being scheduled often but is not so sensitive to a delay through being swapped.
 
 Swapping is helped by *paging*. Fragments and processes can be irregular sizes, so copying them from and to disk can't be optimised. Paging splits memory into small contiguous chunks, typically 4096 bytes. The hardware is then optimised to copy a whole page at a time, and processes can't own part of a page.
+
+######Virtual memory
 
 Addresses can be *virtual* or *physical*. A physical address is the numbering of the actual bytes in memory, but each process sees only virtual addresses, which are the bytes it owns in memory but renumbered to start from zero. The system can translate between virtual and physical addresses on the fly using *page tables*.
 
@@ -68,3 +73,19 @@ The speed of translation relies on the TLB maintaining a good proportion of curr
 If a page has been swapped out to disk, a page fault will be raised and the page will have to be copied back into memory from disk. This is a very slow operation.
 
 If there is a TLB miss and the TLB table is full, the OS will typically remove the least recently used entry because pages that haven't been touched in a long time are often not needed in the near future. This is called *temporal locality*. The TLB therefore has to keep track of when each page is used.
+
+There are many strategies for choosing which page should be swapped from memory to disk:
+- Random: picks a random page. This is simple and surprisingly effective
+- First in first out: this is poor because the pages that have been around a long time are often frequently used
+- Least recently used: good, but needs hardware support to keep track of when each page is used
+- Least frequently used: poor, because pages just brought in will have a low use count
+
+The first time a page is touched by a process a page fault will be raised and the OS will allocate a new physical page. It doesn't matter which physical page is used; the first in the free list is as good as any other. This is the main advantage of using pages.
+
+*Lazy page allocation* is a fairly efficient strategy. This only allocates pages when they are touched, rather than when they are requested. If a process requests two pages and then only touches one of them, rather than the other page being taken off the freelist but unused, the pages will only be allocated when the process makes a request for data in that page.
+
+Problems with TLBs are that they have a small capacity, and they rely on temporal locality. These are generally not big problems. The biggest problem with TLBs is when the OS does a context switch, where the running process ends its time slice and another one is started, the TLB must be flushed and repopulated. This means that at the start of each time slice, there will be lots of TLB misses and page faults.
+
+More sophisticated TLBs have an *address space number* (ASN) tag on each entry in the table. This relates each entry to a process. Mappings don't need to be flushed, and when the TLB runs out of space the mappings relating to old processes can be evicted first.
+
+When a process tries to read, write or execute a page which it doesn't have permission to, the OS sends a segmentation violation signal to the process. This is useful when processes can share memory. The TLB makes memory sharing easy, 
