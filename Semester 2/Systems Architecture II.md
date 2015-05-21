@@ -404,7 +404,7 @@ A socket allows bidirectional IPC between two processes (remember pipes are unid
 
 ######Shared Memory
 
-In early computers, all memory was shared between processes - one process could easily write tot eh memory allocated to another process. One process could easily write to the memory allocated to another process (this is generally a bad idea, so is now prevented by the kernel with MMUs). However, access to memory is very fast, so can be useful for IPC. This goes against the original purpose of an OS, so must be carefully controlled.
+In early computers, all memory was shared between processes - one process could easily write to the memory allocated to another process. One process could easily write to the memory allocated to another process (this is generally a bad idea, so is now prevented by the kernel with MMUs). However, access to memory is very fast, so can be useful for IPC. This goes against the original purpose of an OS, so must be carefully controlled.
 
 Like files, we have the issues of:
 - Which area of memory to use? A well known area, or per-process areas?
