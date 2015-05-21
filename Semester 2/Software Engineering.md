@@ -303,10 +303,8 @@ A *class* is a generic definition of an entity, for a set of similar objects. It
 
 A *class model* provides a diagram of the static relations between entitites in an applicaton. It shows the key components (classes) and their relationships (associations) within the application.
 
-
-
 The typical UML class notation is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type.                              
-![](http://i.gyazo.com/bfc1ad4b6217f54e6b196b2dfb83f410.png)
+![](http://i.gyazo.com/84d64e4a540b2aee07537679d02f4196.png)
 
 Associations between classes are denoted by dotted arrows (denotes a 'has a' relationship). Thjese are usually annotated with semantics (e.g. purchases, issued to) and multiplicity. Multiplicity is denoted as follows:
 - 0..1 - Zero or one instance
@@ -314,8 +312,13 @@ Associations between classes are denoted by dotted arrows (denotes a 'has a' rel
 - 0..* or * - Zero or more instances
 - n..* - N or more instances
 
+Class association:
 ![](http://i.gyazo.com/e3187daeb999105782e7ed56cc99395c.png)
 
+Object classes are often organised into hierarchies, e.g. Cat 'is a' Mammal, which 'is an' Animal. Parent classes have features common to the more specialised classes which inherit them (children). Child classes inherit attributes and operations, and add specialisation as necessary. They can inherit multiple classes (e.g. both 'mammal' and 'predator'). Objects in good class model designs do not inherit unnecessary attributes, and name clashes are resolved meaningfully in case of mu ltiple inheritance e.g. two super-classes both have an attribute 'A'.
+
+In UML class diagrams, inheritance is denoted by arrows with solid lines and hollow heads. Any interfaces which are implemented are denoted by either an arrow with a dotted line and hollow head, or a ball and socket in UML 2.0.
+![](http://i.gyazo.com/d8b3a9f14812f44e2a4c10eff46c1f8a.png)
 
 ###Use Cases and Scenarios
 
