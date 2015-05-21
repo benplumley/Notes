@@ -88,4 +88,16 @@ Problems with TLBs are that they have a small capacity, and they rely on tempora
 
 More sophisticated TLBs have an *address space number* (ASN) tag on each entry in the table. This relates each entry to a process. Mappings don't need to be flushed, and when the TLB runs out of space the mappings relating to old processes can be evicted first.
 
-When a process tries to read, write or execute a page which it doesn't have permission to, the OS sends a segmentation violation signal to the process. This is useful when processes can share memory. The TLB makes memory sharing easy, 
+When a process tries to read, write or execute a page which it doesn't have permission to, the OS sends a segmentation violation signal to the process. This is useful when processes can share memory. The TLB makes memory sharing easy, because different virtual addresses can be mapped to the same physical addresses.
+
+This use of shared memory allows for *shared libraries*. Many programs have shared functionality such as writing to files, so rather than reimplementing all of this in every program, the program simply refers to the relevant library. These are not part of the OS, but provide interaction with it.
+![](http://gyazo.com/c8c85f37d9b5445bdc9a28c9b43c4560.png)
+Each program using the library has a virtual address to it, and each of these is mapped to the same physical address so the library only needs to be in memory once. This reduces page faults as well as reducing memory usage.
+
+A similar trick can be used for data. Different processes can share the same data as long as they don't try to update it, and data that processes do want to update can be put in pages with the *copy-on-write* flag set.
+
+Copy-on-write shares data until one process tries to modify it. When it is modified, a page fault is raised and the OS makes a physical copy of that page with the modifications. It updates the page table for the modifying process. The other processes still see the old unmodified data. This again reduces memory usage and page faults. It is more complex to implement but overall is more efficient.
+
+Another trick is to keep a page full of zeros. If a process asks for a block of zeroed memory, the OS can give it a list of virtual addresses pointing to the same physical page of zeros. When the process tries to modify it, the OS does a copy-on-write. Only pages which are actually used get allocated.
+
+*Memory mapping* is where parts of the virtual address space correspond to devices other than memory. For instance, a process could write to the screen or a file as easily as writing to memory, with the conversion performed by the OS transparently to the process. This makes programming simpler because the programmer doesn't have to worry about how to write to the hardware, it simply treats it like memory and lets the OS do the implementation.
