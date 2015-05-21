@@ -70,7 +70,7 @@ This interrupt mechanism allowed the use of **terminals**, allowing users to int
 
 Timer intterupts are typically set to go off fairly often, meaning several programs can get a slice of the CPU quite often. With sufficiently frequent interrupts it appears to a human observer that several programs are running simultaneously. An *interactive* program will appear to be dedicated to that user - in reality humans are so slow we can't appreciate how little time the computer gives us. It is important to remember that a single processor can only do one thing at a time - it is only the appearance of multiple programs running simultaneously.
 
-On the other hand, too frequent interrupts mean the monitor is forever being called and using CPU time, so less time is available for the progrums. This is another tradeoff - frequent interrupts for good interactive behaviour, or fewer interrupts for good compute behaviour. Therefore we need clever scheduling algorithms in the monitor to try to give high priority but small slices of time to interactive programs, and lower priority but larger slices to compute-intensive programs.
+On the other hand, too frequent interrupts mean the monitor is forever being called and using CPU time, so less time is available for the programs. This is another tradeoff - frequent interrupts for good interactive behaviour, or fewer interrupts for good compute behaviour. Therefore we need clever scheduling algorithms in the monitor to try to give high priority but small slices of time to interactive programs, and lower priority but larger slices to compute-intensive programs.
 
 A 'large slice of time' means the monitor will allow a program to continue running for a relatively long amount of time before scheduling a different program, i.e. the monitor will continue to schedule the program through several interrupts. A 'small slice of time' means the monitor will deschedule the program after only a brief amount of running time, perhaps just a few interrupts. Thus, the monitor can deal out CPU time to the programs in appropriately sized chunks - this is all part of the scheduling decision computations that happen potentially every time the monitor runs.
 
@@ -80,14 +80,14 @@ Certain operations like accessing tape or a printer must be reserved for use by 
 
 Privilege is a state of the processor, not the program, but we tend to say "a privileged program" rather than "a program running with the CPU in privileged mode". If an unprivileged program tries to execute a privileged operation, the hardware causes an interrupt (also called a system trap) and sets the processor to privileged mode. The interrupt service routine then jumps back to the monitor program, which decides what to do next e.g. disallow the operation, kill the program.
 
-The system starts in kernel (privileged) mode:
-1. The monitor decides which process to schedule
-2. It restores the state of the program, then uses a special jump-and-drop-privilege instruction to start running the program
-3. The program runs unprivileged (user mode)
-4. The program finishes or decides it needs a system resource, so it should call the monitor
-5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor
-6. This special jump also enables privileged mode, so the monitor regains control with privilege
-7. The monitor saves the state of the program, then decides what to do next
+The system starts in kernel (privileged) mode:  
+1. The monitor decides which process to schedule  
+2. It restores the state of the program, then uses a special jump-and-drop-privilege instruction to start running the program  
+3. The program runs unprivileged (user mode)  
+4. The program finishes or decides it needs a system resource, so it should call the monitor  
+5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor  
+6. This special jump also enables privileged mode, so the monitor regains control with privilege  
+7. The monitor saves the state of the program, then decides what to do next  
 
 The syscall instruction always jumps to the monitor, so the program cannot use it to gain privilege for itself. The jumping between modes ensures that the monitor is runing in privileged mode and the user program is running in unprivileged mode. The user program can never get into privileged mode, as every transition to privileged mode is tied by the hardware to a jump to the monitor. Forcing access to hardware via the monitor also provides protection and management for other system resources, like access to files or the network. System libraries often include some nicer interfaces to the syscalls, wrapping them to make them easier to use e.g. the 'open file' syscall might need a file name to be placed in certain registers.
 
@@ -113,11 +113,11 @@ An OS needs to keep lots of information about a process, which it uses to schedu
 - The CPU's PC and registers
 - And more...
 
-A process can be in one of several states. There are 5 main states which the OS moves processes between (although real OSs have many more than this):
-1. New - A process that has just been created, perhaps code and data are not yet loaded into memory. The OS data structures needed to manage the process have been created and filled in.
-2. Running - It is currently executing on the CPU.
-3. Ready - It is ready to run, but some other process (or the OS) is currently using the CPU.
-4. Blocked - Waiting for some event or resource to become available e.g. waiting for some data to arrive from the disk.
+A process can be in one of several states. There are 5 main states which the OS moves processes between (although real OSs have many more than this):  
+1. New - A process that has just been created, perhaps code and data are not yet loaded into memory. The OS data structures needed to manage the process have been created and filled in.  
+2. Running - It is currently executing on the CPU.  
+3. Ready - It is ready to run, but some other process (or the OS) is currently using the CPU.  
+4. Blocked - Waiting for some event or resource to become available e.g. waiting for some data to arrive from the disk.  
 5. Exit - A process that has just finished. Some tidying up is usually needed after a process ends, such as closing files or reclaiming memory or other resources used for its running or management.
 
 The OS will be managing many processes, and keeps lists of which processes are in which state, so scheduling is simply making the choice of which process to move between which states. In real OSs, for efficiency, these will not be simple lists - they may be arranged in priority order, or maybe some more sophisticated datastructure e.g. a tree (like in Unix). This allows control of a group of processes. A group within the tree has a *session leader*, which would typically kill all the processes in the group if it is killed.
@@ -126,13 +126,13 @@ There is a standard finite state machine which describes the allowed transitions
 
 ![](http://i.gyazo.com/5c0a2ed582b54ce84269ebf030098f6a.png)
 
-A typical transition is:
-1. The OS decides to schedule a process on the ready list
-2. The process is dispatched - the OS marks its state as running and starts executing it (jump and drop privilege)
-3. The process may choose to voluntarily suspend itself - *relinquish* (e.g. a clock program displaying the time might suspend itself for a minute).
-4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.
-5. Alternatively, a timer interrupt may happen when the process has used its time slice.
-6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)
+A typical transition is:  
+1. The OS decides to schedule a process on the ready list  
+2. The process is dispatched - the OS marks its state as running and starts executing it (jump and drop privilege)  
+3. The process may choose to voluntarily suspend itself - *relinquish* (e.g. a clock program displaying the time might suspend itself for a minute).  
+4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.  
+5. Alternatively, a timer interrupt may happen when the process has used its time slice.  
+6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)  
 7. In the case of a blocked process, data may have returned from the disk and the process can wake up and become ready again. The process won't generally start running immediately, it is just ready to run when it gets its chance. Early OSs without timer interrupts had to rely on processes relinquishing control every now and then - this is cooperative multitasking.
 
 The **process control block**, or PCB, is the collection of data that a process needs. It contains information like user ids, a priority, statistics like memory and cpu used, the state, and lists of the resources used (in particular the memory for the code and its data). To pause and restart a running process (e.g. on an interrupt) requires saving and restoring the processor state: CPU registers, stack pointers etc. This will also be stored in the PCB. So process handling is very similar to the way interrupts are handled, but with a lot more data that needs to be saved.
@@ -326,7 +326,7 @@ Deadlocks can also be broken by detecting pairs of processes which have been blo
 
 In real life, prevention and virtualisation are used to prevent deadlock. With virtualisation, each process believes it has sole access to a resource, but actually it only has access to a virtual resource which will be translated to an action on the real resouce by the OS. This process is called I/O scheduling.
 
-**Priority inversion** is where a low-priority process can deadlock a high-priority process. This can be fixed with **priority inheritance**, where the low-priority process inherits the high priority of the process it is blocking until it can complete. Alternatively, **priority ceilings** are assigned to each resource, and any process holding that resource has its priority temporarily boosted to the ceiling of that resource.
+**Priority inversion** is where a low-priority process can deadlock with a high-priority process. The low-priority process is then preempted for its other resources by medium-priority processes, meaning the high-priority process is indefinitely postponed.  This can be fixed with **priority inheritance**, where the low-priority process inherits the high priority of the process it is blocking until it can complete. Alternatively, **priority ceilings** are assigned to each resource, and any process holding that resource has its priority temporarily boosted to the ceiling of that resource.
 
 ####Process Protection
 
@@ -404,7 +404,7 @@ A socket allows bidirectional IPC between two processes (remember pipes are unid
 
 ######Shared Memory
 
-In early computers, all memory was shared between processes - one process could easily write tot eh memory allocated to another process. One process could easily write to the memory allocated to another process (this is generally a bad idea, so is now prevented by the kernel with MMUs). However, access to memory is very fast, so can be useful for IPC. This goes against the original purpose of an OS, so must be carefully controlled.
+In early computers, all memory was shared between processes - one process could easily write to the memory allocated to another process. One process could easily write to the memory allocated to another process (this is generally a bad idea, so is now prevented by the kernel with MMUs). However, access to memory is very fast, so can be useful for IPC. This goes against the original purpose of an OS, so must be carefully controlled.
 
 Like files, we have the issues of:
 - Which area of memory to use? A well known area, or per-process areas?
@@ -622,3 +622,53 @@ There are two types of locality: temporal, meaning that recently accessed data i
 Because data and code are accessed in different ways, some architectures have two separate caches for code and data. This is called a *Harvard architecture*. Modern Harvard chips have two L1 caches and unified main memory. This can be a problem for dynamic languages, because they create data which must be evaluated as code, meaning it has to first pass through main memory and into the other cache, which is a slow operation.
 
 > lecture 15 slide 80
+
+###Filesystems
+
+Current technology has main memory being a few gigabytes, and is also *volatile* - the values disappear when you remove the power. To be able to handle larger quantities of data and to make it *persistent*, we use larger but slower devices, like disks. To organise this data, we need filesystems.
+
+It should be noted that not all applications want to use filesystems. Some  may want to have direct access to the disk hardware in order to optimise it for their very specific needs, e.g. enterprise databases. However in general, mose people just want a simple, efficient way of accessing their data, which a filesystem provides.
+
+Another thing to note is that a filesystem is just an organisation of data, and doesn't need to be associated with disks. Filesystems can be found wherever we have large amounts of data that needs organising; USB keys, iPods, phones etc. It can even be useful to have a filesystem on top of memory, as an organisational mechanism.
+
+Also, the objects behind the filesystem don't need to store data. Reading from a file may actually be returning keystrokes from the keyboard, and writing to a file may actually be sending sound to the soundcard (this follows the Unix philosophy "all devices are files"). This makes accessing devices incredibly easy for the programmer - just read and write.
+
+In the traditional sense of a file however, a *file* is simply a named chunk of data stored on a disk. Humans like easy names like prog.c, so there needs to be a way of converting these user-defined names to the place on disk where the data is stored. And when we have millions of files, we also have millions of names, meaning we need some way of organising these names. It is important to notice the distinction between the name and the data. The same name can refer to different data, and different names can refer to the same data.
+
+Names are usually organised as a simple hierarchy. Rather than simply presenting all filenames to the user (a flat filesystem), names of related files are put together into a directory (folder). So a directory is just a collection of names of files. The names of directories can also be collected in other directories, and so on until we get to the top of the hierarchy i.e. the root.
+
+Example of a filesystem:
+![](http://i.gyazo.com/efa9099520c60ae8e1e3e6b8fe08be70.png)
+
+Filenames can appear at all levels, but always within a directory. In many systems, a filename can be in more than one directory, while directories can generally only be within one directory. Directories can also be empty, containing no names.
+
+The namespace heirarchy is useful becuase it makes referring to a file easy. For example, in Unix the path /usr/bin/ls refers to the file named ls, inside a directory named bin, insided a directory named usr, which is in the root directory. The root directory is referred to as /, though its actual name is empty. Other OSs have similar ideas, but may use different seperators like : or \. As previously mentioned, files can have multiple names - /usr/local/bin/dir may refer to the same file as /usr/bin/ls.
+
+The directory hierarchy forms a *directed acyclic graphs* (DAG). This means there are no loops - we can traverse the whole hierarchy and never get stuck in a loop, and there will be no unconnected loops if we delete a directory. We might find the same file twice though, but this is a tradeoff of flexibility vs ease of sytem implementation.
+
+Each process has a current working directory (cwd) which is stored in the process control block (PCB), so that whenever the process asks for a file by an incomplete filename (not starting with a /), the kernel glues the cwd prefix on to the given name and uses that instead. So if a process with a cwd of /u/cs/1/cs1abc asks for the file prog.c, it will get the file /u/cs/1/cs1abc/prog.c. This is how different processes can refer to the same name prog.c, but get different files. The cwd is a convenience for the programmer and may be changed as often as they like (cd, chdir etc).
+
+Things we want to be able to do with a filesystem:
+- Create a new file.
+- Delete a file.
+- Open a file to access it.
+- Read data from a file.
+- Write data to a file.
+- Close a file when we are done.
+
+Things we want to do with directories:
+- Create a new directory.
+- Delete a directory.
+- Look through a directory for a filename or directory name.
+- Add a file to a directory.
+- Remove a file from a directory.
+- Rename a file.
+
+Some requirements of a filesystem:
+- Speed of access.
+- Speed of update.
+- Scalability to large numbers of files.
+- Efficient use of disk space.
+- Reliability.
+- Protection and security.
+- Backup and recovery.
