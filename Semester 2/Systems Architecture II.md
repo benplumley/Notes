@@ -70,7 +70,7 @@ This interrupt mechanism allowed the use of **terminals**, allowing users to int
 
 Timer intterupts are typically set to go off fairly often, meaning several programs can get a slice of the CPU quite often. With sufficiently frequent interrupts it appears to a human observer that several programs are running simultaneously. An *interactive* program will appear to be dedicated to that user - in reality humans are so slow we can't appreciate how little time the computer gives us. It is important to remember that a single processor can only do one thing at a time - it is only the appearance of multiple programs running simultaneously.
 
-On the other hand, too frequent interrupts mean the monitor is forever being called and using CPU time, so less time is available for the progrums. This is another tradeoff - frequent interrupts for good interactive behaviour, or fewer interrupts for good compute behaviour. Therefore we need clever scheduling algorithms in the monitor to try to give high priority but small slices of time to interactive programs, and lower priority but larger slices to compute-intensive programs.
+On the other hand, too frequent interrupts mean the monitor is forever being called and using CPU time, so less time is available for the programs. This is another tradeoff - frequent interrupts for good interactive behaviour, or fewer interrupts for good compute behaviour. Therefore we need clever scheduling algorithms in the monitor to try to give high priority but small slices of time to interactive programs, and lower priority but larger slices to compute-intensive programs.
 
 A 'large slice of time' means the monitor will allow a program to continue running for a relatively long amount of time before scheduling a different program, i.e. the monitor will continue to schedule the program through several interrupts. A 'small slice of time' means the monitor will deschedule the program after only a brief amount of running time, perhaps just a few interrupts. Thus, the monitor can deal out CPU time to the programs in appropriately sized chunks - this is all part of the scheduling decision computations that happen potentially every time the monitor runs.
 
@@ -113,11 +113,11 @@ An OS needs to keep lots of information about a process, which it uses to schedu
 - The CPU's PC and registers
 - And more...
 
-A process can be in one of several states. There are 5 main states which the OS moves processes between (although real OSs have many more than this):
-1. New - A process that has just been created, perhaps code and data are not yet loaded into memory. The OS data structures needed to manage the process have been created and filled in.
-2. Running - It is currently executing on the CPU.
-3. Ready - It is ready to run, but some other process (or the OS) is currently using the CPU.
-4. Blocked - Waiting for some event or resource to become available e.g. waiting for some data to arrive from the disk.
+A process can be in one of several states. There are 5 main states which the OS moves processes between (although real OSs have many more than this):  
+1. New - A process that has just been created, perhaps code and data are not yet loaded into memory. The OS data structures needed to manage the process have been created and filled in.  
+2. Running - It is currently executing on the CPU.  
+3. Ready - It is ready to run, but some other process (or the OS) is currently using the CPU.  
+4. Blocked - Waiting for some event or resource to become available e.g. waiting for some data to arrive from the disk.  
 5. Exit - A process that has just finished. Some tidying up is usually needed after a process ends, such as closing files or reclaiming memory or other resources used for its running or management.
 
 The OS will be managing many processes, and keeps lists of which processes are in which state, so scheduling is simply making the choice of which process to move between which states. In real OSs, for efficiency, these will not be simple lists - they may be arranged in priority order, or maybe some more sophisticated datastructure e.g. a tree (like in Unix). This allows control of a group of processes. A group within the tree has a *session leader*, which would typically kill all the processes in the group if it is killed.
