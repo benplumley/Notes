@@ -126,13 +126,13 @@ There is a standard finite state machine which describes the allowed transitions
 
 ![](http://i.gyazo.com/5c0a2ed582b54ce84269ebf030098f6a.png)
 
-A typical transition is:
-1. The OS decides to schedule a process on the ready list
-2. The process is dispatched - the OS marks its state as running and starts executing it (jump and drop privilege)
-3. The process may choose to voluntarily suspend itself - *relinquish* (e.g. a clock program displaying the time might suspend itself for a minute).
-4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.
-5. Alternatively, a timer interrupt may happen when the process has used its time slice.
-6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)
+A typical transition is:  
+1. The OS decides to schedule a process on the ready list  
+2. The process is dispatched - the OS marks its state as running and starts executing it (jump and drop privilege)  
+3. The process may choose to voluntarily suspend itself - *relinquish* (e.g. a clock program displaying the time might suspend itself for a minute).  
+4. An interrupt may arise, e.g. from a packet arriving on the network card, or a key being hit on the keyboard.  
+5. Alternatively, a timer interrupt may happen when the process has used its time slice.  
+6. Or the process may *block* - when it needs some resource the OS must supply (so it does a syscall) and must wait until the resource is ready (e.g. when the disk returns some data)  
 7. In the case of a blocked process, data may have returned from the disk and the process can wake up and become ready again. The process won't generally start running immediately, it is just ready to run when it gets its chance. Early OSs without timer interrupts had to rely on processes relinquishing control every now and then - this is cooperative multitasking.
 
 The **process control block**, or PCB, is the collection of data that a process needs. It contains information like user ids, a priority, statistics like memory and cpu used, the state, and lists of the resources used (in particular the memory for the code and its data). To pause and restart a running process (e.g. on an interrupt) requires saving and restoring the processor state: CPU registers, stack pointers etc. This will also be stored in the PCB. So process handling is very similar to the way interrupts are handled, but with a lot more data that needs to be saved.
