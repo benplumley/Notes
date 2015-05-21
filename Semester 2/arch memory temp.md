@@ -13,3 +13,22 @@ Before dynamic allocation, languages could not have a stack. This is true of FOR
 The earliest and simplest static memory layout is called *partitioning*, where areas of memory of fixed size are created at boot time.
 ![](http://gyazo.com/2406bb1210b1cf76a33b6c81df35cdb7.png)
 When a process is created and declares how much memory it will need, it is loaded into the smallest partition into which it will fit. This is very simple to implement, but memory is wasted if a process doesn't fill its partition, and larger processes can't necessarily be run at all. Variable size partitions are most effective if the expected process sizes are already known.
+
+In early systems, if a process was too large to fit in any partition, *overlays* could be used. This meant that not all of the code would be loaded into memory, and a subroutine in the program would load in code from storage when it was needed, overwriting another part of the same program. The same could be done with data, if the data held in memory was written to storage first. This technique was difficult to implement.
+
+Processes need to be put into a contiguous area of memory because it would be complicated for the OS to remember which areas of memory are owned by which processes, and code can't be split up because instructions must be in sequence for the program counter to work correctly. However, this can all be solved using *virtual memory*.
+
+Dynamic partitioning (still a type of static allocation) is more complicated to implement than partitioning, and allows each process to state how much memory it will need when it starts. The OS will allocate that much memory to that process. Memory can be allocated sequentially to processes from the bottom (where the kernel lives) to the top.
+![](http://i.gyazo.com/71b5a8211d634b27dfa212047e567f1a.png)
+The problem with this is that when a process finishes, it will leave a hole where it was. Even if there is enough memory to run a new process, unless the memory is contiguous then the new process can't be started. This problem is called *fragmentation*. The more processes come and go, the worse the fragmentation becomes.
+
+The kernel keeps a list of free blocks of memory, called the *freelist*. When a block is freed, it is added to the block. When two adjecent blocks are freed, they are coalesced into one block. When a new process starts, the freelist is searched for a space to put it. There are several strategies for choosing a block in the freelist:
+- Best fit: the smallest available free chunk is used. This is slow because the whole list must be searched and the fragments this leaves are small, increasing fragmentation.
+- First fit: the first free chunk big enough is used. This is initially fast, and leaves bigger and more useful fragments, but tends to fragment the start of memory meaning the search takes longer as time goes on.
+- Worst fit: the largest free chunk is used. This leaves larger fragments that are more useful, and is faster than best fit because there are fewer fragments to search.
+- Next fit: the next space after the last one allocated is used. This is fast and spreads small fragments through memory.
+There are many other algorithms, and despite virtual memory not having these problems, some components (eg GPUs) still need contiguous physical memory so freelists are still maintained.
+
+If a big enough space can't be found, the OS runs the *garbage collection*. This is stops all processes from being scheduled, and defragments memory by moving all processes down to close up fragments. Garbage collection is not often used in OSs because it is very expensive and would make a real-time or interactive system difficult to use, because all processes must pause while it happens.
+
+Garbage collection also relies on processes being relocatable, meaning they must only use relative JUMP operations rather than absolute memory locations. This is a reasonable assumption in modern OSs, but any processes that break it will not work after garbage collection has run.
