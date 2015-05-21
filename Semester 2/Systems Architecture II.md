@@ -326,7 +326,7 @@ Deadlocks can also be broken by detecting pairs of processes which have been blo
 
 In real life, prevention and virtualisation are used to prevent deadlock. With virtualisation, each process believes it has sole access to a resource, but actually it only has access to a virtual resource which will be translated to an action on the real resouce by the OS. This process is called I/O scheduling.
 
-**Priority inversion** is where a low-priority process can deadlock a high-priority process. This can be fixed with **priority inheritance**, where the low-priority process inherits the high priority of the process it is blocking until it can complete. Alternatively, **priority ceilings** are assigned to each resource, and any process holding that resource has its priority temporarily boosted to the ceiling of that resource.
+**Priority inversion** is where a low-priority process can deadlock with a high-priority process. The low-priority process is then preempted for its other resources by medium-priority processes, meaning the high-priority process is indefinitely postponed.  This can be fixed with **priority inheritance**, where the low-priority process inherits the high priority of the process it is blocking until it can complete. Alternatively, **priority ceilings** are assigned to each resource, and any process holding that resource has its priority temporarily boosted to the ceiling of that resource.
 
 ####Process Protection
 
