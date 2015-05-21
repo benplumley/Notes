@@ -133,4 +133,4 @@ There are two types of locality: temporal, meaning that recently accessed data i
 
 Because data and code are accessed in different ways, some architectures have two separate caches for code and data. This is called a *Harvard architecture*. Modern Harvard chips have two L1 caches and unified main memory. This can be a problem for dynamic languages, because they create data which must be evaluated as code, meaning it has to first pass through main memory and into the other cache, which is a slow operation.
 
-Memory access and 
+> lecture 15 slide 80
