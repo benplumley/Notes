@@ -327,6 +327,10 @@ A *Semantic Data Model* can be an Entity-Relationship-Attribute (ERA) diagram, o
 ![](http://i.gyazo.com/ba9f87d04993cbc75dd8144aa187f3c2.png)
 ![](http://i.gyazo.com/aae3a264fbbeb75b0c549e8884e188bf.png)
 
+Semantic Data Models must always be accompanied by a data dictionary, necessary for name management and storing organisational information.
+
+![](http://i.gyazo.com/4f3c538f6864e13b99430b28995a5d4d.png)
+
 ###Use Cases and Scenarios
 
 *Scenarios* are narrative descriptions of exactly how a user might use the system. They are written in English in paragraph form, and provide a description of the user's interaction with the system. They will describe ordinary and exceptional situations.
