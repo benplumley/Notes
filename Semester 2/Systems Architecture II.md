@@ -621,7 +621,15 @@ There are two types of locality: temporal, meaning that recently accessed data i
 
 Because data and code are accessed in different ways, some architectures have two separate caches for code and data. This is called a *Harvard architecture*. Modern Harvard chips have two L1 caches and unified main memory. This can be a problem for dynamic languages, because they create data which must be evaluated as code, meaning it has to first pass through main memory and into the other cache, which is a slow operation.
 
-> lecture 15 slide 80
+When designing multi-processor systems, one of the main problems is joining them all to memory. The disparity of speeds is magnified for every processor that is added, and a new problem is introduced called *cache coherence*. If a processor has its own cache, then these must be coherent - if one processor changes a value, it should also change for every other processor.
+
+One solution to this is a *snoopy cache*. Each cache watches every other cache for updates and updates their copy of data to match. This is very complicated, very expensive and scales factorially with the number of processors in the system.
+
+Commonly used solutions are *non-uniform memory access* (NUMA) where a certain part of memory is associated with one processor, and access by that processor to that area is faster. Processors can still access each other's memory, but this is slower.
+
+Another solution is *distributed memory*. This is simple and uses message passing to send updates between processors. However, access to another processor's data is very slow.
+
+In processor clusters, the limiting factor on the speed of programs is not the compute power but the memory access. Optimising the data placement can make a huge difference in how fast the program runs.
 
 ###Filesystems
 
