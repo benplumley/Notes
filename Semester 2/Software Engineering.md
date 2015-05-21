@@ -284,4 +284,4 @@ The main disadvantage is that the object-oriented approach is time- and memory-h
 
 ###Unified Modelling Language (UML)
 
-*Object Oriented Development* is a more modern approach to software development. It comprises of object-oriented analysis, design, and programming. OO analysis identifies an object oriented model of the application domain, and the operations associated with the problems to be solved. OO design identifies an object oriented model of the software system to implement the identified requirements. OO programming realises the object oriented software design, e.g. using Java, C++ etc.
+*Object Oriented Development* is a more modern approach to software development. It comprises object-oriented analysis, design, and programming. OO analysis identifies an object oriented model of the application domain, and the operations associated with the problems to be solved. OO design identifies an object oriented model of the software system to implement the identified requirements. OO programming realises the object oriented software design, e.g. using Java, C++ etc.
