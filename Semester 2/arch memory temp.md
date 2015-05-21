@@ -101,3 +101,36 @@ Copy-on-write shares data until one process tries to modify it. When it is modif
 Another trick is to keep a page full of zeros. If a process asks for a block of zeroed memory, the OS can give it a list of virtual addresses pointing to the same physical page of zeros. When the process tries to modify it, the OS does a copy-on-write. Only pages which are actually used get allocated.
 
 *Memory mapping* is where parts of the virtual address space correspond to devices other than memory. For instance, a process could write to the screen or a file as easily as writing to memory, with the conversion performed by the OS transparently to the process. This makes programming simpler because the programmer doesn't have to worry about how to write to the hardware, it simply treats it like memory and lets the OS do the implementation.
+
+There are two problems with the speed of memory. The first is the clock speed, although this is not as pronounced as it was once. Processors run faster than memory so even if they constantly read then they'll still have empty cycles. The other is latency, where there is a delay between requesting a value and it coming back. This delay can be dozens of clock cycles.
+
+The slow speed can be overcome by having multiple channels to memory. Latency needs a different solution, namely *registers*. A register is a very fast on-processor memory location, and as much processing as possible is done only storing the values in registers and writing them back to memory at the end of a calculation. They are very expensive and we can only afford a few hundred bytes, but this idea can be extended.
+
+The *cache* is a relatively small amount of fast memory between the CPU and main memory. It contains a copy of some of the data in memory. When the CPU reads from memory, the cache is checked first. If the value is present, this is a *cache hit*, and the value is returned quickly. If not, this is a *cache miss*, and the value is fetched from main memory and sent to the CPU and also stored in the cache.
+
+There are many similarities to paging. We have to decide what gets evicted when the cache is full, hits are fast and misses are slow, and complex hardware support is required.
+
+There are also similarities to the pages themselves. A *cache line* is a block of contiguous memory that is read and written as a whole rather than individual bytes. These reduce the complexity of the lookup system, and is effective because of locality: nearby bytes are likely to be needed soon, and they are already in the cache.
+
+Writing to memory also goes via the cache, using either a *write-through cache* or a *write-back cache*.
+- Write-through cache writes a value to main memory as soon as the CPU writes it to the cache
+- Write-back cache writes to main memory only when it is convenient, or when the line is evicted from cache
+
+Cache memory is very expensive, so the most effective way of extending the cache is to use a *multi-level cache*. In this system, the cache has a cache: there is a second larger and slower cache between the first one and main memory known as the L2 cache. Modern processors extend this to an L3 cache as well. Programs written to be sensitive to cache behaviour are much faster.
+
+Caching, therefore, happens at many levels, from fastest to slowest:
+- Registers (in the CPU)
+- L1 cache (in the CPU)
+- L2 cache
+- L3 cache
+- Main memory
+- In a sense, main memory is a cache for disk because programs are stored on disk and swapped to memory
+- Disks can act as caches for offline storage such as tapes
+
+All of this assumes locality. Most programs tend to do this naturally, because the data recently accessed is normally the data that is changed and written. It is easy to write programs for which this isn't true.
+
+There are two types of locality: temporal, meaning that recently accessed data is likely to be accessed again soon, and spacial, meaning that locations near a recently accessed location are likely to be accessed soon.
+
+Because data and code are accessed in different ways, some architectures have two separate caches for code and data. This is called a *Harvard architecture*. Modern Harvard chips have two L1 caches and unified main memory. This can be a problem for dynamic languages, because they create data which must be evaluated as code, meaning it has to first pass through main memory and into the other cache, which is a slow operation.
+
+Memory access and 
