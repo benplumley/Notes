@@ -80,14 +80,14 @@ Certain operations like accessing tape or a printer must be reserved for use by 
 
 Privilege is a state of the processor, not the program, but we tend to say "a privileged program" rather than "a program running with the CPU in privileged mode". If an unprivileged program tries to execute a privileged operation, the hardware causes an interrupt (also called a system trap) and sets the processor to privileged mode. The interrupt service routine then jumps back to the monitor program, which decides what to do next e.g. disallow the operation, kill the program.
 
-The system starts in kernel (privileged) mode:
-1. The monitor decides which process to schedule
-2. It restores the state of the program, then uses a special jump-and-drop-privilege instruction to start running the program
-3. The program runs unprivileged (user mode)
-4. The program finishes or decides it needs a system resource, so it should call the monitor
-5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor
-6. This special jump also enables privileged mode, so the monitor regains control with privilege
-7. The monitor saves the state of the program, then decides what to do next
+The system starts in kernel (privileged) mode:  
+1. The monitor decides which process to schedule  
+2. It restores the state of the program, then uses a special jump-and-drop-privilege instruction to start running the program  
+3. The program runs unprivileged (user mode)  
+4. The program finishes or decides it needs a system resource, so it should call the monitor  
+5. The program executes a special “call monitor” (or syscall) instruction that jumps to the monitor  
+6. This special jump also enables privileged mode, so the monitor regains control with privilege  
+7. The monitor saves the state of the program, then decides what to do next  
 
 The syscall instruction always jumps to the monitor, so the program cannot use it to gain privilege for itself. The jumping between modes ensures that the monitor is runing in privileged mode and the user program is running in unprivileged mode. The user program can never get into privileged mode, as every transition to privileged mode is tied by the hardware to a jump to the monitor. Forcing access to hardware via the monitor also provides protection and management for other system resources, like access to files or the network. System libraries often include some nicer interfaces to the syscalls, wrapping them to make them easier to use e.g. the 'open file' syscall might need a file name to be placed in certain registers.
 
