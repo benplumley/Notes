@@ -377,5 +377,11 @@ Each use case has an associated scenario, and scenarios can refer to each other 
 
 Individual services should be defined per task from a user perspective rather than relating to the objects in the system. The UML class model should be developed alongside this without having a one-to-one relationship between services and classes.
 
-*Sequence diagrams* are dynamic models used to show the interaction of objects during situations in the running of the program. They show the flow of control and dependencies between objects.
-> Use cases 2 slide 11
+*Sequence diagrams* are dynamic models used to show the interaction of objects during situations in the running of the program. They show the flow of control and dependencies between objects. They should include *escape sequences* describing how the user would cancel an operation, parallel tasks and an order in which information should be supplied.
+
+The *task-artifact cycle* describes how systems should be developed and then evolve to respond to how they are being used:  
+1. People perform a task  
+2. Study the people performing the task  
+3. Make a model of the task being performed  
+4. Make an artifact to support the people performing the task  
+5. People perform the task with the artifact. Repeat from stage 2  
