@@ -303,7 +303,7 @@ A *class* is a generic definition of an entity, for a set of similar objects. It
 
 A *class model* provides a diagram of the static relations between entitites in an applicaton. It shows the key components (classes) and their relationships (associations) within the application.
 
-The typical UML class notation is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type. 
+The typical UML class notation is split into 3 sections; the class name, attributes, and methods. All attributes and methods should have access modifiers (the + or -). A + corresponds to a public variable or method, and - corresponds to private. Attributes must list their type, and methods their parameters and return type.
 
 ![](http://i.gyazo.com/84d64e4a540b2aee07537679d02f4196.png)
 
@@ -313,7 +313,7 @@ Associations between classes are denoted by dotted arrows (denotes a 'has a' rel
 - 0..* or * - Zero or more instances
 - n..* - N or more instances
 
-Class association:                                    
+Class association:
 ![](http://i.gyazo.com/e3187daeb999105782e7ed56cc99395c.png)
 
 Object classes are often organised into hierarchies, e.g. Cat 'is a' Mammal, which 'is an' Animal. Parent classes have features common to the more specialised classes which inherit them (children). Child classes inherit attributes and operations, and add specialisation as necessary. They can inherit multiple classes (e.g. both 'mammal' and 'predator'). Objects in good class model designs do not inherit unnecessary attributes, and name clashes are resolved meaningfully in case of mu ltiple inheritance e.g. two super-classes both have an attribute 'A'.
@@ -346,3 +346,11 @@ An effective scenario includes:
 
 In UML, use cases are represented as a static diagram accompanied by descriptions of the scenarios named. They must be object-oriented and relate to what the user wants to achieve with their interaction.
 ![](http://gyazo.com/180542551a9a69d4724e8b23d69932ee.png)
+
+Each use case has an associated scenario, and scenarios can refer to each other and common sub-tasks if they are repeated. In a use case diagram, this is shown with a dashed arrow marked include:  
+![](http://i.gyazo.com/525ab92dc10b98a34c30731816ca6007.png)  
+
+Individual services should be defined per task from a user perspective rather than relating to the objects in the system. The UML class model should be developed alongside this without having a one-to-one relationship between services and classes.
+
+*Sequence diagrams* are dynamic models used to show the interaction of objects during situations in the running of the program. They show the flow of control and dependencies between objects.
+> Use cases 2 slide 11
