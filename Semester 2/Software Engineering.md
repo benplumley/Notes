@@ -295,7 +295,7 @@ There are 5 activities in a typical OO design process:
 
 There are two basic types of design model. *Static models* describe the static structure of the system, i.e. organisation of components, including models of object classes. *Dynamic models* show the interaction of objects.
 
-*UML* is a set of graphical notations for creating OO software. It can represent both data (attributes) and processes (operations), and was standardised by the Object Management Group (1997). It provides 13 different modelling diagrams, 6 static and 7 dynamic. There are 4 considered in this unit: Class (static), use cases, sequence and state machine (all dynamic).
+*UML* is a set of graphical notations for creating OO software. It can represent both data (attributes) and processes (operations), and was standardised by the Object Management Group (1997). It allows representing and reasoning about software with a very broad scope, as combinations of UML models can represent softare in very diverse application domains. It provides 13 different modelling diagrams, 6 static and 7 dynamic. There are 4 considered in this unit: Class (static), use cases, sequence and state machine (all dynamic).
 
 An *object* is a self contained software entity with well defined characteristics and behaviour. The characteristics are represented by attributes, and the behavours are represented by its methods.
 
@@ -330,6 +330,31 @@ A *Semantic Data Model* can be an Entity-Relationship-Attribute (ERA) diagram, o
 Semantic Data Models must always be accompanied by a data dictionary, necessary for name management and storing organisational information.
 
 ![](http://i.gyazo.com/4f3c538f6864e13b99430b28995a5d4d.png)
+
+Many behavioural models have been proposed to specify how system components interact with one another. These include data flow diagrams (not UML), state machine models (UML) and sequence diagrams (UML).
+
+*Data flow diagrams* are the traditional approach. They are convenient for describing single threaded data processing systems, as data is transformed to an alternative representation without much interaction between system components.
+
+*Sequence diagrams* are models of how objects implement use cases, and are used to model the interactions between objects. They help designers to specify how particular computations are performed by the system as a whole - which objects 'talk' to which other objects (or subsystems), and in what order. They are directly related to static models. Some features of sequence models are:
+- Time runs from top to bottom.
+- Objects involved in interactions are listed across the top.
+- Thin rectangles show when an object has control. This is handled in nested calls upon other objects.
+- Labelled arrows indicate object interactions, not data.
+
+Here is an example of a sequence diagram:
+![](http://i.gyazo.com/41a114634498849534370bc8df988491.png)
+
+*State-machine models* are used to design and analyse event processing systems (e.g. real time systems). They are loosely related to static models. At any time, all software systems are in one of a number of possible states - ready for input, processing data, displaying output etc. When something happens, the machine must change state. State machine models show how a system responds to different stimuli. This can be from an external source (e.g. the user) or execution of internal code. They include a graphical diagram, showing states as rounded rectangles and stimuli as arrows, and a descriptive table to give explanations of the different states and stimuli.
+
+Here is an example of a state machine model for a car park barrier, and the descriptive table to go with it.
+![](http://i.gyazo.com/dc826f268d2391a28ec8cc9f1837f5b7.png)
+![](http://i.gyazo.com/f24ef0f3dc01035d0c429cca0dff5616.png)
+
+*Models* are abstractions of your design, and each type of model shows a particular aspect of the design for a particular purpose. Modelling can take place from a number of perspectives:
+- Context Models - Defines boundaries of your system and its dependencies/interactions with it's external environment.
+- Architectural Models - Describes your system structure and its components at a high level.
+- Semantic Data Models - Describes logical structure of data input/output by the system.
+- Behavioural Models - Models the behaviours and interactions of system components.
 
 ###Use Cases and Scenarios
 
