@@ -44,3 +44,17 @@ When a program opens a file, the OS must find where on the disk the file lives, 
 - It reads the data block containing the home directory from the disk, and scans it for the name rjb. It finds it, gets the inode number for rjb, reads that inode from the disk and finds it also refers to a directory.
 - It reads the data block containing the rjb directory from the disk, and scans it for the name prog.c. It finds it, gets the inode number for prog.c, reads that inode from the disk and finds it refers to a file.
 - It can now read the data blocks containing the file from the disk.
+
+This process must be repeated for every file opened. Caching copies of the inodes and directories in memory rather than re-reading them from disk every time speeds up the process greatly.
+
+If we want more than one filesystem, or more than one kind of filesystem, we can split the disk into seperate *partitions*. A partition is just a section of disk owned by a single filesystem. So we can have multiply filesystems on a single disk, e.g. two Unix filesystems and a Windows filesystem. Each filesystem has its own inode tables (or whatever it requires) and are logically quite seperate. However, inode 23 on one partition is different to inode 23 on another partition, so we can't have hard links across partitions. We *can* have soft links across partitions though, as soft links are by names, not inode numbers. This is really why soft links were invented in the first place.
+
+Under Unix, a filesystem can be *mounted* on another filesystem. A *mount point* is a note to the OS that says "stop looking at this partition and look at that partition instead". 
+
+![](http://i.gyazo.com/8b71fddb100dd7786a767b3018d2d4f8.png)
+
+In filesystem A, the filename /usr/local/bin/prog refers to the prog on A. If we mounty filesystem B at the mount point /usr/local however, this hides the part of the hierarchy below.  /usr/local/bin/prog now refers to the prog on B. When the file lookup gets to the mount point at /usr/local, it switches filesystem and continues looking from the root of B. The benefit of this is that we can have many partitions presented as a single unified filespace, with a single unified namespace for files. Partition B could be on a seperate disk, or a USB key, or a read-only medium like a CD, but to the programmer it's just one big filesystem. This unified namespace is completely different from Windows, where each partition has a prefix like C: or D:.
+
+B will still have it's own inode table, so there can't be hard links between the two partitions, as inode numbers always refer to the inode table in the current partition we are examining. B may even have a completely different kind of filesystem which doesn't use inodes, or could be on a seperate machine if this was a mount of a network disk. Also, in Unix the thing behind the filesystem interface might not even be data files on a disk, it could be a HTTP filesystem where files are web pages for example.
+
+On the flip side to this, there are mechanisms for gluing several disks together to make them appear as a single partition, which can be useful for making huge filesystems out of small disks, or for reliability through redundancy (RAID).
