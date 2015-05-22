@@ -631,7 +631,7 @@ Another solution is *distributed memory*. This is simple and uses message passin
 
 In processor clusters, the limiting factor on the speed of programs is not the compute power but the memory access. Optimising the data placement can make a huge difference in how fast the program runs.
 
-###Filesystems
+####Filesystems
 
 Current technology has main memory being a few gigabytes, and is also *volatile* - the values disappear when you remove the power. To be able to handle larger quantities of data and to make it *persistent*, we use larger but slower devices, like disks. To organise this data, we need filesystems.
 
@@ -680,3 +680,25 @@ Some requirements of a filesystem:
 - Reliability.
 - Protection and security.
 - Backup and recovery.
+
+####Operating Systems
+
+Operating systems are still a current topic of research. Low-power systems for mobile devices are still relatively young, and OSs are still being developed for very large machines too.
+
+*OS virtualisation* is important with cloud computing. Many users are sharing the same hardware but each has their own private OS running their applications. OSs were the software closest to the hardware, but this isn't true with virtualisation.
+
+*Bare metal virtualisation* uses a thin layer called the *hypervisor* between the OS and the hardware. Each OS sees a different virtual machine which it has full control over.  
+![](http://i.gyazo.com/e82c07f94190a0fc2f4b64b00bac3ff3.png)  
+The operating systems can be completely different.
+
+*Hosted virtualisation* has a host OS that runs virtualisation code on which other OSs run. This is how virtual machines such as VMWare work.  
+![](http://i.gyazo.com/bff71ddf611e1ca4935b8390b9d55741.png)
+
+*Containers* are not strictly OS virtualisation, instead giving each application a rigid partition in which to work. Applications can't see or influence what happens in other containers.  
+![](http://i.gyazo.com/5b154fdd0f1e7dd82a37c7e2b209d444.png)  
+The applications must run on the same OS, but they can have different system libraries and environments.
+
+*Hardware virtualisation* is where the OS emulates a type of hardware that it isn't necessarily running on. For instance, an X86 computer can emulate an ARM chip. These emulations are slower than native hardware, but allow for flexibility and ease of testing.  
+![](http://i.gyazo.com/4b517d66b94fa4b2f24880ea55dedf17.png)  
+
+>End of lecture 18
