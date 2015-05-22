@@ -732,7 +732,7 @@ This process must be repeated for every file opened. Caching copies of the inode
 
 If we want more than one filesystem, or more than one kind of filesystem, we can split the disk into seperate *partitions*. A partition is just a section of disk owned by a single filesystem. So we can have multiply filesystems on a single disk, e.g. two Unix filesystems and a Windows filesystem. Each filesystem has its own inode tables (or whatever it requires) and are logically quite seperate. However, inode 23 on one partition is different to inode 23 on another partition, so we can't have hard links across partitions. We *can* have soft links across partitions though, as soft links are by names, not inode numbers. This is really why soft links were invented in the first place.
 
-Under Unix, a filesystem can be *mounted* on another filesystem. A *mount point* is a note to the OS that says "stop looking at this partition and look at that partition instead". 
+Under Unix, a filesystem can be *mounted* on another filesystem. A *mount point* is a note to the OS that says "stop looking at this partition and look at that partition instead".
 
 ![](http://i.gyazo.com/8b71fddb100dd7786a767b3018d2d4f8.png)
 
@@ -762,4 +762,25 @@ The applications must run on the same OS, but they can have different system lib
 *Hardware virtualisation* is where the OS emulates a type of hardware that it isn't necessarily running on. For instance, an X86 computer can emulate an ARM chip. These emulations are slower than native hardware, but allow for flexibility and ease of testing.  
 ![](http://i.gyazo.com/4b517d66b94fa4b2f24880ea55dedf17.png)  
 
->End of lecture 18
+###Networks
+
+####TCP/IP
+
+The OSI model is widely used when teaching and thinking about networks, but protocols based on it are never used. The Internet model is rarely used but the TCP/IP protocol is based on it. The main reason TCP/IP is successful is that the standards are open so anyone can join.
+
+Before the internet, networks tended to be closed and proprietary, and companies had to pay to become a part of the network. These failed to reach a critical mass, so when the TCP/IP standard came along it was the obvious alternative.
+
+The Internet was initiated by ARPA, a US military department, but it was mostly developed in academia. Because this was a safe environment, the Internet was developed without regard for security, privacy or authentication.
+
+By default, data in transit is readable by the machines it passes through, not protected from interference, and only weakly authenticated. These problems have been addressed through secure extensions to protocols, but these aren't always perfect.
+
+Security and authentication through these protocols is added in the application layer, so it is the programmer's job to choose to use a secure protocol. This extra layer takes an insecure protocol (TCP or UDP) and makes it into a secure one through encryption and authentication.
+
+Security can also be added to the network layer, which means it is implemented by the system rather than by the programmer and the user programs. This is harder to set up properly, and the computational overhead of cryptography is sometimes too high for system owners to use.
+
+There are several popular hardware implementations, the most popular being Ethernet and WiFi. Ethernet was created in 1982 from the earlier Aloha protocol. It originally used *carrier sense multiple access with collision detection* (CSMA/CD).
+
+CSMA/CD was used because Ethernet was originally a multiple access medium, meaning that several hosts use the same wire to send data. If two hosts tried to send data simultaneously, there would be a *collision*. This is where two electrical signals in the same wire would mix, making the data they represent unreadable. *Carrier sense* meant that the host listens to the cable before sending data, and if the cable isn't being used, they send the data.
+
+This still isn't enough to prevent two hosts sending at the exact same time, so *collision detection* is needed. While sending, each host listens to the wire for collisions, and if one is sensed a
+> Lecture 52 slide 126
