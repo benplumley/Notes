@@ -61,3 +61,11 @@ Conceptually, data from an application is passed down through the layers until i
 
 Here is a diagram showing a possible (but unlikely) OSI encapsulation.          
 ![](http://i.gyazo.com/29f915a67e32e2068dbc75adb83a368e.png)
+
+An example of this is early modems which treated bytes values less than 32 as commands instead of data, e.g. 4 might mean 'end transmission' instead of the number 4. You simply can't send the value 4, as the modem would interpret this as a command and end the connection. This means you need to transform the data somehow so that 4 is never seen by the modem in the datastream. This transformation must be reversible, so the other end can reconstruct the four. This is why encapsulation is necessary - so that data can be transmitted accurately, even if you are using weird hardware.
+
+In this situation, the transformation used was often *byte stuffing*. The link layer could replace "04" by, say, a pair of bytes "DB D4". The link layer ar the other end could recognise this pair and replace it by the single byte "04". The "DB" here is called escape character, and it's presence in the datastream means the next character is encoded, so special action must be taken. If the escape character appears is in the datastream, that needs to be stuffed too, e.g. "DB" may become "DB FF". Using escape characters means there is less space for data, so byte stuffing is a tradeoff between some expansion of the data and correct transmission of the data.
+
+A similar situation is telephone phreaking, where sounds made down a telephone were misinterpreted as commands to the telephone exchange. The problem here is that the same channel is being used both for the data and the control of the data - each can be mistaken for the other unless care is taken.
+
+As far as the different layers in the model are concerned, they don't know exactly what the data they receive represents. They simply transform it somehow, maybe prepend a header to indicate the kind of transformation used, then pass it to the next layer. When sending data, it travels down through the model being transformed at each stage, until it reaches the physical layer where it is transmitted. When receiving data, it proceeds up the layers, unwrapping and untransforming at each one, until it we get the original data reaching the application (hopefully).
