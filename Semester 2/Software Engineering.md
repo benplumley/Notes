@@ -392,7 +392,7 @@ Project planning consists of breaking down the work into parts, assigning these 
 
 It is important to assess your constraints when planning. Questions to consider include when must it be completed, how much is our budget, who will be working on it etc. You should also define milestones in order to assess the progress throughout the project, with the final deliverable being the last milestone.
 
-Project management can be viewed as balance between time, scope and cost, as seen here:               
+Project management can be viewed as balance between time, scope and cost, as seen here:
 ![](http://i.gyazo.com/14b9bc0a00ef05ac16b6e3a4fdb426be.png)
 
 The project planning cycle goes like this:
@@ -406,12 +406,12 @@ The project planning cycle goes like this:
 
 When scheduling, you should break down the project into a list of activities/tasks. Estimate the time and resources required to complete activities, and organise them into a coherent sequence. Be sure to allow for contingencies when estimating duration. We work in the real world, and problems will always arise, so factor in a % delay using prior experience of similar projects.
 
-When scheduling activities, consider concurrency, i.e. can multiple tasks be completed simultaneously? Also consider dependency - does this task need to be completed before we can start the next task? Activities, milestones and dependencies should be recorded in a table like this:                
+When scheduling activities, consider concurrency, i.e. can multiple tasks be completed simultaneously? Also consider dependency - does this task need to be completed before we can start the next task? Activities, milestones and dependencies should be recorded in a table like this:
 ![](http://i.gyazo.com/06a5d904a04249c915af7b4c01756d5f.png)
 
 A *Gantt Chart* is a tool to represent the structure of the team's work. It is designed to allow planning and monitoring of tasks, and shows the breakdown of the work into tasks over time. The chart gives a clear impression of task timing i.e. what needs to be done by when. Concurrency is clear, however dependencies and personnel responsibilities are hard to see.
 
-Example of a Gantt Chart:               
+Example of a Gantt Chart:
 ![](http://i.gyazo.com/3763ede55bd0c1cdc9fc5200757e0b16.png)
 
 The *Critical Path Method* (CPM) is another method of scheduling. It is a simple node-and-edge graph of tasks to be carried out with time, and is used to identify critical tasks (possible 'bottleneck' points). The critical path is the longest one from start to finish. It allows project managers to invest more resources into critical tasks to avoid a project slip. However it can be difficult to identify the task start/end times at a glance.
@@ -453,6 +453,6 @@ Selecting and deploying staff is an important process, as poor groups can cause 
 
 Cohesiveness is influenced by factors such as the organisational culture and the personalities in the group. Cohesiveness can be encouraged through social events, developing a group identity and territory, and explicit team-building activities. Openness with information is another simple way of ensuring that all group members feel like part of the group. However, cohesive groups may develop very loyal memberships, which is generally a good thing but can also lead to restrictive practices.
 
-*Groupthink* is a preservation of group irrespective of techinical or organisational considerations. It is a phsycological phenomenon that occurs within a group of people, in which the desire for harmony or conformity in the group leads irrational or dysfunctional decision making. Group members try to minimise conflict and reach a consensus decision without critical evaluation of alternative viewpoints, by actively suppressing alternate viewpoints and isolating themselves from outside influences. Management should act positively to avoid groupthink, by maintaining external involvement with each group and have multiple group memberships within the company.
+*Groupthink* is a preservation of group irrespective of technical or organisational considerations. It is a phsycological phenomenon that occurs within a group of people, in which the desire for harmony or conformity in the group leads irrational or dysfunctional decision making. Group members try to minimise conflict and reach a consensus decision without critical evaluation of alternative viewpoints, by actively suppressing alternate viewpoints and isolating themselves from outside influences. Management should act positively to avoid groupthink, by maintaining external involvement with each group and have multiple group memberships within the company.
 
 Group communication is essential for effective group working, and is the main mechanism for defining and coordinating joint work, and conducting work where more than one person is required. Information must be exchanged on the status of work, design decisions and changes to previous decisions - this in turn strengthens group cohesion.

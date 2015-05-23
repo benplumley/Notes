@@ -8,3 +8,5 @@ Source and destination IP addresses are four bytes long, typically written as fo
 This means that all packets destined for one network can be routed in the same way. Only when those packets enter the destination network is local knowledge needed. The host part is further split into *subnet* to help local routing within the university.
 
 These addresses are independent of hardware, so they are the same on Ethernet as on WiFi or any other kind of network.
+
+The problem now is that to send a packet
