@@ -420,4 +420,39 @@ Here is an example of a graph made using the critical path method and it's assoc
 ![](http://i.gyazo.com/d2aacee5d50e56a9ff9b2543fdb9bf6c.png)
 ![](http://i.gyazo.com/e8dabf1ca5cc0b78f629415b038dc223.png)
 
-> End of scheduling
+###Managing People
+
+Software engineering is a group activity, as real-world big software projects can rarely be completed by one person working alone. Groups are often multi-skilled, so good people managers are able to get the best out of their team. Poor people management is a major cause of systems failure.
+
+*Brooks's Law* states that "adding manpower to a late software project makes it later". This is because it takes some time for the people added to a project to become productive, and also because communication overheads increase as the number of people increases.
+
+Individual group members may bring specific skills to the team, which software engineering companies have to manage and preserve, for example:
+- Specific product or application domain experience
+- Specific platform or programming language skills
+- Skills such as User Experience (UX) and hardware interfacing (these skills are in short supply)
+- Problem solving, communication and social skills
+
+There are several factors to consider in people management:
+- Consistency - Team members should all be treated in a comparable way without favourites or discrimination.
+- Respect - Different team members have different skills, and these differences should be respected.
+- Inclusion - Involve all team members and make sure that people's views are considered.
+- Honesty - You should always be honest about what is going well and what is going badly in a project.
+
+Motivation is a very important factor in people management, and a fairly complicated one. This *Hierarchy of Needs* by Abraham Maslow models the differenct factors affecting motivation:
+![](http://i.gyazo.com/5f49be102c38c2688e2150176fcd8ee2.png)
+
+Individual people are motivated by combinations of objectives and activities. These can be task oriented (the work itself), self-oriented (rewards brought by successfully completing work) and interaction-oriented (being part of a social group and dealing with co-workers). The balance between these can depend on personal circumstances, the size of the team, the degree of individual contact or external events.
+
+Selecting and deploying staff is an important process, as poor groups can cause sytems to fail, and you need to manage and get the best value of of their intellectual capital. Information on this comes from interviewing and talking with candidates, and recommendations and comments from other people who know or have worked with the candidates. Important factors include:
+- Educational background and willingness to learn
+- Adaptability (range of past projects and activities)
+- Positive attitude, enthusiasm and work rate
+- Compatibility of personality with the team
+
+*Group cohesiveness* is when group members possess bonds linking them to one another and the group as a whole. Cohesion means that peoples inhibitions to contribute are reduced, and group quality standards can be developed. Group members work closely together, so the team members learn from each other and get to know each other's work.
+
+Cohesiveness is influenced by factors such as the organisational culture and the personalities in the group. Cohesiveness can be encouraged through social events, developing a group identity and territory, and explicit team-building activities. Openness with information is another simple way of ensuring that all group members feel like part of the group. However, cohesive groups may develop very loyal memberships, which is generally a good thing but can also lead to restrictive practices.
+
+*Groupthink* is a preservation of group irrespective of techinical or organisational considerations. It is a phsycological phenomenon that occurs within a group of people, in which the desire for harmony or conformity in the group leads irrational or dysfunctional decision making. Group members try to minimise conflict and reach a consensus decision without critical evaluation of alternative viewpoints, by actively suppressing alternate viewpoints and isolating themselves from outside influences. Management should act positively to avoid groupthink, by maintaining external involvement with each group and have multiple group memberships within the company.
+
+Group communication is essential for effective group working, and is the main mechanism for defining and coordinating joint work, and conducting work where more than one person is required. Information must be exchanged on the status of work, design decisions and changes to previous decisions - this in turn strengthens group cohesion.
