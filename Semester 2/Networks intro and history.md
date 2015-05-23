@@ -59,5 +59,5 @@ Conceptually, data from an application is passed down through the layers until i
 - Do some arbritarily complicated manipulation
 - Do nothing
 
-Here is a diagram showing a possible (but unlikely) OSI encapsulation.
+Here is a diagram showing a possible (but unlikely) OSI encapsulation.          
 ![](http://i.gyazo.com/29f915a67e32e2068dbc75adb83a368e.png)
