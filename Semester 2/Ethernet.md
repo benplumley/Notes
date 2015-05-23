@@ -20,3 +20,4 @@ These are layed out like so:
 
 The destination address will match up with the hardware address in the Ethernet card of one host. These addresses are unique. Every host can see every frame on its subnet, so hosts must read the destination of every incoming frame to check whether it is intended for that host. This is a security issue, because every host can also read data not intended for it.
 
+This works well enough between computers on a local network, but if the destination isn't local then this approach would mean broadcasting our frames to everyone. This isn't feasible for scaling and security reasons. Also, this assumes that the destination host is part of an Ethernet network, which might not be true. Instead, we introduce *software addresses* and *IP*.
