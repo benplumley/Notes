@@ -385,3 +385,31 @@ The *task-artifact cycle* describes how systems should be developed and then evo
 3. Make a model of the task being performed  
 4. Make an artifact to support the people performing the task  
 5. People perform the task with the artifact. Repeat from stage 2  
+
+###Scheduling
+
+Project planning consists of breaking down the work into parts, assigning these to team members, and trying to anticipate and deal with any problems that arise. It also involves regular reviewing and replanning. Planning is an *iterative* (ongoing) process.
+
+It is important to assess your constraints when planning. Questions to consider include when must it be completed, how much is our budget, who will be working on it etc. You should also define milestones in order to assess the progress throughout the project, with the final deliverable being the last milestone.
+
+Project management can be viewed as balance between time, scope and cost, as seen here:               
+![](http://i.gyazo.com/14b9bc0a00ef05ac16b6e3a4fdb426be.png)
+
+The project planning cycle goes like this:
+1. Project starts, work begins
+2. Review project progress
+3. Revise project parameters
+4. Update project schedule
+5. Renegotiate with client if needed
+6. Deal with software technical problems if needed (this may involve internal technical reviews)
+7. Repeat from step 2 until the project is completed
+
+When scheduling, you should break down the project into a list of activities/tasks. Estimate the time and resources required to complete activities, and organise them into a coherent sequence. Be sure to allow for contingencies when estimating duration. We work in the real world, and problems will always arise, so factor in a % delay using prior experience of similar projects.
+
+When scheduling activities, consider concurrency, i.e. can multiple tasks be completed simultaneously? Also consider dependency - does this task need to be completed before we can start the next task? Activities, milestones and dependencies should be recorded in a table like this:                
+![](http://i.gyazo.com/06a5d904a04249c915af7b4c01756d5f.png)
+
+A *Gantt Chart* is a tool to represent the structure of the team's work. It is designed to allow planning and monitoring of tasks, and shows the breakdown of the work into tasks over time. The chart gives a clear impression of task timing i.e. what needs to be done by when. Concurrency is clear, however dependencies and personnel responsibilities are hard to see.
+
+Example of a Gantt Chart:               
+![](http://i.gyazo.com/3763ede55bd0c1cdc9fc5200757e0b16.png)
