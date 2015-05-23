@@ -413,3 +413,11 @@ A *Gantt Chart* is a tool to represent the structure of the team's work. It is d
 
 Example of a Gantt Chart:               
 ![](http://i.gyazo.com/3763ede55bd0c1cdc9fc5200757e0b16.png)
+
+The *Critical Path Method* (CPM) is another method of scheduling. It is a simple node-and-edge graph of tasks to be carried out with time, and is used to identify critical tasks (possible 'bottleneck' points). The critical path is the longest one from start to finish. It allows project managers to invest more resources into critical tasks to avoid a project slip. However it can be difficult to identify the task start/end times at a glance.
+
+Here is an example of a graph made using the critical path method and it's associated table. The path in red is the longest, and is therefore the critical path.
+![](http://i.gyazo.com/d2aacee5d50e56a9ff9b2543fdb9bf6c.png)
+![](http://i.gyazo.com/e8dabf1ca5cc0b78f629415b038dc223.png)
+
+> End of scheduling
