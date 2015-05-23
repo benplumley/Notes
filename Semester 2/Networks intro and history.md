@@ -52,5 +52,12 @@ A typical MAC layer sends the data as a sequence of frames, which are chunks of 
 
 Remember - **People Don't Need To See Pink Alligators**. Sort it out, people.
 
+Conceptually, data from an application is passed down through the layers until it reaches the hardware. As it passes from layer to layer it is *encapsulated* - a transformation of the data in such a way the the layer below can cope with it transparently, and in a way that it can be untransformed back again. At each layer, the transformation might:
+- Add an identifying header or trailer (or both) that is needed for the functionality of the layer
+- Encode certain bit patterns that might be misinterpreted or mis-transmitted by the next layer
+- Put items in a standard form e.g. integers into a well-known format
+- Do some arbritarily complicated manipulation
+- Do nothing
 
-
+Here is a diagram showing a possible (but unlikely) OSI encapsulation.
+![](http://i.gyazo.com/29f915a67e32e2068dbc75adb83a368e.png)
