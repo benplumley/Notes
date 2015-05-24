@@ -71,3 +71,23 @@ A similar situation is telephone phreaking, where sounds made down a telephone w
 As far as the different layers in the model are concerned, they don't know exactly what the data they receive represents. They simply transform it somehow, maybe prepend a header to indicate the kind of transformation used, then pass it to the next layer. When sending data, it travels down through the model being transformed at each stage, until it reaches the physical layer where it is transmitted. When receiving data, it proceeds up the layers, unwrapping and untransforming at each one, until it we get the original data reaching the application (hopefully).
 
 All these headers and encapsulation may seem wasteful however, as if the data is small then the data transmitted on the wire may be mostly headers and footers. However, it gives us *flexibility*, meaning we could replace the 1Gb network card in our machine with a new improved 10Gb network card, and because the physical layer is totally seperate from the data link layer, we can write an implementation for the new 10gb physical layer, and slot it in where the old one was without the other layers knowing anything has changed.
+
+**The Internet model** is a four layer model, developed after the Internet Protocol had gained popularity. The primary implementation of this model is TCP/IP, but that is the instance, not the model. They are often confused because they seem so similar, however it is possible (although unlikely) that a network protocol other than TCP/IP could be based on the four layer Internet model.
+
+1 - **Link layer**. This corresponds to the physical and data link layers in the OSI model. The model doesn't say much about this layer, only that it has to be capable of sending and receiving Internet Protocol (IP) packets, so what you do with the hardware is pretty open.
+
+2 - **Network layer** (also known as the internet layer). This directly corresponds to the OSI network layer, and handles the movement of packets, particularly routing. In TCP/IP, a protocol called the Internet Protocol (IP) is defined in this layer. It is an unreliable protocol, meaning it does not gaurantee the delivery of packets (sometimes it is better to deal with an occasional lost packet than to hold up the system while the lost packet is re-requested and resent, e.g. video streaming where fast delivery is more important than accurate delivery). 
+
+3 - **Transport layer**. This directly corresponds to the OSI transport layer, and provides a flow of data between source and destination. In TCP/IP, there are two protocols in this layer - the *transmission control protocol* (TCP), and the *user datagram protocol* (UDP). TCP is a reliable protocol, making a reliable layer out of a potentially unreliable IP by a complex mechanism of packet acknowledgements. 
+
+However, we don't always want to pay the non-trivial cost of that mechanism (e.g. in video streaming), so the other protocol, UDP, is not reliable. By not reliable, we mean it is as reliable as the underlying layer, IP. UDP was devised long after TCP, when it was realised how useful unreliable protocols can be, which i s why the protocol set is called "TCP/IP" - tht was the entire protocol set for a fair while.
+
+4 - **Application layer**. This roughly corresponds to the OSI session, presentation and application layers. This means that Internet application programmers must take care over session and presentation issues. Many people forget this, e.g. historically some Web servers produced pages that did not display properly on other systems, because the programmers assumed all Web clients used the same data representations they used.
+
+A typical email application will actually apply a presentation encapsulation *before* adding the application headers (To, From etc.). The Multipurpose Internet Mail Extensions (MIME) standard is a way to encode data (e.g. text, sound, pictures, video) in a safe way. It was originally developed in the context of email, but is now used in other areas like Web page delivery, where there are mixed kinds of data to transmit. Similarly for the session layer, if a persistent session is needed the application must code it, rather than it being something which comes built-in from another layer.
+
+A typical implementation of TCP/IP has the following protocols:
+- Link layer - Ethernet, Wifi
+- Internet layer - IP and various control protocols (ICMP)
+- Transport layer - TCP, UDP and others
+- Application - HTTP, SMTP etc.
