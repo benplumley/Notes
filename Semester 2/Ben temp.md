@@ -25,3 +25,10 @@ Web services also allow service discovery through the *web services description 
 SOAP is an extension of XML. It is very verbose and therefore slow to transmit, generate and parse.
 
 Web services are very popular, especially between businesses. They are system independent and standardised so anyone can register with a broker and interoperate. Examples include IBM WebSphere and Globus Toolkit. As these services run using HTTP, they can also easily run on HTTPS and be secure.
+
+*The Cloud* is the current popular way of selling remote computer time. Hardware and software can be bought and used remotely, as it was in the 60s and 70s, only now it's done over the Internet.
+- Infrastructure as a Service (IaaS): the vendor provides server machines to be managed entirely by the user
+- Platform as a Service (PaaS): the vendor provides hardware and an OS, the user installs software
+- Software as a Service (SaaS): the vendor provides application software that can be used via the Internet without configuration
+
+These services are used by major websites. For instance, Dropbox doesn't have its own storage, but instead rents it from Amazon, who provides all the backups and multiple copies. They can use economies of scale to do this more cheaply than an individual company.
