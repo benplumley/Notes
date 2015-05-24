@@ -9,4 +9,22 @@ This means that all packets destined for one network can be routed in the same w
 
 These addresses are independent of hardware, so they are the same on Ethernet as on WiFi or any other kind of network.
 
-The problem now is that to send a packet
+The problem now is that to send a packet, we need to know both the hardware address and the software address. Given a host's IP address, we need to find the corresponding Ethernet address. This is done by the *Address Resolution Protocol* (ARP). This is a protocol in the link-layer that broadcasts an ARP frame on the local network asking who has that IP address. The host with that IP address responds with its Ethernet address. These values are cached by each host, and expire in case a new machine takes that IP address.
+
+This works when the host and destination are on the same network. If they aren't, the packet is instead sent to the gateway host and the process of non-local routing begins. In this case, the hardware address would be of the gateway and the software address would be of the destination host, two different machines.
+
+The reason both hardware and software addresses are needed is because with non-local routing they refer to diferent things: the hardware address is for the next hop and the software address is for the ultimate destination. ARP isn't specifically for IP and Ethernet, it can pair and physical (hardware) and network layer (software) addresses.
+
+####DHCP
+
+When a machine is set up or turned on, it doesn't have an IP address. It uses the *Dynamic Host Configuration Protocol* (DHCP) to get one. When the machine is newly connected to a network, it makes a DHCP broadcast to the network, to which a special-purpose DHCP host must respond. This machine will read the request, choose an unused IP address, and send it back to the requesting host. The new host configures itself to use this address.
+
+When a host is turned off, it is supposed to inform the server via DHCP that it is finished with the address so that it can be added back into the pool of free addresses. However, some hosts ignore this and sometimes it's impossible (eg in a powercut). This is solved by giving each address a lease time, after which the address expires.
+
+If this expires while it's being used, the host can renegotiate use of the same address through DHCP. Lease times depend on the situation - for instance, in a coffee shop, hosts might only connect for tens of minutes, so this is a suitable lease time. In a data centre, the same hosts will likely be connected for months at a time, meaning long leases with little overhead can be used.
+
+DHCP also supplies to new hosts the address of the gateway, the addresses of name servers (DNS), lease times, and the addresses of servers for things like printing and mail.
+
+####IP Addresses
+
+The problem with 4-byte IP addresses is that there aren't enough of them for all the computers - 2^32 is around 4.3 billion addresses, clearly not enough for a population of 7 billion.
