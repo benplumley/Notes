@@ -20,3 +20,26 @@ SSL/TLs allows authentication in both direction, meaning the server can authenti
 However, banks typically use usernames and passwords to authenticate the user, not SSL/TLS, because this would involve the user generating and managing a certificate, and sending it to the bank by some seperate, authenticated mechanism. This would be too hard for most users, and would cost the bank a lot in certificate management, so usernames and passwords are used instead.
 
 Example: If a Web browser wishes to authenticate a server, it sends to the server a request for a certificate using SSL/TLS. The Web browser already contains a collection of certificates from certification authorities - companies that sell certification services. The browser can use these to verify that the certificate returned from the server is real. Clever maths is used to prevent forgery of these certificates.
+
+While SSL/TLS is widely used and beleived to be reasonably secure if implemented correctly, it is under continual review as new attacks are discovered. The are mostly holes in implementations (Heartbleed, FREAK), but accasionally are holes in the actual protocol (CRIME).
+
+A library layers over TCP, and gives a new transport layer that can be used very much like TCP. There are several decent implementations including OpsnSSL, GNUTLS, NSS and several others. Many protocols can layer over SSL/TLS instead of TCP to give a secure version. For example:
+- HTTP, the protocol used to fetch pages, has a secure version layered over SSL/TLS called HTTPS.
+- SMPTS, the protocol used to send email, has a secure version called SSL/TLS called SMTPS.
+- IMAP, the protocol used to read amil, has a secure version called IMAPS.
+
+There are overheads in using SSL/TLS:
+- A one-off overhead of writing the application code to use SSL/TLS rather than TCP.
+- A per-connection overhead of setup messages and the associated computation for checking certificates.
+- A per-packet overhead of data expansion in the encoding of the encrypted data.
+- A per-packet overhead of the computation required to encrypt and decrypt the data.
+
+Big providers such as Google started to move their services to SSL/TLS, e.g. Google now uses HTTPS rather than HTTP to protect all of Gmail. For such a large company there is a significant cost in doing so, but the security gained makes it worthwhile.
+
+SSL/TLS can also be used to provide a link layer, in the sense that you can use it to support a network layer. An example of this is OpenVPN, a virtual private network system. It uses SSL/TLS to create a link layer, and creates a new virtual network interface that the OS can pass IP packets to. 
+
+The code behind this interface handles authentication, encryption etc. before handing the result on to a 'real' transport layer, usually UDP. The encapsulated data then goes down through the normal transport and netowrk layers and is transmitted over the real link and physical layers. At the receiving end, the real transport layer hands the data to OpenVPN, which decrypts and passes the resulting IP packets to the OS to pass up the rest of the stack via its virtual interface.
+
+This allows applications to use encrypted private network, layered over an insecure public network. The big benefit here is that an unaltered application gets the security and authentication for 'free', and all applications are now secured at no effort to them. Additionally, the VPNs can tunnel IP packets across the public Internet to a secure destination network, such as your home network. This makes it appear that your computer is directly connected to, for example, your workplace network, wherever you happen to be plugged in. This is very useful for mobile workers to get easy access to work resources.
+
+So a VPN creates a single, secure point-to-point connection that can be used by any unaltered application on the host. TLS on the other hand is coded into an application, which can then make a secure connection to any other host that runs TLS.
