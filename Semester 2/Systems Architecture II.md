@@ -1034,10 +1034,45 @@ There are overheads in using SSL/TLS:
 
 Big providers such as Google started to move their services to SSL/TLS, e.g. Google now uses HTTPS rather than HTTP to protect all of Gmail. For such a large company there is a significant cost in doing so, but the security gained makes it worthwhile.
 
-SSL/TLS can also be used to provide a link layer, in the sense that you can use it to support a network layer. An example of this is OpenVPN, a virtual private network system. It uses SSL/TLS to create a link layer, and creates a new virtual network interface that the OS can pass IP packets to. 
+SSL/TLS can also be used to provide a link layer, in the sense that you can use it to support a network layer. An example of this is OpenVPN, a virtual private network system. It uses SSL/TLS to create a link layer, and creates a new virtual network interface that the OS can pass IP packets to.
 
 The code behind this interface handles authentication, encryption etc. before handing the result on to a 'real' transport layer, usually UDP. The encapsulated data then goes down through the normal transport and netowrk layers and is transmitted over the real link and physical layers. At the receiving end, the real transport layer hands the data to OpenVPN, which decrypts and passes the resulting IP packets to the OS to pass up the rest of the stack via its virtual interface.
 
 This allows applications to use encrypted private network, layered over an insecure public network. The big benefit here is that an unaltered application gets the security and authentication for 'free', and all applications are now secured at no effort to them. Additionally, the VPNs can tunnel IP packets across the public Internet to a secure destination network, such as your home network. This makes it appear that your computer is directly connected to, for example, your workplace network, wherever you happen to be plugged in. This is very useful for mobile workers to get easy access to work resources.
 
 So a VPN creates a single, secure point-to-point connection that can be used by any unaltered application on the host. TLS on the other hand is coded into an application, which can then make a secure connection to any other host that runs TLS.
+
+####Services
+
+A service is just where a client makes a request and the server fulfills that request. DNS is a service, as are LDAP and other databases, remote disk access, and the web. This can be extended to arbitary computations.
+
+One such example is *remote procedure call* (RPC). We can put a function onto another machine and, rather than just requesting data from that machine, request it to perform that function and return the result to the client. This could be for several reasons
+- the function is computationally expensive so it makes sense to offload it
+- the data needed are stored on the remote machine
+- the data needed are not available to the public
+- the program to calculate the result is not available to us  
+![](http://i.gyazo.com/6a49b4d62907eaade9c7a28d15de0c7a.png)
+
+RPC is quite a simple mechanism, but only useful in cases where the reasons hold. Otherwise, it introduces unnecessary network latency into code that would be faster locally.
+
+*Web services* use the idea that fetching a webpage isn't very different from RPC. We can encode our data using a protocol such as SOAP or JSON and send it to the server over HTTP.
+
+Web services also allow service discovery through the *web services description language* (WSDL). This language allows us to describe what service we want performed. The *universal description discovery and integration* (UDDI) protocol published and allows discovery of services through servers acting as service brokers, whose purpose is to support discovery.
+- A server uses WSDL to register with a service broker
+- A client wishes to compute a function
+- It asks the broker for a suitable server using WSDL
+- The broker replies
+- The client sends its request to the server
+- The server computes the result
+- The server replies
+
+SOAP is an extension of XML. It is very verbose and therefore slow to transmit, generate and parse.
+
+Web services are very popular, especially between businesses. They are system independent and standardised so anyone can register with a broker and interoperate. Examples include IBM WebSphere and Globus Toolkit. As these services run using HTTP, they can also easily run on HTTPS and be secure.
+
+*The Cloud* is the current popular way of selling remote computer time. Hardware and software can be bought and used remotely, as it was in the 60s and 70s, only now it's done over the Internet.
+- Infrastructure as a Service (IaaS): the vendor provides server machines to be managed entirely by the user
+- Platform as a Service (PaaS): the vendor provides hardware and an OS, the user installs software
+- Software as a Service (SaaS): the vendor provides application software that can be used via the Internet without configuration
+
+These services are used by major websites. For instance, Dropbox doesn't have its own storage, but instead rents it from Amazon, who provides all the backups and multiple copies. They can use economies of scale to do this more cheaply than an individual company.
