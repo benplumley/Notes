@@ -30,4 +30,6 @@ Energy is a very limiting factor in a mobile phone. The only power available com
 
 d. This is desirable so that programs written for one piece of hardware will also work on another piece of hardware running the same operating system. If the programmer had to interface directly with the hardware, as was the case in early computers, the program would have to be rewritten completely to run on a different piece of hardware. If the program can interface with standard parts of the OS, then it will be able to run wherever that OS runs.
 
-e. Another desirable property is 
+e. Another desirable property is
+
+f. The OS and system libraries perform different tasks. The purpose of system libraries is to offer implementations of standard functions
