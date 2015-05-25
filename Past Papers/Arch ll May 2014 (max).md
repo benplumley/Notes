@@ -1,4 +1,4 @@
-#1
+######1
 
 1a - Memory protection is needed to stop one program from reading or writing to the data needed by another program or the monitor/OS. It must also allow the OS to read and write to any part of memory.
 
@@ -12,7 +12,7 @@
 
 1d - Because it has to be very fast, and is therefore very expensive.
 
-#2
+######2
 
 2d - The programmer doesn't want to have to know the intricacies of the hardware in order to write a program, nor do they want to re-implement basic functions like print in every program, so the OS should do this for them. This saves time for the programmer, and the expert who did this presumably has more programming experience, understands the hardware well, and is familiar with OS programming, so is much more suited to the task.
 
@@ -26,7 +26,7 @@ A standard is a set of rules that any implementation following the standard must
 
 A protocol is a suggested implementation, specified by a standard. Protocols are useful because they clearly follow a specific standard, so by using a protocol can be sure you are complying with the standards, and will be able to communicate with other users of the protocol.
 
-#5
+######5
 
 5a - The Domain Name System (DNS) is a protocol that takes a machines name (e.g. lcpu.bath.ac.uk) and finds it's IP address, which is needed if two machines want to communicate.
 
