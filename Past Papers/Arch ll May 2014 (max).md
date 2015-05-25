@@ -1,3 +1,5 @@
+#1
+
 1a - Memory protection is needed to stop one program from reading or writing to the data needed by another program or the monitor/OS. It must also allow the OS to read and write to any part of memory.
 
 1b - The memory management unit (MMU) is a special piece of hardware which contains a table of flags for the currently running (user mode) process, which say whether or not the current process can read or write to given areas of memory. Memory is split into blocks called pages (normally 4096 bytes), which is marked readable/writable as a whole. Setting the flags in the MMU is a privileged operation, so only privileged programs can change them. Every time an unprivileged process tries to perform a memory access, the MMU checks the flags to see if it is allowed to do so.
@@ -10,6 +12,7 @@
 
 1d - Because it has to be very fast, and is therefore very expensive.
 
+#2
 
 2d - The programmer doesn't want to have to know the intricacies of the hardware in order to write a program, nor do they want to re-implement basic functions like print in every program, so the OS should do this for them. This saves time for the programmer, and the expert who did this presumably has more programming experience, understands the hardware well, and is familiar with OS programming, so is much more suited to the task.
 
@@ -23,6 +26,7 @@ A standard is a set of rules that any implementation following the standard must
 
 A protocol is a suggested implementation, specified by a standard. Protocols are useful because they clearly follow a specific standard, so by using a protocol can be sure you are complying with the standards, and will be able to communicate with other users of the protocol.
 
+#5
 
 5a - The Domain Name System (DNS) is a protocol that takes a machines name (e.g. lcpu.bath.ac.uk) and finds it's IP address, which is needed if two machines want to communicate.
 
@@ -40,7 +44,3 @@ If all machines names and IP addresses were stored in a single table, sorting th
 - dns1 sends a SOA request to dns3.nic.uk for the 'bath.ac.uk' label, dns3 replies with the name and IP address of the DNS server which manages 'bath.ac.uk', say dns4.bath.ac.uk.
 - dns1, knowing that dns4.bath.ac.uk must know the address for lcpu.bath.ac.uk, sends an address request to dns4 for lcpu.bath.ac.uk. dns4 replies with the IP address for lcpu.
 - dns1 sends the IP address of lcpu.bath.ac.uk back to the initial host.
-
-
-
-
