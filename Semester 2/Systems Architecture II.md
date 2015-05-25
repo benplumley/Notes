@@ -277,7 +277,7 @@ Processes compete for resources like disks and networks, and the OS mediates thi
 
 Say process P1 wants to copy some data from disk D1 to disk D2, while process P2 wants to copy some data from D2 to D1. The OS (rather stupidly) gives P1 exclusive access to D2 and P2 exclusive access to D1. The OS then runs P1, which requests an access to D1, but P2 has locked it so P1 must wait, and is therefore moved to the block state. The OS then runs P2 which requests an access to D2, but P1 has locked it so P2 must wait, and is moved to the block state. Now both processes are blocked and the OS can't run either process. This is called **deadlock**, and can happen on any kind of shared resources that require exclusive access. It can also happen with more than two processes, there could be three or more all waiting for the other.
 
-Formal definition: A set or processes D is **deadlocked** if each process Pi in D is blocked on some event Ei, and event Ei can only be caused by some process in D.
+Formal definition: A set of processes D is **deadlocked** if each process Pi in D is blocked on some event Ei, and event Ei can only be caused by some process in D.
 
 Deadlock is only possible if certain necessary conditions are met, called the **Coffman conditions**:
 
