@@ -828,7 +828,7 @@ Conceptually, data from an application is passed down through the layers until i
 - Do some arbritarily complicated manipulation
 - Do nothing
 
-Here is a diagram showing a possible (but unlikely) OSI encapsulation.
+Here is a diagram showing a possible (but unlikely) OSI encapsulation.                    
 ![](http://i.gyazo.com/29f915a67e32e2068dbc75adb83a368e.png)
 
 An example of this is early modems which treated bytes values less than 32 as commands instead of data, e.g. 4 might mean 'end transmission' instead of the number 4. You simply can't send the value 4, as the modem would interpret this as a command and end the connection. This means you need to transform the data somehow so that 4 is never seen by the modem in the datastream. This transformation must be reversible, so the other end can reconstruct the four. This is why encapsulation is necessary - so that data can be transmitted accurately, even if you are using weird hardware.
