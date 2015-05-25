@@ -37,3 +37,21 @@ No preemption is when no resource can be forcibly removed from a process which h
 2i - Process scheduling is the problem of deciding which process to run next, decided by some kind of scheduling algorithm.
 
 2j - Thrashing is when an OS spends more time deciding what to do and which processes to run than actually doing things/running them, and was a common problem for early OSs.
+
+####4
+
+4a - When a host listens to the ethernet to see if anyone else is sending data at the time before sending it's own data, to try and avoid collisions.
+
+4b - When multiple hosts use the same piece of wire to send data to one another.
+
+4c - When hosts continue to listen to see if anyone else is sending data while they are sending data. If yes, the host waits a random (small) amount of time then tries again (with carrier sense).
+
+4d - Carrier sense is needed because if two hosts send data at the same time, it causes a collision - the electrical signals get mixed, making the data unreadable.
+
+4e - Two hosts could still send data at the exact same time, which would still result in a collision.
+
+4f - The destination address matches up to the hardware address of the host's ethernet card, allowing various hosts to read the address and check if the data is meant for them. The source is address allows the host to identify who sent the data, allowing it to reply if needed.
+
+4g - The Internet Protocol uses IP addresses, which are 4 bytes long and typically written as four decimals. These are used in routing - the first bytes (the amount varies) represent the network address, and the last bytes are the host address. There is an IP address for the source and destination, so the data can be routed to the correct host, and that host can reply to the address which sent it.
+
+4h - The address resolution protocol (ARP) is a simple link-layer protocol used to find the corresponding Ethernet address when given IP address. It broadcasts an ARP frame with the given IP address on the local network, and the host with that IP address replies with an ARP frame with it's Ethernet address. The issue is that any host on the local network could send an ARP frame with their Ethernet address claiming to have the given IP address, even if they do not, and would then be able to read that data.
