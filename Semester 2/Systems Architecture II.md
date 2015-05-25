@@ -432,7 +432,7 @@ A signal is just a single bit, but there are many different types of signal (HUP
 
 There are some signals which cannot be ignored, particularly the KILL signal, which will always terminate the process. This is why signals are regulated by the kernel; a user can kill their own processes, but not others.
 
-Signals are *asynchronous*, meaning they may arrive at any point during the running of the program. Programs that use signals must be written accordingly, as they may arrive at inconvenient times. There exists default signal actions for each type of signal, but a program must include its own handler functions if it wants to do something other than the default action when it receives that signal. When a signal is received, the process stops what its doing, saves it's state and calls the signal handler. If and when the handler exits, the process continues from where it was interrupted.
+Signals are *asynchronous*, meaning they may arrive at any point during the running of the program. Programs that use signals must be written accordingly, as they may arrive at inconvenient times. There exists default signal actions for each type of signal, but a program must include its own handler functions if it wants to do something other than the default action when it receives that signal. When a signal is received, the process stops what its doing, saves its state and calls the signal handler. If and when the handler exits, the process continues from where it was interrupted.
 
 Here are some example signals:
 - INT - A general interrupt. Ignorable.
@@ -718,7 +718,7 @@ This multiple indirect approach seems wasteful, as every indirect block is overh
 
 Reading through the inode and indirect blocks from disk every time a file is accessed is quite time consuming, so a typical OS will read them just once and cache the inode and the indirect blocks in memory to reduce the lookup overhead. If they are modified, the OS will periodically write them back to disk. A good Os will even keep copies of the disk blocks in memory too, so reads/writes to disk are just reads/writes to the in-memory copy. The OS will occasionally write the blocks back to disk, whenever it is convenient to do so. This is why you shouldn't just pull a out a USB stick, as the in-memory copy of the disk may well be out of sync with what is on the actual device. The 'safe to remove' is an indication that everything has been synced up.
 
-The space in the inode for the disk block pointers is used for various other things when the inode refers to something other than a disk file. For example, a *soft link* (similar to a Windows shortcut) to a file or directory. This is a special inode who's purpose it say "don't look at me, look at this other file instead". A flag in the inode header tells the OS that this is a soft link, not a reference to a file.
+The space in the inode for the disk block pointers is used for various other things when the inode refers to something other than a disk file. For example, a *soft link* (similar to a Windows shortcut) to a file or directory. This is a special inode whose purpose is to say "don't look at me, look at this other file instead". A flag in the inode header tells the OS that this is a soft link, not a reference to a file.
 
 The contents of a soft link is just the name of the inode for the file it redirects to. For example, the contents of a soft link named /home/foo that linked to /mnt/bar would just the string "/mnt/bar". When a program opens foo, it is the job of the OS to not present the data "/mnt/bar", but to close the inode referred to by foo and open the inode referred to by bar, and return the data it finds there instead.
 
@@ -741,7 +741,7 @@ Under Unix, a filesystem can be *mounted* on another filesystem. A *mount point*
 
 In filesystem A, the filename /usr/local/bin/prog refers to the prog on A. If we mounty filesystem B at the mount point /usr/local however, this hides the part of the hierarchy below.  /usr/local/bin/prog now refers to the prog on B. When the file lookup gets to the mount point at /usr/local, it switches filesystem and continues looking from the root of B. The benefit of this is that we can have many partitions presented as a single unified filespace, with a single unified namespace for files. Partition B could be on a seperate disk, or a USB key, or a read-only medium like a CD, but to the programmer it's just one big filesystem. This unified namespace is completely different from Windows, where each partition has a prefix like C: or D:.
 
-B will still have it's own inode table, so there can't be hard links between the two partitions, as inode numbers always refer to the inode table in the current partition we are examining. B may even have a completely different kind of filesystem which doesn't use inodes, or could be on a seperate machine if this was a mount of a network disk. Also, in Unix the thing behind the filesystem interface might not even be data files on a disk, it could be a HTTP filesystem where files are web pages for example.
+B will still have its own inode table, so there can't be hard links between the two partitions, as inode numbers always refer to the inode table in the current partition we are examining. B may even have a completely different kind of filesystem which doesn't use inodes, or could be on a seperate machine if this was a mount of a network disk. Also, in Unix the thing behind the filesystem interface might not even be data files on a disk, it could be a HTTP filesystem where files are web pages for example.
 
 On the flip side to this, there are mechanisms for gluing several disks together to make them appear as a single partition, which can be useful for making huge filesystems out of small disks, or for reliability through redundancy (RAID).
 
@@ -775,7 +775,7 @@ The internet started as a project by the American Advanced Research Projects Age
 
 Using simple circuits between machines would be too vulnerable, so *packet switching* was invented. Data is chopped into small chunks (i.e. packets), and each packet is sent individually, possible over different paths. The original data is then reconstructed at the receiving host.
 
-This causes a few problems though. How is the data split? How are the routes found? How do we reconstruct the data from the packets? A packet doesn't know how to get to it's destination, and neither does the source host (unless it's on a local network). A packet is like a postcard with the address written on it, it relies on the *routers* it passes through to make the right decision.
+This causes a few problems though. How is the data split? How are the routes found? How do we reconstruct the data from the packets? A packet doesn't know how to get to its destination, and neither does the source host (unless it's on a local network). A packet is like a postcard with the address written on it, it relies on the *routers* it passes through to make the right decision.
 
 To ensure maximum interoperability, the internet relies on standards and defined protocols. The use of standards means that two machines will be able to communicate with eachother, even if they are made my completely different companies, are of completely different techonologies, and have never previously interacted.
 
@@ -828,12 +828,12 @@ Conceptually, data from an application is passed down through the layers until i
 - Do some arbritarily complicated manipulation
 - Do nothing
 
-Here is a diagram showing a possible (but unlikely) OSI encapsulation.                    
+Here is a diagram showing a possible (but unlikely) OSI encapsulation.
 ![](http://i.gyazo.com/29f915a67e32e2068dbc75adb83a368e.png)
 
 An example of this is early modems which treated bytes values less than 32 as commands instead of data, e.g. 4 might mean 'end transmission' instead of the number 4. You simply can't send the value 4, as the modem would interpret this as a command and end the connection. This means you need to transform the data somehow so that 4 is never seen by the modem in the datastream. This transformation must be reversible, so the other end can reconstruct the four. This is why encapsulation is necessary - so that data can be transmitted accurately, even if you are using weird hardware.
 
-In this situation, the transformation used was often *byte stuffing*. The link layer could replace "04" by, say, a pair of bytes "DB D4". The link layer ar the other end could recognise this pair and replace it by the single byte "04". The "DB" here is called escape character, and it's presence in the datastream means the next character is encoded, so special action must be taken. If the escape character appears is in the datastream, that needs to be stuffed too, e.g. "DB" may become "DB FF". Using escape characters means there is less space for data, so byte stuffing is a tradeoff between some expansion of the data and correct transmission of the data.
+In this situation, the transformation used was often *byte stuffing*. The link layer could replace "04" by, say, a pair of bytes "DB D4". The link layer ar the other end could recognise this pair and replace it by the single byte "04". The "DB" here is called escape character, and its presence in the datastream means the next character is encoded, so special action must be taken. If the escape character appears is in the datastream, that needs to be stuffed too, e.g. "DB" may become "DB FF". Using escape characters means there is less space for data, so byte stuffing is a tradeoff between some expansion of the data and correct transmission of the data.
 
 A similar situation is telephone phreaking, where sounds made down a telephone were misinterpreted as commands to the telephone exchange. The problem here is that the same channel is being used both for the data and the control of the data - each can be mistaken for the other unless care is taken.
 
@@ -1001,7 +1001,7 @@ The relationship between names and addresses is actually many-to-many. More than
 
 ###SSL/TLS
 
-The protocols *secure sockets layer* (SSL) and it's more modern variant *transport layer security* (TLS) provide secure communications over the Internet. The internet was designed in a safe academic environment with little thought given to privacy, so even today most data on the Internet is readably by all intermediate routers as it passes from source to destination.
+The protocols *secure sockets layer* (SSL) and its more modern variant *transport layer security* (TLS) provide secure communications over the Internet. The internet was designed in a safe academic environment with little thought given to privacy, so even today most data on the Internet is readably by all intermediate routers as it passes from source to destination.
 
 SSL/TLS layers on top of the transport layer, particularly TCP, and provides privacy and authenticaton. It also prevents:
 - Tampering, e.g. changing the message "send Jim £10" to "send Bob £50".
