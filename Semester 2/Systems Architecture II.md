@@ -787,7 +787,7 @@ To implement a network system, we need to follow a sensible structured standard.
 - We pick a layering model
 - We use this to guide us in making a standard
 - The standard will specify various protocols
-- Implementations will then follow and excute the protocols
+- Implementations will then follow and execute the protocols
 
 It is very important that the protocols are documented clearly, so that implementations can follow them precisely without ambiguity or omission. Protocols include the expected interactions and interchanges between the entities (hosts) concerned, the messages involved, the message formats used, the actions expected of the entities etc., all so that the entities can agree on something. For networking purposes, this is that some data has been safely passed from one entity to another.
 
