@@ -781,7 +781,7 @@ To ensure maximum interoperability, the internet relies on standards and defined
 
 ###Layering Models
 
-To make two computers communicate, we need some hardware to cnnect them, so there must be some kind of electrical (or other) thing between them. They must then be compatible on voltages, how bits are represented as electrical or optical signals etc., and must agree on how to represent data as bits, e.g. signed or unsigned integers.
+To make two computers communicate, we need some hardware to connect them, so there must be some kind of electrical (or other) thing between them. They must then be compatible on voltages, how bits are represented as electrical or optical signals etc., and must agree on how to represent data as bits, e.g. signed or unsigned integers.
 
 To implement a network system, we need to follow a sensible structured standard. Designing a standard like this is too big a problem to tackle all at once, so the design is split into layers, each with a well-defined functionality. A *layering model* for a system is a suggestion on how to split up the design - it is *not* a networking standard, but a recommendation on how to approach the design of the standard. After you have the standard, you can then make implementations based on the protocols the standard provides. To summarise:
 - We pick a layering model
