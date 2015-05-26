@@ -456,3 +456,18 @@ Cohesiveness is influenced by factors such as the organisational culture and the
 *Groupthink* is a preservation of group irrespective of technical or organisational considerations. It is a phsycological phenomenon that occurs within a group of people, in which the desire for harmony or conformity in the group leads irrational or dysfunctional decision making. Group members try to minimise conflict and reach a consensus decision without critical evaluation of alternative viewpoints, by actively suppressing alternate viewpoints and isolating themselves from outside influences. Management should act positively to avoid groupthink, by maintaining external involvement with each group and have multiple group memberships within the company.
 
 Group communication is essential for effective group working, and is the main mechanism for defining and coordinating joint work, and conducting work where more than one person is required. Information must be exchanged on the status of work, design decisions and changes to previous decisions - this in turn strengthens group cohesion.
+
+###Requirement Managing Methods
+
+**Interviews**
+- Unstructured of semi-structured in early scenarios and structured for more specific scenarios
+- Gives development team members a chance to meet stakeholders, stakeholders feel more involved
+- Collect information on peoples ideas, opinions and experiences
+
+**Focus Groups**
+- Establish a consensus view, not just one person
+- Highlight areas of disagreement
+- Again, dev team meets stakeholders
+
+**Questionnaires**
+- Get a wider perspective on an issue
