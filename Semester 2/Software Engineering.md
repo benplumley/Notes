@@ -586,6 +586,7 @@ Changes can include
 - Introducing new roles or responsibilities
 
 Should be driven by measurable goals. Use process measurements once the changes are implemented to assess effectiveness. The 5 stages of process change are:
+
 1. Improvement identification - use results of analysis to tackle quality problems, propose new processes methods and tools.
 2. Improvement prioritisation, assess the possible changes to the process and prioritise them.
 3. Process change introduction - put the new procedures into place and integrate with other process activities.
