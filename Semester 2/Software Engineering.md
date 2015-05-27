@@ -380,6 +380,7 @@ Individual services should be defined per task from a user perspective rather th
 *Sequence diagrams* are dynamic models used to show the interaction of objects during situations in the running of the program. They show the flow of control and dependencies between objects. They should include *escape sequences* describing how the user would cancel an operation, parallel tasks and an order in which information should be supplied.
 
 The *task-artifact cycle* describes how systems should be developed and then evolve to respond to how they are being used:  
+
 1. People perform a task  
 2. Study the people performing the task  
 3. Make a model of the task being performed  
@@ -396,6 +397,7 @@ Project management can be viewed as balance between time, scope and cost, as see
 ![](http://i.gyazo.com/14b9bc0a00ef05ac16b6e3a4fdb426be.png)
 
 The project planning cycle goes like this:
+
 1. Project starts, work begins
 2. Review project progress
 3. Revise project parameters
@@ -530,6 +532,7 @@ MoSCoW - method for prioritising requirements. M - must have this, S - should ha
 - Proactive - identify potential problems and act in anticipation
 
 Risk management process:
+
 1. Identify - produce a list of potential risks
 2. Analyse/Prioritise - produce a risk assessment with prioritised risk list. Assess likelihood and consequences. Table should contain risk, probability, and impact.
 3. Planning - produce a risk avoidance and contingency plan
@@ -537,6 +540,7 @@ Risk management process:
 5. Response/Resolution - implement plans to reduce/deal with risk
 
 Boehm's top 10 risks:
+
 1. Personell shortfalls
 2. Unrealistic schedules and budgets
 3. Developing the wrong software functions
