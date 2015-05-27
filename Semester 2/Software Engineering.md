@@ -488,7 +488,7 @@ Group communication is essential for effective group working, and is the main me
 **Research**
 - Observe and analyse similar products to improve/extend the requirements of your own
 - reviews/demos/literature/scientific research/case studies
-- 
+
 ###Interview Practice
 - Decide which users to interview, obtain their consent, decide who will do what and when
 - Make a plan for bringing together the data, e.g. indexed and secure archive for the raw data
