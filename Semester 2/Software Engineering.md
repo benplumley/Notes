@@ -547,3 +547,48 @@ Boehm's top 10 risks:
 8. Shortfalls in externally furnished components
 9. Real-time performance shortfalls
 10. Straining computer science capabilities
+
+###Process Improvement
+
+Approaches to process improvement - process maturity approach, and the agile approach.
+
+Process Maturity Approach:
+- Measures the maturity of a process. The maturity reflects the extent which good technical practice and management have been adopted.
+- Main goals are to improve product quality and process predictability.
+- Is about truly understanding the process, analysing and reflecting on it, and identifying weaknesses and improving accordingly.
+- Good for large projects with average developer capabilities, where the process determines the product quality.
+
+Agile approach:
+- Focuses on iterative development and reduction of overheads in the process.
+- Involves rapid delivery of functionality, and responsiveness to changing customer requirements.
+- Is about minimising formality and documentation so more effort can be directed into delivering and improving software products quickly. Faster = more iterations = better product.
+- Good for small projects, where the capabilities of the developers is the biggest determinant of quality.
+
+3 stages of the improvement cycle - process measurement, process analysis, process change.
+
+**Process measurement:**
+- Goals - what is the organisation trying to achieve? e.g. shorter product development time - rapidity
+- Questions - about areas of uncertainty about the goals, e.g. where are the bottlenecks in our current process?
+- Metrics - measurements to be collected to answer the questions, e.g. time taken to complete process activity
+
+**Process analysis:**
+- The study of existing processes to understand the relationships between parts of the process and compare them with other processes.
+- Process modelling - the documentation of a process which records the tasks, the roles and entities used etc.
+- Study an existing process and produce an abstract graphical model of the process. Then alayse the model to discover problems.
+- Can be done with questionnaires and interviews
+- Can be done with ethnographic analysis (obtaining knowledge through observation). Best for in-depth analysis of process fragments, not whole process understanding. This is a prolonged activity, could take months.
+
+**Process change:**
+Changes can include
+- Introducing new practices, methods or processes
+- Changing the ordering of process activities
+- Introducing or removing deliverables
+- Introducing new roles or responsibilities
+
+Should be driven by measurable goals. Use process measurements once the changes are implemented to assess effectiveness. The 5 stages of process change are:
+1. Improvement identification - use results of analysis to tackle quality problems, propose new processes methods and tools.
+2. Improvement prioritisation, assess the possible changes to the process and prioritise them.
+3. Process change introduction - put the new procedures into place and integrate with other process activities.
+4. Process change training - engineers involved need to understand the changes made and how to perform new processes.
+5. Change tuning. Monitor the changed process, discover minor problems and modify accordingly.
+
