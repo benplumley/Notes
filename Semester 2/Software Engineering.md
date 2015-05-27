@@ -457,7 +457,7 @@ Cohesiveness is influenced by factors such as the organisational culture and the
 
 Group communication is essential for effective group working, and is the main mechanism for defining and coordinating joint work, and conducting work where more than one person is required. Information must be exchanged on the status of work, design decisions and changes to previous decisions - this in turn strengthens group cohesion.
 
-###Requirement Managing Methods
+###Requirement Discovery
 
 **Interviews**
 - Unstructured of semi-structured in early scenarios and structured for more specific scenarios
@@ -471,3 +471,53 @@ Group communication is essential for effective group working, and is the main me
 
 **Questionnaires**
 - Get a wider perspective on an issue
+- Or opinions about specific suggestions from a particular audience
+
+**Direct Observation**
+- Understand the nature of the tasks and the context in which they are performed
+- Can be carried out by trained observers who report back to the design team, or by a member of the design team
+
+**Indirect Observation**
+- Diaries, interaction logging etc.
+- Provide data about how a task is performed currently - often tightly coupled with the existing system, not helpful for designing whole new systems
+
+**Studying Domain Documentation**
+- Good source of info about professional bodies and regulations governing a task
+- Should be used with other sources, as they may be designed with particular implementations in mind
+
+**Research**
+- Observe and analyse similar products to improve/extend the requirements of your own
+- reviews/demos/literature/scientific research/case studies
+- 
+###Interview Practice
+- Decide which users to interview, obtain their consent, decide who will do what and when
+- Make a plan for bringing together the data, e.g. indexed and secure archive for the raw data
+- Select equipment - static information (notebooks, pens, cameras) or dynamic information (voice/video recorders)
+- Prepare a written summary of the interview purposes - goals, what will happen to the findings, how their privacy will be protected.
+- Be open minded, avoid pre-conceived ideas, prompt them with questions or proposals, build on the things the say (nouns and verbs...)
+
+1. Introduce yourself, purpose/duration of the interview, explain recording method, gaurantee anonymity
+2. Warm up, make first questions easy and non-threatening
+3. Main body, present questions in logical order
+4. Closure, thank interviewee, signal the end, switch recorder off
+
+###Requirements Classification and Organisation
+**User Requirements** - high level description in natural language, with diagrams, of what services the system is expected to provide to users
+
+**System Requirements** - more detailed descriptions, defining what will be implemented. Often called functional specification.
+
+**Functional Requirements** - what the system should do, how it reacts to particular inputs, what it should not do
+
+**Non-functional Requirements** - Constraints on the services of functions offered by the system. Often apply to thewhole system, e.g. timing constraints, speed, size, ease of use, reliability, robustness, portability
+
+Requirements should have these fields:
+- Requirement: The name of the requirement
+- Number: A unique number that identifies the requirement. Ideal for communication purposes
+- Description: A short description of the requirement
+- Rationale: The reason why this requirement is needed
+- Success criteria: What determines that this requirement has been well implemented
+- Level of importance: The importance of this requirement for prioritization purposes. Usually a number between 1 and 5
+
+Decide which requirements should be included in which release. To minimise risk, most important or high risk requirements are implemented first.
+
+MoSCoW - method for prioritising requirements. M - must have this, S - should have if possible, C - could have if it doesn't affect anything else, W - won't have this time, but maybe in the future
