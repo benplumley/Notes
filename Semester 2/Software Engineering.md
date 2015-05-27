@@ -521,3 +521,29 @@ Requirements should have these fields:
 Decide which requirements should be included in which release. To minimise risk, most important or high risk requirements are implemented first.
 
 MoSCoW - method for prioritising requirements. M - must have this, S - should have if possible, C - could have if it doesn't affect anything else, W - won't have this time, but maybe in the future
+
+###Risks
+
+**Risk** - an unwanted event that may occur with negative consequences. Main risks in SE are cost increases, schedule slippage, quality degradation, organisational
+
+- Reactive - wait for problems then act on them
+- Proactive - identify potential problems and act in anticipation
+
+Risk management process:
+1. Identify - produce a list of potential risks
+2. Analyse/Prioritise - produce a risk assessment with prioritised risk list. Assess likelihood and consequences. Table should contain risk, probability, and impact.
+3. Planning - produce a risk avoidance and contingency plan
+4. Monitoring
+5. Response/Resolution - implement plans to reduce/deal with risk
+
+Boehm's top 10 risks:
+1. Personell shortfalls
+2. Unrealistic schedules and budgets
+3. Developing the wrong software functions
+4. Developing the wrong user interface
+5. Gold plating
+6. Continues stream of requirements changes
+7. Shortfalls in externally performed tasks
+8. Shortfalls in externally furnished components
+9. Real-time performance shortfalls
+10. Straining computer science capabilities
